@@ -1,0 +1,792 @@
+[ SESSION START ] 2019-03-09 15:50:30 | ssh://192.168.175.128
+Connecting to root@192.168.175.128.
+Connected to root@192.168.175.128.
+
+Linux build-tmp 4.9.0-8-amd64 #1 SMP Debian 4.9.144-3.1 (2019-02-19) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
+root@build-tmp:~# sed -i 's/stretch main/stretch main non-free/g' /etc/apt/sources.list
+
+root@build-tmp:~# apt update
+0% [Working]            Hit:1 http://security.debian.org/debian-security stretch/updates InRelease
+0% [Connecting to debian.gtisc.gatech.edu (128.61.240.89)]                                                          0% [1 InRelease gpgv 94.3 kB] [Waiting for headers]                                                   Ign:2 http://ftp.us.debian.org/debian stretch InRelease
+0% [1 InRelease gpgv 94.3 kB] [Waiting for headers]                                                   0% [Waiting for headers]                        Hit:3 http://ftp.us.debian.org/debian stretch-updates InRelease
+                        0% [Working]0% [3 InRelease gpgv 91.0 kB] [Waiting for headers]                                                   Hit:4 http://ftp.us.debian.org/debian stretch Release
+                                                   0% [3 InRelease gpgv 91.0 kB]                             0% [Working]0% [Release.gpg gpgv 118 kB]                            18% [Working]             Get:6 http://ftp.us.debian.org/debian stretch/non-free Sources [79.4 kB]
+22% [6 Sources 14.2 kB/79.4 kB 18%]                                   44% [Working]44% [6 Sources store 0 B] [Waiting for headers]                                               45% [Waiting for headers]                         Get:7 http://ftp.us.debian.org/debian stretch/non-free amd64 Packages [78.3 kB]
+65% [7 Packages 60.6 kB/78.3 kB 77%]                                    Get:8 http://ftp.us.debian.org/debian stretch/non-free Translation-en [80.3 kB]
+                                    98% [Working]98% [7 Packages store 0 B]                          99% [Working]99% [8 Translation-en store 0 B]                                100% [Working]              Fetched 238 kB in 0s (622 kB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 1%Reading package lists... 55%Reading package lists... 55%Reading package lists... 92%Reading package lists... 92%Reading package lists... 93%Reading package lists... 93%Reading package lists... 93%Reading package lists... 93%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 1%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+All packages are up to date.
+
+root@build-tmp:~# apt install firmware-bnx2x build-essential libncurses5-dev bison flex bc curl
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  binutils cpp cpp-6 dpkg-dev fakeroot g++ g++-6 gcc gcc-6 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan3 libatomic1
+  libbison-dev libc-dev-bin libc6-dev libcc1-0 libcilkrts5 libcurl3 libdpkg-perl libfakeroot libfile-fcntllock-perl libfl-dev libgcc-6-dev libgomp1 libisl15
+  libitm1 liblsan0 libmpc3 libmpfr4 libmpx2 libquadmath0 libsigsegv2 libstdc++-6-dev libtinfo-dev libtsan0 libubsan0 linux-libc-dev m4 make manpages-dev patch
+Suggested packages:
+  binutils-doc bison-doc cpp-doc gcc-6-locales debian-keyring g++-multilib g++-6-multilib gcc-6-doc libstdc++6-6-dbg gcc-multilib autoconf automake libtool gdb
+  gcc-doc gcc-6-multilib libgcc1-dbg libgomp1-dbg libitm1-dbg libatomic1-dbg libasan3-dbg liblsan0-dbg libtsan0-dbg libubsan0-dbg libcilkrts5-dbg libmpx2-dbg
+  libquadmath0-dbg glibc-doc ncurses-doc libstdc++-6-doc m4-doc make-doc ed diffutils-doc
+The following NEW packages will be installed:
+  bc binutils bison build-essential cpp cpp-6 curl dpkg-dev fakeroot firmware-bnx2x flex g++ g++-6 gcc gcc-6 libalgorithm-diff-perl libalgorithm-diff-xs-perl
+  libalgorithm-merge-perl libasan3 libatomic1 libbison-dev libc-dev-bin libc6-dev libcc1-0 libcilkrts5 libcurl3 libdpkg-perl libfakeroot libfile-fcntllock-perl
+  libfl-dev libgcc-6-dev libgomp1 libisl15 libitm1 liblsan0 libmpc3 libmpfr4 libmpx2 libncurses5-dev libquadmath0 libsigsegv2 libstdc++-6-dev libtinfo-dev
+  libtsan0 libubsan0 linux-libc-dev m4 make manpages-dev patch
+0 upgraded, 50 newly installed, 0 to remove and 0 not upgraded.
+Need to get 45.7 MB of archives.
+After this operation, 174 MB of additional disk space will be used.
+
+Do you want to continue? [Y/n] y
+0% [Working]            Get:1 http://ftp.us.debian.org/debian stretch/main amd64 libsigsegv2 amd64 2.10-5 [28.9 kB]
+0% [1 libsigsegv2 0 B/28.9 kB 0%]                                 0% [Working]            Get:2 http://ftp.us.debian.org/debian stretch/main amd64 m4 amd64 1.4.18-1 [202 kB]
+0% [2 m4 0 B/202 kB 0%]                       1% [Working]            Get:3 http://ftp.us.debian.org/debian stretch/main amd64 flex amd64 2.6.1-1.3 [440 kB]
+1% [3 flex 0 B/440 kB 0%]                         2% [Working]            Get:4 http://ftp.us.debian.org/debian stretch/main amd64 bc amd64 1.06.95-9+b3 [105 kB]
+2% [4 bc 0 B/105 kB 0%]                       3% [Working]            Get:5 http://ftp.us.debian.org/debian stretch/main amd64 binutils amd64 2.28-5 [3,770 kB]
+3% [5 binutils 0 B/3,770 kB 0%]                               10% [Working]             Get:6 http://ftp.us.debian.org/debian stretch/main amd64 libbison-dev amd64 2:3.0.4.dfsg-1+b1 [433 kB]
+10% [6 libbison-dev 0 B/433 kB 0%]                                  11% [Working]             Get:7 http://ftp.us.debian.org/debian stretch/main amd64 bison amd64 2:3.0.4.dfsg-1+b1 [786 kB]
+11% [7 bison 0 B/786 kB 0%]                           13% [Working]             Get:8 http://ftp.us.debian.org/debian stretch/main amd64 libc-dev-bin amd64 2.24-11+deb9u4 [259 kB]
+13% [8 libc-dev-bin 0 B/259 kB 0%]                                  14% [Working]             Get:9 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-libc-dev amd64 4.9.144-3.1 [1,394 kB]
+14% [9 linux-libc-dev 0 B/1,394 kB 0%]                                      17% [Working]             Get:10 http://ftp.us.debian.org/debian stretch/main amd64 libc6-dev amd64 2.24-11+deb9u4 [2,364 kB]
+17% [10 libc6-dev 0 B/2,364 kB 0%]                                  21% [Working]             Get:11 http://ftp.us.debian.org/debian stretch/main amd64 libisl15 amd64 0.18-1 [564 kB]
+21% [11 libisl15 0 B/564 kB 0%]                               22% [Working]             Get:12 http://ftp.us.debian.org/debian stretch/main amd64 libmpfr4 amd64 3.1.5-1 [556 kB]
+22% [12 libmpfr4 0 B/556 kB 0%]                               24% [Working]             Get:13 http://ftp.us.debian.org/debian stretch/main amd64 libmpc3 amd64 1.0.3-1+b2 [39.9 kB]
+24% [13 libmpc3 0 B/39.9 kB 0%]                               24% [Working]             Get:14 http://ftp.us.debian.org/debian stretch/main amd64 cpp-6 amd64 6.3.0-18+deb9u1 [6,584 kB]
+24% [14 cpp-6 0 B/6,584 kB 0%]                              36% [Working]             Get:15 http://ftp.us.debian.org/debian stretch/main amd64 cpp amd64 4:6.3.0-4 [18.7 kB]
+36% [15 cpp 0 B/18.7 kB 0%]                           37% [Working]             Get:16 http://ftp.us.debian.org/debian stretch/main amd64 libcc1-0 amd64 6.3.0-18+deb9u1 [30.6 kB]
+37% [16 libcc1-0 0 B/30.6 kB 0%]                                37% [Working]             Get:17 http://ftp.us.debian.org/debian stretch/main amd64 libgomp1 amd64 6.3.0-18+deb9u1 [73.3 kB]
+37% [17 libgomp1 0 B/73.3 kB 0%]                                38% [Working]             Get:18 http://ftp.us.debian.org/debian stretch/main amd64 libitm1 amd64 6.3.0-18+deb9u1 [27.3 kB]
+38% [18 libitm1 0 B/27.3 kB 0%]                               38% [Working]             Get:19 http://ftp.us.debian.org/debian stretch/main amd64 libatomic1 amd64 6.3.0-18+deb9u1 [8,966 B]
+38% [19 libatomic1 0 B/8,966 B 0%]                                  39% [Working]             Get:20 http://ftp.us.debian.org/debian stretch/main amd64 libasan3 amd64 6.3.0-18+deb9u1 [311 kB]
+39% [20 libasan3 0 B/311 kB 0%]                               39% [Working]             Get:21 http://ftp.us.debian.org/debian stretch/main amd64 liblsan0 amd64 6.3.0-18+deb9u1 [115 kB]
+39% [21 liblsan0 0 B/115 kB 0%]                               40% [Working]             Get:22 http://ftp.us.debian.org/debian stretch/main amd64 libtsan0 amd64 6.3.0-18+deb9u1 [257 kB]
+40% [22 libtsan0 0 B/257 kB 0%]                               41% [Working]             Get:23 http://ftp.us.debian.org/debian stretch/main amd64 libubsan0 amd64 6.3.0-18+deb9u1 [107 kB]
+41% [23 libubsan0 0 B/107 kB 0%]                                42% [Working]             Get:24 http://ftp.us.debian.org/debian stretch/main amd64 libcilkrts5 amd64 6.3.0-18+deb9u1 [40.5 kB]
+42% [24 libcilkrts5 0 B/40.5 kB 0%]                                   42% [Working]             Get:25 http://ftp.us.debian.org/debian stretch/main amd64 libmpx2 amd64 6.3.0-18+deb9u1 [11.2 kB]
+42% [25 libmpx2 0 B/11.2 kB 0%]                               42% [Working]             Get:26 http://ftp.us.debian.org/debian stretch/main amd64 libquadmath0 amd64 6.3.0-18+deb9u1 [131 kB]
+42% [26 libquadmath0 0 B/131 kB 0%]                                   43% [Working]             Get:27 http://ftp.us.debian.org/debian stretch/main amd64 libgcc-6-dev amd64 6.3.0-18+deb9u1 [2,296 kB]
+43% [27 libgcc-6-dev 0 B/2,296 kB 0%]                                     47% [Working]             Get:28 http://ftp.us.debian.org/debian stretch/main amd64 gcc-6 amd64 6.3.0-18+deb9u1 [6,900 kB]
+47% [28 gcc-6 0 B/6,900 kB 0%]                              60% [Working]             Get:29 http://ftp.us.debian.org/debian stretch/main amd64 gcc amd64 4:6.3.0-4 [5,196 B]
+60% [29 gcc 0 B/5,196 B 0%]                           60% [Working]             Get:30 http://ftp.us.debian.org/debian stretch/main amd64 libstdc++-6-dev amd64 6.3.0-18+deb9u1 [1,420 kB]
+60% [30 libstdc++-6-dev 0 B/1,420 kB 0%]                                        63% [Working]             Get:31 http://ftp.us.debian.org/debian stretch/main amd64 g++-6 amd64 6.3.0-18+deb9u1 [7,094 kB]
+63% [31 g++-6 0 B/7,094 kB 0%]                              76% [Working]             Get:32 http://ftp.us.debian.org/debian stretch/main amd64 g++ amd64 4:6.3.0-4 [1,546 B]
+76% [32 g++ 0 B/1,546 B 0%]                           76% [Working]             Get:33 http://ftp.us.debian.org/debian stretch/main amd64 make amd64 4.1-9.1 [302 kB]
+76% [33 make 0 B/302 kB 0%]                           77% [Working]             Get:34 http://ftp.us.debian.org/debian stretch/main amd64 libdpkg-perl all 1.18.25 [1,287 kB]
+77% [34 libdpkg-perl 0 B/1,287 kB 0%]                                     80% [Working]             Get:35 http://ftp.us.debian.org/debian stretch/main amd64 patch amd64 2.7.5-1+deb9u1 [112 kB]
+80% [35 patch 0 B/112 kB 0%]                            81% [Working]             Get:36 http://ftp.us.debian.org/debian stretch/main amd64 dpkg-dev all 1.18.25 [1,595 kB]
+81% [36 dpkg-dev 0 B/1,595 kB 0%]                                 84% [Working]             Get:37 http://ftp.us.debian.org/debian stretch/main amd64 build-essential amd64 12.3 [7,346 B]
+84% [37 build-essential 0 B/7,346 B 0%]                                       84% [Working]             Get:38 http://ftp.us.debian.org/debian stretch/main amd64 libcurl3 amd64 7.52.1-5+deb9u9 [292 kB]
+84% [38 libcurl3 0 B/292 kB 0%]                               85% [Working]             Get:39 http://ftp.us.debian.org/debian stretch/main amd64 curl amd64 7.52.1-5+deb9u9 [227 kB]
+85% [39 curl 0 B/227 kB 0%]                           86% [Working]             Get:40 http://ftp.us.debian.org/debian stretch/main amd64 libfakeroot amd64 1.21-3.1 [45.7 kB]
+86% [40 libfakeroot 0 B/45.7 kB 0%]                                   86% [Working]             Get:41 http://ftp.us.debian.org/debian stretch/main amd64 fakeroot amd64 1.21-3.1 [85.6 kB]
+86% [41 fakeroot 0 B/85.6 kB 0%]                                87% [Working]             Get:42 http://ftp.us.debian.org/debian stretch/non-free amd64 firmware-bnx2x all 20161130-4 [2,816 kB]
+87% [42 firmware-bnx2x 0 B/2,816 kB 0%]                                       92% [Working]             Get:43 http://ftp.us.debian.org/debian stretch/main amd64 libalgorithm-diff-perl all 1.19.03-1 [48.7 kB]
+92% [43 libalgorithm-diff-perl 0 B/48.7 kB 0%]                                              93% [Working]             Get:44 http://ftp.us.debian.org/debian stretch/main amd64 libalgorithm-diff-xs-perl amd64 0.04-4+b2 [11.6 kB]
+93% [44 libalgorithm-diff-xs-perl 0 B/11.6 kB 0%]                                                 93% [Working]             Get:45 http://ftp.us.debian.org/debian stretch/main amd64 libalgorithm-merge-perl all 0.08-3 [12.7 kB]
+93% [45 libalgorithm-merge-perl 0 B/12.7 kB 0%]                                               94% [Working]             Get:46 http://ftp.us.debian.org/debian stretch/main amd64 libfile-fcntllock-perl amd64 0.22-3+b2 [35.3 kB]
+94% [46 libfile-fcntllock-perl 0 B/35.3 kB 0%]                                              94% [Working]             Get:47 http://ftp.us.debian.org/debian stretch/main amd64 libfl-dev amd64 2.6.1-1.3 [93.1 kB]
+94% [47 libfl-dev 0 B/93.1 kB 0%]                                 95% [Working]             Get:48 http://ftp.us.debian.org/debian stretch/main amd64 libtinfo-dev amd64 6.0+20161126-1+deb9u2 [79.2 kB]
+95% [48 libtinfo-dev 0 B/79.2 kB 0%]                                    95% [Working]             Get:49 http://ftp.us.debian.org/debian stretch/main amd64 libncurses5-dev amd64 6.0+20161126-1+deb9u2 [175 kB]
+95% [49 libncurses5-dev 0 B/175 kB 0%]                                      96% [Working]             Get:50 http://ftp.us.debian.org/debian stretch/main amd64 manpages-dev all 4.10-2 [2,145 kB]
+96% [50 manpages-dev 0 B/2,145 kB 0%]                                     100% [Working]              Fetched 45.7 MB in 1s (41.6 MB/s)
+Extracting templates from packages: 60%Extracting templates from packages: 100%
+
+Selecting previously unselected package libsigsegv2:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 26449 files and directories currently installed.)
+Preparing to unpack .../00-libsigsegv2_2.10-5_amd64.deb ...
+Progress: [  0%] [............................................................................................................................................] Unpacking libsigsegv2:amd64 (2.10-5) ...
+Progress: [  1%] [#...........................................................................................................................................] Selecting previously unselected package m4.
+Preparing to unpack .../01-m4_1.4.18-1_amd64.deb ...
+Unpacking m4 (1.4.18-1) ...
+Progress: [  2%] [###.........................................................................................................................................] Selecting previously unselected package flex.
+Preparing to unpack .../02-flex_2.6.1-1.3_amd64.deb ...
+Unpacking flex (2.6.1-1.3) ...
+Progress: [  3%] [####........................................................................................................................................] Selecting previously unselected package bc.
+Preparing to unpack .../03-bc_1.06.95-9+b3_amd64.deb ...
+Unpacking bc (1.06.95-9+b3) ...
+Progress: [  4%] [######......................................................................................................................................] Selecting previously unselected package binutils.
+Preparing to unpack .../04-binutils_2.28-5_amd64.deb ...
+Progress: [  5%] [#######.....................................................................................................................................] Unpacking binutils (2.28-5) ...
+Selecting previously unselected package libbison-dev:amd64.
+Preparing to unpack .../05-libbison-dev_2%3a3.0.4.dfsg-1+b1_amd64.deb ...
+Progress: [  6%] [########....................................................................................................................................] Unpacking libbison-dev:amd64 (2:3.0.4.dfsg-1+b1) ...
+Progress: [  7%] [##########..................................................................................................................................] Selecting previously unselected package bison.
+Preparing to unpack .../06-bison_2%3a3.0.4.dfsg-1+b1_amd64.deb ...
+Unpacking bison (2:3.0.4.dfsg-1+b1) ...
+Progress: [  8%] [###########.................................................................................................................................] Selecting previously unselected package libc-dev-bin.
+Preparing to unpack .../07-libc-dev-bin_2.24-11+deb9u4_amd64.deb ...
+Unpacking libc-dev-bin (2.24-11+deb9u4) ...
+Progress: [  9%] [############................................................................................................................................] Selecting previously unselected package linux-libc-dev:amd64.
+Preparing to unpack .../08-linux-libc-dev_4.9.144-3.1_amd64.deb ...
+Unpacking linux-libc-dev:amd64 (4.9.144-3.1) ...
+Progress: [ 10%] [##############..............................................................................................................................] Selecting previously unselected package libc6-dev:amd64.
+Preparing to unpack .../09-libc6-dev_2.24-11+deb9u4_amd64.deb ...
+Progress: [ 11%] [###############.............................................................................................................................] Unpacking libc6-dev:amd64 (2.24-11+deb9u4) ...
+Selecting previously unselected package libisl15:amd64.
+Preparing to unpack .../10-libisl15_0.18-1_amd64.deb ...
+Progress: [ 12%] [#################...........................................................................................................................] Unpacking libisl15:amd64 (0.18-1) ...
+Progress: [ 13%] [##################..........................................................................................................................] Selecting previously unselected package libmpfr4:amd64.
+Preparing to unpack .../11-libmpfr4_3.1.5-1_amd64.deb ...
+Unpacking libmpfr4:amd64 (3.1.5-1) ...
+Progress: [ 14%] [####################........................................................................................................................] Selecting previously unselected package libmpc3:amd64.
+Preparing to unpack .../12-libmpc3_1.0.3-1+b2_amd64.deb ...
+Unpacking libmpc3:amd64 (1.0.3-1+b2) ...
+Progress: [ 15%] [#####################.......................................................................................................................] Selecting previously unselected package cpp-6.
+Preparing to unpack .../13-cpp-6_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking cpp-6 (6.3.0-18+deb9u1) ...
+Progress: [ 16%] [######################......................................................................................................................] Selecting previously unselected package cpp.
+Preparing to unpack .../14-cpp_4%3a6.3.0-4_amd64.deb ...
+Progress: [ 17%] [#######################.....................................................................................................................] Unpacking cpp (4:6.3.0-4) ...
+Selecting previously unselected package libcc1-0:amd64.
+Preparing to unpack .../15-libcc1-0_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 18%] [#########################...................................................................................................................] Unpacking libcc1-0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 19%] [##########################..................................................................................................................] Selecting previously unselected package libgomp1:amd64.
+Preparing to unpack .../16-libgomp1_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libgomp1:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 20%] [############################................................................................................................................] Selecting previously unselected package libitm1:amd64.
+Preparing to unpack .../17-libitm1_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libitm1:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 21%] [#############################...............................................................................................................] Selecting previously unselected package libatomic1:amd64.
+Preparing to unpack .../18-libatomic1_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libatomic1:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 22%] [###############################.............................................................................................................] Selecting previously unselected package libasan3:amd64.
+Preparing to unpack .../19-libasan3_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 23%] [################################............................................................................................................] Unpacking libasan3:amd64 (6.3.0-18+deb9u1) ...
+Selecting previously unselected package liblsan0:amd64.
+Preparing to unpack .../20-liblsan0_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 24%] [##################################..........................................................................................................] Unpacking liblsan0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 25%] [###################################.........................................................................................................] Selecting previously unselected package libtsan0:amd64.
+Preparing to unpack .../21-libtsan0_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libtsan0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 26%] [####################################........................................................................................................] Selecting previously unselected package libubsan0:amd64.
+Preparing to unpack .../22-libubsan0_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libubsan0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 27%] [#####################################.......................................................................................................] Selecting previously unselected package libcilkrts5:amd64.
+Preparing to unpack .../23-libcilkrts5_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libcilkrts5:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 28%] [#######################################.....................................................................................................] Selecting previously unselected package libmpx2:amd64.
+Preparing to unpack .../24-libmpx2_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 29%] [########################################....................................................................................................] Unpacking libmpx2:amd64 (6.3.0-18+deb9u1) ...
+Selecting previously unselected package libquadmath0:amd64.
+Preparing to unpack .../25-libquadmath0_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 30%] [##########################################..................................................................................................] Unpacking libquadmath0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 31%] [###########################################.................................................................................................] Selecting previously unselected package libgcc-6-dev:amd64.
+Preparing to unpack .../26-libgcc-6-dev_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libgcc-6-dev:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 32%] [#############################################...............................................................................................] Selecting previously unselected package gcc-6.
+Preparing to unpack .../27-gcc-6_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking gcc-6 (6.3.0-18+deb9u1) ...
+Progress: [ 33%] [##############################################..............................................................................................] Selecting previously unselected package gcc.
+Preparing to unpack .../28-gcc_4%3a6.3.0-4_amd64.deb ...
+Unpacking gcc (4:6.3.0-4) ...
+Progress: [ 34%] [###############################################.............................................................................................] Selecting previously unselected package libstdc++-6-dev:amd64.
+Preparing to unpack .../29-libstdc++-6-dev_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 35%] [#################################################...........................................................................................] Unpacking libstdc++-6-dev:amd64 (6.3.0-18+deb9u1) ...
+Selecting previously unselected package g++-6.
+Preparing to unpack .../30-g++-6_6.3.0-18+deb9u1_amd64.deb ...
+Progress: [ 36%] [##################################################..........................................................................................] Unpacking g++-6 (6.3.0-18+deb9u1) ...
+Progress: [ 37%] [###################################################.........................................................................................] Selecting previously unselected package g++.
+Preparing to unpack .../31-g++_4%3a6.3.0-4_amd64.deb ...
+Unpacking g++ (4:6.3.0-4) ...
+Progress: [ 38%] [#####################################################.......................................................................................] Selecting previously unselected package make.
+Preparing to unpack .../32-make_4.1-9.1_amd64.deb ...
+Unpacking make (4.1-9.1) ...
+Progress: [ 39%] [######################################################......................................................................................] Selecting previously unselected package libdpkg-perl.
+Preparing to unpack .../33-libdpkg-perl_1.18.25_all.deb ...
+Unpacking libdpkg-perl (1.18.25) ...
+Progress: [ 40%] [########################################################....................................................................................] Selecting previously unselected package patch.
+Preparing to unpack .../34-patch_2.7.5-1+deb9u1_amd64.deb ...
+Progress: [ 41%] [#########################################################...................................................................................] Unpacking patch (2.7.5-1+deb9u1) ...
+Selecting previously unselected package dpkg-dev.
+Preparing to unpack .../35-dpkg-dev_1.18.25_all.deb ...
+Progress: [ 42%] [###########################################################.................................................................................] Unpacking dpkg-dev (1.18.25) ...
+Progress: [ 43%] [############################################################................................................................................] Selecting previously unselected package build-essential.
+Preparing to unpack .../36-build-essential_12.3_amd64.deb ...
+Unpacking build-essential (12.3) ...
+Progress: [ 44%] [#############################################################...............................................................................] Selecting previously unselected package libcurl3:amd64.
+Preparing to unpack .../37-libcurl3_7.52.1-5+deb9u9_amd64.deb ...
+Unpacking libcurl3:amd64 (7.52.1-5+deb9u9) ...
+Progress: [ 45%] [###############################################################.............................................................................] Selecting previously unselected package curl.
+Preparing to unpack .../38-curl_7.52.1-5+deb9u9_amd64.deb ...
+Unpacking curl (7.52.1-5+deb9u9) ...
+Progress: [ 46%] [################################################################............................................................................] Selecting previously unselected package libfakeroot:amd64.
+Preparing to unpack .../39-libfakeroot_1.21-3.1_amd64.deb ...
+Progress: [ 47%] [#################################################################...........................................................................] Unpacking libfakeroot:amd64 (1.21-3.1) ...
+Selecting previously unselected package fakeroot.
+Preparing to unpack .../40-fakeroot_1.21-3.1_amd64.deb ...
+Progress: [ 48%] [###################################################################.........................................................................] Unpacking fakeroot (1.21-3.1) ...
+Progress: [ 49%] [####################################################################........................................................................] Selecting previously unselected package firmware-bnx2x.
+Preparing to unpack .../41-firmware-bnx2x_20161130-4_all.deb ...
+Unpacking firmware-bnx2x (20161130-4) ...
+Progress: [ 50%] [######################################################################......................................................................] Selecting previously unselected package libalgorithm-diff-perl.
+Preparing to unpack .../42-libalgorithm-diff-perl_1.19.03-1_all.deb ...
+Unpacking libalgorithm-diff-perl (1.19.03-1) ...
+Progress: [ 51%] [#######################################################################.....................................................................] Selecting previously unselected package libalgorithm-diff-xs-perl.
+Preparing to unpack .../43-libalgorithm-diff-xs-perl_0.04-4+b2_amd64.deb ...
+Unpacking libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Progress: [ 52%] [#########################################################################...................................................................] Selecting previously unselected package libalgorithm-merge-perl.
+Preparing to unpack .../44-libalgorithm-merge-perl_0.08-3_all.deb ...
+Unpacking libalgorithm-merge-perl (0.08-3) ...
+Progress: [ 53%] [##########################################################################..................................................................] Selecting previously unselected package libfile-fcntllock-perl.
+Preparing to unpack .../45-libfile-fcntllock-perl_0.22-3+b2_amd64.deb ...
+Progress: [ 54%] [###########################################################################.................................................................] Unpacking libfile-fcntllock-perl (0.22-3+b2) ...
+Selecting previously unselected package libfl-dev:amd64.
+Preparing to unpack .../46-libfl-dev_2.6.1-1.3_amd64.deb ...
+Progress: [ 55%] [#############################################################################...............................................................] Unpacking libfl-dev:amd64 (2.6.1-1.3) ...
+Progress: [ 56%] [##############################################################################..............................................................] Selecting previously unselected package libtinfo-dev:amd64.
+Preparing to unpack .../47-libtinfo-dev_6.0+20161126-1+deb9u2_amd64.deb ...
+Unpacking libtinfo-dev:amd64 (6.0+20161126-1+deb9u2) ...
+Progress: [ 57%] [################################################################################............................................................] Selecting previously unselected package libncurses5-dev:amd64.
+Preparing to unpack .../48-libncurses5-dev_6.0+20161126-1+deb9u2_amd64.deb ...
+Unpacking libncurses5-dev:amd64 (6.0+20161126-1+deb9u2) ...
+Progress: [ 58%] [#################################################################################...........................................................] Selecting previously unselected package manpages-dev.
+Preparing to unpack .../49-manpages-dev_4.10-2_all.deb ...
+Unpacking manpages-dev (4.10-2) ...
+Progress: [ 59%] [###################################################################################.........................................................] Setting up libquadmath0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 60%] [####################################################################################........................................................] Setting up libgomp1:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 61%] [#####################################################################################.......................................................] Setting up libatomic1:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 62%] [#######################################################################################.....................................................] Setting up libcc1-0:amd64 (6.3.0-18+deb9u1) ...
+Setting up make (4.1-9.1) ...
+Progress: [ 63%] [########################################################################################....................................................] Setting up libasan3:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 64%] [#########################################################################################...................................................] Setting up libsigsegv2:amd64 (2.10-5) ...
+Progress: [ 65%] [###########################################################################################.................................................] Setting up libcurl3:amd64 (7.52.1-5+deb9u9) ...
+Progress: [ 66%] [############################################################################################................................................] Setting up libcilkrts5:amd64 (6.3.0-18+deb9u1) ...
+Setting up libubsan0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 67%] [##############################################################################################..............................................] Setting up libtsan0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 68%] [###############################################################################################.............................................] Setting up linux-libc-dev:amd64 (4.9.144-3.1) ...
+Progress: [ 69%] [#################################################################################################...........................................] Setting up libdpkg-perl (1.18.25) ...
+Progress: [ 70%] [##################################################################################################..........................................] Setting up libtinfo-dev:amd64 (6.0+20161126-1+deb9u2) ...
+Setting up m4 (1.4.18-1) ...
+Progress: [ 71%] [###################################################################################################.........................................] Setting up liblsan0:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 72%] [####################################################################################################........................................] Setting up libfile-fcntllock-perl (0.22-3+b2) ...
+Progress: [ 73%] [######################################################################################################......................................] Setting up libmpx2:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 74%] [#######################################################################################################.....................................] Setting up libisl15:amd64 (0.18-1) ...
+Setting up patch (2.7.5-1+deb9u1) ...
+Progress: [ 75%] [#########################################################################################################...................................] Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Setting up libfakeroot:amd64 (1.21-3.1) ...
+Progress: [ 76%] [##########################################################################################################..................................] Setting up libbison-dev:amd64 (2:3.0.4.dfsg-1+b1) ...
+Progress: [ 77%] [############################################################################################################................................] Setting up libalgorithm-diff-perl (1.19.03-1) ...
+Progress: [ 78%] [#############################################################################################################...............................] Setting up libmpfr4:amd64 (3.1.5-1) ...
+Processing triggers for man-db (2.7.6.1-2) ...
+Setting up libmpc3:amd64 (1.0.3-1+b2) ...
+Progress: [ 79%] [##############################################################################################################..............................] Setting up binutils (2.28-5) ...
+Progress: [ 80%] [################################################################################################################............................] Setting up cpp-6 (6.3.0-18+deb9u1) ...
+Progress: [ 81%] [#################################################################################################################...........................] Setting up libc-dev-bin (2.24-11+deb9u4) ...
+Progress: [ 82%] [##################################################################################################################..........................] Setting up bison (2:3.0.4.dfsg-1+b1) ...
+update-alternatives: using /usr/bin/bison.yacc to provide /usr/bin/yacc (yacc) in auto mode
+Setting up bc (1.06.95-9+b3) ...
+Progress: [ 83%] [####################################################################################################################........................] Setting up manpages-dev (4.10-2) ...
+Progress: [ 84%] [#####################################################################################################################.......................] Setting up libc6-dev:amd64 (2.24-11+deb9u4) ...
+Progress: [ 85%] [#######################################################################################################################.....................] Setting up libitm1:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 86%] [########################################################################################################################....................] Setting up firmware-bnx2x (20161130-4) ...
+update-initramfs: deferring update (trigger activated)
+Setting up cpp (4:6.3.0-4) ...
+Progress: [ 87%] [##########################################################################################################################..................] Setting up libgcc-6-dev:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 88%] [###########################################################################################################################.................] Setting up libstdc++-6-dev:amd64 (6.3.0-18+deb9u1) ...
+Progress: [ 89%] [############################################################################################################################................] Setting up curl (7.52.1-5+deb9u9) ...
+Progress: [ 90%] [##############################################################################################################################..............] Setting up flex (2.6.1-1.3) ...
+Setting up fakeroot (1.21-3.1) ...
+Progress: [ 91%] [###############################################################################################################################.............] update-alternatives: using /usr/bin/fakeroot-sysv to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Setting up gcc-6 (6.3.0-18+deb9u1) ...
+Progress: [ 92%] [################################################################################################################################............] Setting up libfl-dev:amd64 (2.6.1-1.3) ...
+Progress: [ 93%] [##################################################################################################################################..........] Setting up g++-6 (6.3.0-18+deb9u1) ...
+Progress: [ 94%] [###################################################################################################################################.........] Setting up libncurses5-dev:amd64 (6.0+20161126-1+deb9u2) ...
+Setting up libalgorithm-merge-perl (0.08-3) ...
+Progress: [ 95%] [#####################################################################################################################################.......] Setting up dpkg-dev (1.18.25) ...
+Progress: [ 96%] [######################################################################################################################################......] Setting up libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Progress: [ 97%] [########################################################################################################################################....] Setting up gcc (4:6.3.0-4) ...
+Progress: [ 98%] [#########################################################################################################################################...] Setting up g++ (4:6.3.0-4) ...
+update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+Setting up build-essential (12.3) ...
+Progress: [ 99%] [##########################################################################################################################################..] Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Processing triggers for initramfs-tools (0.130) ...
+update-initramfs: Generating /boot/initrd.img-4.9.0-8-amd64
+
+root@build-tmp:~# curl https://www.jamesmtl.com/bnx2x/stretch/stretch.patch -o bnx2x_warpcore_2_5g_sgmii.patch
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2292  100  2292    0     0   109k      0 --:--:-- --:--:-- --:--:--  111k
+
+root@build-tmp:~# apt install linux-headers-$(uname -r)
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  linux-compiler-gcc-6-x86 linux-headers-4.9.0-8-common linux-kbuild-4.9
+The following NEW packages will be installed:
+  linux-compiler-gcc-6-x86 linux-headers-4.9.0-8-amd64 linux-headers-4.9.0-8-common linux-kbuild-4.9
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 9,504 kB of archives.
+After this operation, 52.0 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+0% [Working]            Get:1 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-compiler-gcc-6-x86 amd64 4.9.144-3.1 [603 kB]
+0% [1 linux-compiler-gcc-6-x86 0 B/603 kB 0%]                                             10% [Working]             Get:2 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-headers-4.9.0-8-common all 4.9.144-3.1 [7,643 kB]
+10% [2 linux-headers-4.9.0-8-common 0 B/7,643 kB 0%]                                                    79% [Working]             Get:3 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-kbuild-4.9 amd64 4.9.144-3.1 [809 kB]
+79% [3 linux-kbuild-4.9 0 B/809 kB 0%]                                      91% [Working]             Get:4 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-headers-4.9.0-8-amd64 amd64 4.9.144-3.1 [449 kB]
+91% [4 linux-headers-4.9.0-8-amd64 0 B/449 kB 0%]                                                 100% [Working]              Fetched 9,504 kB in 0s (26.3 MB/s)
+Selecting previously unselected package linux-compiler-gcc-6-x86.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 32246 files and directories currently installed.)
+Preparing to unpack .../linux-compiler-gcc-6-x86_4.9.144-3.1_amd64.deb ...
+Progress: [  0%] [............................................................................................................................................] Progress: [  4%] [######......................................................................................................................................] Unpacking linux-compiler-gcc-6-x86 (4.9.144-3.1) ...
+Progress: [  9%] [#############...............................................................................................................................] Progress: [ 14%] [####################........................................................................................................................] Selecting previously unselected package linux-headers-4.9.0-8-common.
+Preparing to unpack .../linux-headers-4.9.0-8-common_4.9.144-3.1_all.deb ...
+Progress: [ 19%] [##########################..................................................................................................................] Unpacking linux-headers-4.9.0-8-common (4.9.144-3.1) ...
+Progress: [ 23%] [#################################...........................................................................................................] Progress: [ 28%] [########################################....................................................................................................] Selecting previously unselected package linux-kbuild-4.9.
+Preparing to unpack .../linux-kbuild-4.9_4.9.144-3.1_amd64.deb ...
+Progress: [ 33%] [##############################################..............................................................................................] Unpacking linux-kbuild-4.9 (4.9.144-3.1) ...
+Progress: [ 38%] [#####################################################.......................................................................................] Progress: [ 42%] [############################################################................................................................................] Selecting previously unselected package linux-headers-4.9.0-8-amd64.
+Preparing to unpack .../linux-headers-4.9.0-8-amd64_4.9.144-3.1_amd64.deb ...
+Progress: [ 47%] [##################################################################..........................................................................] Unpacking linux-headers-4.9.0-8-amd64 (4.9.144-3.1) ...
+Progress: [ 52%] [#########################################################################...................................................................] Progress: [ 57%] [################################################################################............................................................] Setting up linux-headers-4.9.0-8-common (4.9.144-3.1) ...
+Progress: [ 61%] [######################################################################################......................................................] Progress: [ 66%] [#############################################################################################...............................................] Setting up linux-compiler-gcc-6-x86 (4.9.144-3.1) ...
+Progress: [ 71%] [####################################################################################################........................................] Progress: [ 76%] [##########################################################################################################..................................] Setting up linux-kbuild-4.9 (4.9.144-3.1) ...
+Progress: [ 80%] [#################################################################################################################...........................] Progress: [ 85%] [########################################################################################################################....................] Setting up linux-headers-4.9.0-8-amd64 (4.9.144-3.1) ...
+Progress: [ 90%] [##############################################################################################################################..............] Progress: [ 95%] [#####################################################################################################################################.......] 
+
+root@build-tmp:~# apt-get source linux-image-$(uname -r)
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Picking 'linux' as source package instead of 'linux-image-4.9.0-8-amd64'
+NOTICE: 'linux' packaging is maintained in the 'Git' version control system at:
+https://salsa.debian.org/kernel-team/linux.git
+Please use:
+git clone https://salsa.debian.org/kernel-team/linux.git
+to retrieve the latest (possibly unreleased) updates to the package.
+Need to get 97.5 MB of source archives.
+0% [Working]            Get:1 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (dsc) [123 kB]
+0% [1 linux 0 B/123 kB 0%]                          7% [Working]            Get:2 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (tar) [94.7 MB]
+7% [2 linux 0 B/94.7 MB 0%]38% [2 linux 38.4 MB/94.7 MB 41%]84% [2 linux 94.3 MB/94.7 MB 100%]                                  91% [Working]             Get:3 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (diff) [2,651 kB]
+91% [3 linux 0 B/2,651 kB 0%]                             100% [Working]              Fetched 97.5 MB in 1s (81.1 MB/s)
+dpkg-source: info: extracting linux in linux-4.9.144
+dpkg-source: info: unpacking linux_4.9.144.orig.tar.xz
+dpkg-source: info: unpacking linux_4.9.144-3.1.debian.tar.xz
+dpkg-source: info: applying debian/version.patch
+dpkg-source: info: applying debian/uname-version-timestamp.patch
+dpkg-source: info: applying debian/kernelvariables.patch
+dpkg-source: info: applying debian/gitignore.patch
+dpkg-source: info: applying debian/mips-disable-werror.patch
+dpkg-source: info: applying debian/arch-sh4-fix-uimage-build.patch
+dpkg-source: info: applying debian/powerpcspe-omit-uimage.patch
+dpkg-source: info: applying features/all/Kbuild-kconfig-Verbose-version-of-listnewconfig.patch
+dpkg-source: info: applying debian/modpost-symbol-prefix.patch
+dpkg-source: info: applying debian/tools-perf-version.patch
+dpkg-source: info: applying debian/tools-perf-install.patch
+dpkg-source: info: applying features/all/drivers-media-dvb-usb-af9005-request_firmware.patch
+dpkg-source: info: applying debian/iwlwifi-do-not-request-unreleased-firmware.patch
+dpkg-source: info: applying bugfix/all/firmware_class-log-every-success-and-failure.patch
+dpkg-source: info: applying bugfix/all/firmware-remove-redundant-log-messages-from-drivers.patch
+dpkg-source: info: applying bugfix/all/radeon-firmware-is-required-for-drm-and-kms-on-r600-onward.patch
+dpkg-source: info: applying features/all/aufs4/aufs4-base.patch
+dpkg-source: info: applying features/all/aufs4/aufs4-mmap.patch
+dpkg-source: info: applying features/all/aufs4/aufs4-standalone.patch
+dpkg-source: info: applying debian/af_802154-Disable-auto-loading-as-mitigation-against.patch
+dpkg-source: info: applying debian/rds-Disable-auto-loading-as-mitigation-against-local.patch
+dpkg-source: info: applying debian/decnet-Disable-auto-loading-as-mitigation-against-lo.patch
+dpkg-source: info: applying debian/dccp-disable-auto-loading-as-mitigation-against-local-exploits.patch
+dpkg-source: info: applying debian/fs-enable-link-security-restrictions-by-default.patch
+dpkg-source: info: applying debian/sched-autogroup-disabled.patch
+dpkg-source: info: applying debian/yama-disable-by-default.patch
+dpkg-source: info: applying debian/add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-default.patch
+dpkg-source: info: applying features/all/security-perf-allow-further-restriction-of-perf_event_open.patch
+dpkg-source: info: applying debian/cdc_ncm-cdc_mbim-use-ncm-by-default.patch
+dpkg-source: info: applying debian/snd-pcsp-disable-autoload.patch
+dpkg-source: info: applying bugfix/x86/viafb-autoload-on-olpc-xo1.5-only.patch
+dpkg-source: info: applying debian/fjes-disable-autoload.patch
+dpkg-source: info: applying debian/fanotify-taint-on-use-of-fanotify_access_permissions.patch
+dpkg-source: info: applying debian/btrfs-warn-about-raid5-6-being-experimental-at-mount.patch
+dpkg-source: info: applying debian/amd64-don-t-warn-about-expected-w+x-pages-on-xen.patch
+dpkg-source: info: applying bugfix/arm/arm-dts-kirkwood-fix-sata-pinmux-ing-for-ts419.patch
+dpkg-source: info: applying features/all/firmware-dmi-add-dmi_product_family-identification-s.patch
+dpkg-source: info: applying bugfix/x86/pinctrl-cherryview-extend-the-chromebook-dmi-quirk-t.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-y700-15-acz-to-no_hw.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-ideapad-310-15ikb-to.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-ideapad-v310-15isk-t.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-y520-15ikbn-to-no_hw.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-y720-15ikbn-to-no_hw.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-ideapad-v510-15ikb-t.patch
+dpkg-source: info: applying bugfix/x86/platform-x86-ideapad-laptop-add-several-models-to-no.patch
+dpkg-source: info: applying bugfix/powerpc/powerpc-invalidate-erat-on-powersave-wakeup-for-power9.patch
+dpkg-source: info: applying bugfix/arm/arm-dts-exynos-add-dwc3-susphy-quirk.patch
+dpkg-source: info: applying bugfix/mips/mips-remove-pt_regs-adjustments-in-indirect-syscall-.patch
+dpkg-source: info: applying features/mips/MIPS-increase-MAX-PHYSMEM-BITS-on-Loongson-3-only.patch
+dpkg-source: info: applying features/mips/MIPS-Loongson-3-Add-Loongson-LS3A-RS780E-1-way-machi.patch
+dpkg-source: info: applying features/x86/x86-memtest-WARN-if-bad-RAM-found.patch
+dpkg-source: info: applying features/x86/x86-make-x32-syscall-support-conditional.patch
+dpkg-source: info: applying features/arm/arm-dts-add-support-for-turris-omnia.patch
+dpkg-source: info: applying features/arm/arm-dts-turris-omnia-add-support-for-ethernet-switch.patch
+dpkg-source: info: applying features/arm/ARM-dts-orion5x-convert-ls-chl-to-FDT.patch
+dpkg-source: info: applying features/arm64/dts-meson-gx-add-firmware-reserved-memory-zone.patch
+dpkg-source: info: applying features/arm/ARM-dts-orion5x-lschl-Fix-model-name.patch
+dpkg-source: info: applying features/arm/ARM-dts-orion5x-lschl-More-consistent-naming-on-link.patch
+dpkg-source: info: applying features/arm/ARM-orion5x-fix-Makefile-for-linkstation-lschl.dtb.patch
+dpkg-source: info: applying features/arm/dt-bindings-gpu-add-bindings-for-the-arm-mali-midgar.patch
+dpkg-source: info: applying features/arm/arm-dts-rockchip-add-arm-mali-gpu-node-for-rk3288.patch
+dpkg-source: info: applying features/arm/arm-dts-rockchip-enable-arm-mali-gpu-on-rk3288-rock2.patch
+dpkg-source: info: applying features/arm/arm-dts-rockchip-enable-arm-mali-gpu-on-rk3288-firef.patch
+dpkg-source: info: applying features/arm/arm-dts-rockchip-enable-arm-mali-gpu-on-rk3288-veyro.patch
+dpkg-source: info: applying features/mips/mips-loongson-add-loongson-3a-r3-basic-support.patch
+dpkg-source: info: applying features/mips/mips-loongson-add-nmi-handler-support.patch
+dpkg-source: info: applying features/mips/mips-loongson-3-support-4-packages-in-cpu-hwmon-driv.patch
+dpkg-source: info: applying features/mips/mips-loongson-3-irq-balancing-for-pci-devices.patch
+dpkg-source: info: applying features/mips/mips-loongson-3-support-irq_set_affinity-in-i8259-ch.patch
+dpkg-source: info: applying features/mips/mips-loogson-make-enum-loongson_cpu_type-more-clear.patch
+dpkg-source: info: applying bugfix/all/kbuild-use-nostdinc-in-compile-tests.patch
+dpkg-source: info: applying bugfix/all/disable-some-marvell-phys.patch
+dpkg-source: info: applying bugfix/all/fs-add-module_softdep-declarations-for-hard-coded-cr.patch
+dpkg-source: info: applying bugfix/all/kbuild-do-not-use-hyphen-in-exported-variable-name.patch
+dpkg-source: info: applying bugfix/all/partially-revert-usb-kconfig-using-select-for-usb_co.patch
+dpkg-source: info: applying bugfix/all/kbuild-include-addtree-remove-quotes-before-matching-path.patch
+dpkg-source: info: applying bugfix/all/mm-mmap.c-expand_downwards-don-t-require-the-gap-if-.patch
+dpkg-source: info: applying bugfix/x86/mmap-remember-the-map_fixed-flag-as-vm_fixed.patch
+dpkg-source: info: applying bugfix/x86/mmap-add-an-exception-to-the-stack-gap-for-hotspot-jvm.patch
+dpkg-source: info: applying bugfix/all/xen-time-do-not-decrease-steal-time-after-live-migra.patch
+dpkg-source: info: applying bugfix/all/nfsd-increase-DRC-cache-limit.patch
+dpkg-source: info: applying bugfix/all/netfilter-xt_hashlimit-fix-integer-divide-round-to-z.patch
+dpkg-source: info: applying bugfix/all/efi-libstub-unify-command-line-param-parsing.patch
+dpkg-source: info: applying bugfix/all/libceph-fix-ceph_feature_cephx_v2-check-in-calc_sign.patch
+dpkg-source: info: applying features/all/netfilter-nft_ct-add-notrack-support.patch
+dpkg-source: info: applying features/all/ast/drm-ast-const-ify-mode-setting-tables.patch
+dpkg-source: info: applying features/all/ast/drm-ast-remove-spurious-include.patch
+dpkg-source: info: applying features/all/ast/drm-ast-fix-calculation-of-mclk.patch
+dpkg-source: info: applying features/all/ast/drm-ast-base-support-for-ast2500.patch
+dpkg-source: info: applying features/all/ast/drm-ast-fixed-vram-size-incorrect-issue-on-power.patch
+dpkg-source: info: applying features/all/ast/drm-ast-factor-mmc_test-code-in-post-code.patch
+dpkg-source: info: applying features/all/ast/drm-ast-rename-ast_init_dram_2300-to-ast_post_chip_2.patch
+dpkg-source: info: applying features/all/ast/drm-ast-post-code-for-the-new-ast2500.patch
+dpkg-source: info: applying features/all/securelevel/add-bsd-style-securelevel-support.patch
+dpkg-source: info: applying features/all/securelevel/enforce-module-signatures-when-securelevel-is-greate.patch
+dpkg-source: info: applying features/all/securelevel/pci-lock-down-bar-access-when-securelevel-is-enabled.patch
+dpkg-source: info: applying features/all/securelevel/x86-lock-down-io-port-access-when-securelevel-is-ena.patch
+dpkg-source: info: applying features/all/securelevel/restrict-dev-mem-and-dev-kmem-when-securelevel-is-se.patch
+dpkg-source: info: applying features/all/securelevel/acpi-limit-access-to-custom_method-if-securelevel-is.patch
+dpkg-source: info: applying features/all/securelevel/acpi-ignore-acpi_rsdp-kernel-parameter-when-securele.patch
+dpkg-source: info: applying features/all/securelevel/kexec-disable-at-runtime-if-securelevel-has-been-set.patch
+dpkg-source: info: applying features/all/securelevel/uswsusp-disable-when-securelevel-is-set.patch
+dpkg-source: info: applying features/all/securelevel/x86-restrict-msr-access-when-securelevel-is-set.patch
+dpkg-source: info: applying features/all/securelevel/asus-wmi-restrict-debugfs-interface-when-securelevel.patch
+dpkg-source: info: applying features/all/securelevel/add-option-to-automatically-set-securelevel-when-in-.patch
+dpkg-source: info: applying features/all/securelevel/efi-disable-secure-boot-if-shim-is-in-insecure-mode.patch
+dpkg-source: info: applying features/all/securelevel/hibernate-disable-when-securelevel-is-set.patch
+dpkg-source: info: applying features/all/securelevel/kexec-uefi-copy-secure_boot-flag-in-boot-params-acro.patch
+dpkg-source: info: applying features/all/securelevel/acpi-disable-acpi-table-override-if-securelevel-is-s.patch
+dpkg-source: info: applying features/all/securelevel/acpi-disable-apei-error-injection-if-securelevel-is-.patch
+dpkg-source: info: applying features/all/securelevel/enable-cold-boot-attack-mitigation.patch
+dpkg-source: info: applying features/all/securelevel/mtd-disable-slram-and-phram-when-securelevel-is-enabled.patch
+dpkg-source: info: applying features/all/securelevel/arm64-efi-disable-secure-boot-if-shim-is-in-insecure.patch
+dpkg-source: info: applying features/all/securelevel/arm64-add-kernel-config-option-to-set-securelevel-wh.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0001-net-qcom-emac-move-phy-init-code-to-separate-files.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0002-net-qcom-emac-add-support-for-the-Qualcomm-Technolog.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0003-net-qcom-emac-don-t-try-to-claim-clocks-on-ACPI-syst.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0004-net-qcom-emac-add-ethtool-support.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0005-net-qcom-emac-grab-a-reference-to-the-phydev-on-ACPI.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0006-net-qcom-emac-rename-emac_phy-to-emac_sgmii-and-move.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0007-net-qcom-emac-claim-the-irq-only-when-the-device-is-.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0008-net-qcom-emac-display-the-phy-driver-info-after-we-c.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0009-net-qcom-emac-always-use-autonegotiation-to-configur.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0010-net-qcom-emac-do-not-call-emac_mac_start-twice.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0011-net-qcom-emac-remove-extraneous-wake-on-lan-code.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0012-net-qcom-emac-add-an-error-interrupt-handler-for-the.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0013-drivers-net-generalize-napi_complete_done.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0014-net-qcom-emac-add-ethool-support-for-setting-pause-p.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0015-net-qcom-emac-fix-semicolon.cocci-warnings.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0016-net-qcom-emac-add-ethtool-support-for-reading-hardwa.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0017-net-qcom-emac-add-ethtool-support-for-setting-ring-p.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0018-net-qcom-emac-fix-a-sizeof-typo.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0019-net-qcom-emac-optimize-QDF2400-SGMII-RX-TX-impedence.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0020-drivers-add-explicit-interrupt.h-includes.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0021-net-qcom-emac-do-not-use-hardware-mdio-automatic-pol.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0022-net-qcom-emac-add-shutdown-function.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0023-net-qcom-emac-do-not-reset-the-EMAC-during-initializ.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0024-net-qcom-emac-add-support-for-emulation-systems.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0025-net-qcom-emac-fix-double-free-of-SGMII-IRQ-during-sh.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0026-net-qcom-emac-add-software-control-for-pause-frame-m.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0027-net-qcom-emac-specify-the-correct-DMA-mask.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0028-net-qcom-emac-clean-up-some-TX-RX-error-messages.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0029-net-qcom-emac-Change-the-order-of-mac-up-and-sgmii-o.patch
+dpkg-source: info: applying features/all/qualcomm-emac/0030-net-qcom-emac-extend-DMA-mask-to-46bits.patch
+dpkg-source: info: applying bugfix/arm64/Add-software-workaround-for-Falkor-erratum-1041.patch
+dpkg-source: info: applying debian/i386-686-pae-pci-set-pci-nobios-by-default.patch
+dpkg-source: info: applying debian/time-mark-timer_stats-as-broken.patch
+dpkg-source: info: applying bugfix/all/xfs-set-format-back-to-extents-if-xfs_bmap_extents_t.patch
+dpkg-source: info: applying bugfix/all/sr-pass-down-correctly-sized-scsi-sense-buffer.patch
+dpkg-source: info: applying bugfix/ia64/revert-ia64-move-exports-to-definitions.patch
+dpkg-source: info: applying bugfix/sparc/revert-sparc-move-exports-to-definitions.patch
+dpkg-source: info: applying bugfix/m68k/revert-m68k-move-exports-to-definitions.patch
+dpkg-source: info: applying bugfix/alpha/revert-alpha-move-exports-to-actual-definitions.patch
+dpkg-source: info: applying bugfix/powerpc/powerpc-remove-mac-on-linux-hooks.patch
+dpkg-source: info: applying bugfix/powerpc/powerpc-fix-missing-crcs-add-yet-more-asm-prototypes.patch
+dpkg-source: info: applying bugfix/all/module-disable-matching-missing-version-crc.patch
+dpkg-source: info: applying bugfix/all/usbip-document-tcp-wrappers.patch
+dpkg-source: info: applying bugfix/all/kbuild-fix-recordmcount-dependency.patch
+dpkg-source: info: applying bugfix/all/tools-perf-man-date.patch
+dpkg-source: info: applying bugfix/all/lockdep-fix-oot-build.patch
+dpkg-source: info: applying bugfix/all/lockdep-fix-soname.patch
+dpkg-source: info: applying bugfix/all/tools-perf-remove-shebangs.patch
+dpkg-source: info: applying bugfix/all/tools-lib-traceevent-use-ldflags.patch
+dpkg-source: info: applying bugfix/all/tools-lib-lockdep-use-ldflags.patch
+dpkg-source: info: applying bugfix/x86/tools-hv-fix-fortify-format-warning.patch
+dpkg-source: info: applying bugfix/x86/revert-perf-build-fix-libunwind-feature-detection-on.patch
+dpkg-source: info: applying bugfix/all/tools-build-remove-bpf-run-time-check-at-build-time.patch
+dpkg-source: info: applying bugfix/all/tools-lib-traceevent-fix-use-of-uninitialized-variables.patch
+dpkg-source: info: applying bugfix/all/cpupower-bump-soname-version.patch
+dpkg-source: info: applying bugfix/all/libcpupower-hide-private-function.patch
+dpkg-source: info: applying bugfix/all/liblockdep-fix-undefined-symbol-prandom_u32.patch
+dpkg-source: info: applying bugfix/all/liblockdep-define-the-array_size-macro.patch
+dpkg-source: info: applying bugfix/all/liblockdep-enable-wall-by-default.patch
+dpkg-source: info: applying bugfix/all/liblockdep-fix-unused-value-warnings.patch
+dpkg-source: info: applying bugfix/all/liblockdep-fix-set-but-not-used-warnings.patch
+dpkg-source: info: applying bugfix/all/liblockdep-fix-defined-but-not-used-warning-for-init.patch
+dpkg-source: info: applying debian/random-make-getrandom-ready-earlier.patch
+dpkg-source: info: applying features/all/megaraid/0001-scsi-megaraid_sas-Send-correct-PhysArm-to-FW-for-R1-.patch
+dpkg-source: info: applying features/all/megaraid/0002-scsi-megaraid_sas-Do-not-fire-DCMDs-during-PCI-shutd.patch
+dpkg-source: info: applying features/all/megaraid/0003-scsi-megaraid_sas-Send-SYNCHRONIZE_CACHE-for-VD-to-f.patch
+dpkg-source: info: applying features/all/megaraid/0004-scsi-megaraid_sas-driver-version-upgrade.patch
+dpkg-source: info: applying features/all/megaraid/0005-scsi-megaraid-sas-request-irqs-later.patch
+dpkg-source: info: applying features/all/megaraid/0006-scsi-megaraid_sas-switch-to-pci_alloc_irq_vectors.patch
+dpkg-source: info: applying features/all/megaraid/0007-scsi-megaraid_sas-Add-new-pci-device-Ids-for-SAS3.5-.patch
+dpkg-source: info: applying features/all/megaraid/0008-scsi-megaraid_sas-128-MSIX-Support.patch
+dpkg-source: info: applying features/all/megaraid/0009-scsi-megaraid_sas-EEDP-Escape-Mode-Support-for-SAS3..patch
+dpkg-source: info: applying features/all/megaraid/0010-scsi-megaraid_sas-SAS3.5-Generic-Megaraid-Controller.patch
+dpkg-source: info: applying features/all/megaraid/0011-scsi-megaraid_sas-SAS3.5-Generic-Megaraid-Controller.patch
+dpkg-source: info: applying features/all/megaraid/0012-scsi-megaraid_sas-Dynamic-Raid-Map-Changes-for-SAS3..patch
+dpkg-source: info: applying features/all/megaraid/0013-scsi-megaraid_sas-Add-the-Support-for-SAS3.5-Generic.patch
+dpkg-source: info: applying features/all/megaraid/0014-scsi-megaraid_sas-Enable-or-Disable-Fast-path-based-.patch
+dpkg-source: info: applying features/all/megaraid/0015-scsi-megaraid_sas-ldio_outstanding-variable-is-not-d.patch
+dpkg-source: info: applying features/all/megaraid/0016-scsi-megaraid_sas-Implement-the-PD-Map-support-for-S.patch
+dpkg-source: info: applying features/all/megaraid/0017-scsi-megaraid_sas-driver-version-upgrade.patch
+dpkg-source: info: applying features/all/megaraid/0018-Revert-scsi-megaraid_sas-Enable-or-Disable-Fast-path.patch
+dpkg-source: info: applying debian/arm64-cpucaps-avoid-abi-change-in-4.9.114.patch
+dpkg-source: info: applying debian/iio-avoid-abi-change-in-4.9.111.patch
+dpkg-source: info: applying debian/exec-avoid-abi-change-in-4.9.116.patch
+dpkg-source: info: applying debian/net-avoid-abi-change-in-4.9.115.patch
+dpkg-source: info: applying debian/revert-netfilter-ipv6-nf_defrag-reduce-struct-net-me.patch
+dpkg-source: info: applying debian/revert-core-changes-in-tcp-remove-delayed-ack-events-in-dctcp.patch
+dpkg-source: info: applying debian/string-avoid-abi-change-in-4.9.114.patch
+dpkg-source: info: applying debian/revert-proc-sysctl-prune-stale-dentries-during-unreg.patch
+dpkg-source: info: applying debian/tcp-avoid-abi-change-in-4.9.116.patch
+dpkg-source: info: applying debian/x86-cpu-avoid-abi-change-in-4.9.125.patch
+dpkg-source: info: applying debian/revert-mips-correct-the-64-bit-dsp-accumulator-register-siz.patch
+dpkg-source: info: applying debian/mm-avoid-abi-change-in-4.9.128.patch
+dpkg-source: info: applying debian/revert-inet-frags-fix-ip6frag_low_thresh-boundary.patch
+dpkg-source: info: applying debian/revert-inet-frags-reorganize-struct-netns_frags.patch
+dpkg-source: info: applying debian/revert-rhashtable-reorganize-struct-rhashtable-layou.patch
+dpkg-source: info: applying debian/revert-inet-frags-break-the-2gb-limit-for-frags-stor.patch
+dpkg-source: info: applying debian/inet-frags-avoid-abi-change-in-4.9.134.patch
+dpkg-source: info: applying debian/sk_buff-avoid-abi-change-in-4.9.134.patch
+dpkg-source: info: applying debian/snmp-remove-the-reasmoverlaps-statistic.patch
+dpkg-source: info: applying debian/x86-fpu-avoid-abi-change-in-4.9.133.patch
+dpkg-source: info: applying debian/power-avoid-abi-change-in-4.9.131.patch
+dpkg-source: info: applying debian/slub-avoid-abi-change-in-4.9.131.patch
+dpkg-source: info: applying debian/media-v4l-avoid-abi-change-in-4.9.131.patch
+dpkg-source: info: applying debian/netdev-hide-netdev_notifier_info_ext-from-modules.patch
+dpkg-source: info: applying debian/revert-elevator-fix-truncation-of-icq_cache_name.patch
+dpkg-source: info: applying debian/reset-avoid-abi-changes-in-4.9.144.patch
+dpkg-source: info: applying debian/posix-timer-avoid-abi-change-in-4.9.136.patch
+dpkg-source: info: applying debian/sched-avoid-abi-change-in-4.9.136.patch
+dpkg-source: info: applying debian/arm-avoid-abi-change-in-4.9.139.patch
+dpkg-source: info: applying debian/mips-inst-avoid-abi-change-in-4.9.136.patch
+dpkg-source: info: applying features/all/ena/0001-net-ena-use-setup_timer-and-mod_timer.patch
+dpkg-source: info: applying features/all/ena/0002-net-ena-remove-ntuple-filter-support-from-device-fea.patch
+dpkg-source: info: applying features/all/ena/0003-net-ena-fix-queues-number-calculation.patch
+dpkg-source: info: applying features/all/ena/0004-net-ena-fix-ethtool-RSS-flow-configuration.patch
+dpkg-source: info: applying features/all/ena/0005-net-ena-fix-RSS-default-hash-configuration.patch
+dpkg-source: info: applying features/all/ena/0006-net-ena-fix-NULL-dereference-when-removing-the-drive.patch
+dpkg-source: info: applying features/all/ena/0007-net-ena-refactor-ena_get_stats64-to-be-atomic-contex.patch
+dpkg-source: info: applying features/all/ena/0008-net-ena-fix-potential-access-to-freed-memory-during-.patch
+dpkg-source: info: applying features/all/ena/0009-net-ena-use-napi_complete_done-return-value.patch
+dpkg-source: info: applying features/all/ena/0010-net-ena-use-READ_ONCE-to-access-completion-descripto.patch
+dpkg-source: info: applying features/all/ena/0011-net-ena-reduce-the-severity-of-ena-printouts.patch
+dpkg-source: info: applying features/all/ena/0012-net-ena-change-condition-for-host-attribute-configur.patch
+dpkg-source: info: applying features/all/ena/0013-net-ena-update-driver-version-to-1.1.2.patch
+dpkg-source: info: applying features/all/ena/0014-net-ena-remove-superfluous-check-in-ena_remove.patch
+dpkg-source: info: applying features/all/ena/0015-net-ena-switch-to-pci_alloc_irq_vectors.patch
+dpkg-source: info: applying features/all/ena/0016-net-ena-fix-bug-that-might-cause-hang-after-consecut.patch
+dpkg-source: info: applying features/all/ena/0017-net-ena-fix-theoretical-Rx-hang-on-low-memory-system.patch
+dpkg-source: info: applying features/all/ena/0018-net-ena-bug-fix-in-lost-tx-packets-detection-mechani.patch
+dpkg-source: info: applying features/all/ena/0019-net-ena-update-ena-driver-to-version-1.1.7.patch
+dpkg-source: info: applying features/all/ena/0020-net-ena-change-return-value-for-unsupported-features.patch
+dpkg-source: info: applying features/all/ena/0021-net-ena-add-hardware-hints-capability-to-the-driver.patch
+dpkg-source: info: applying features/all/ena/0022-net-ena-change-sizeof-argument-to-be-the-type-pointe.patch
+dpkg-source: info: applying features/all/ena/0023-net-ena-add-reset-reason-for-each-device-FLR.patch
+dpkg-source: info: applying features/all/ena/0024-net-ena-add-support-for-out-of-order-rx-buffers-refi.patch
+dpkg-source: info: applying features/all/ena/0025-net-ena-allow-the-driver-to-work-with-small-number-o.patch
+dpkg-source: info: applying features/all/ena/0026-net-ena-use-napi_schedule_irqoff-when-possible.patch
+dpkg-source: info: applying features/all/ena/0027-net-ena-separate-skb-allocation-to-dedicated-functio.patch
+dpkg-source: info: applying features/all/ena/0028-net-ena-use-lower_32_bits-upper_32_bits-to-split-dma.patch
+dpkg-source: info: applying features/all/ena/0029-net-ena-update-driver-s-rx-drop-statistics.patch
+dpkg-source: info: applying features/all/ena/0030-net-ena-update-ena-driver-to-version-1.2.0.patch
+dpkg-source: info: applying features/all/ena/0031-net-ena-Remove-redundant-unlikely.patch
+dpkg-source: info: applying features/all/ena/0032-net-ena-reduce-the-severity-of-some-printouts.patch
+dpkg-source: info: applying features/all/ena/0033-net-ena-fix-rare-kernel-crash-when-bar-memory-remap-.patch
+dpkg-source: info: applying features/all/ena/0034-net-ena-fix-wrong-max-Tx-Rx-queues-on-ethtool.patch
+dpkg-source: info: applying features/all/ena/0035-net-ena-improve-ENA-driver-boot-time.patch
+dpkg-source: info: applying features/all/ena/0036-net-ena-remove-legacy-suspend-suspend-resume-support.patch
+dpkg-source: info: applying features/all/ena/0037-net-ena-add-power-management-ops-to-the-ENA-driver.patch
+dpkg-source: info: applying features/all/ena/0038-net-ena-add-statistics-for-missed-tx-packets.patch
+dpkg-source: info: applying features/all/ena/0039-net-ena-add-new-admin-define-for-future-support-of-I.patch
+dpkg-source: info: applying features/all/ena/0040-net-ena-increase-ena-driver-version-to-1.3.0.patch
+dpkg-source: info: applying features/all/ena/0041-net-ena-fix-race-condition-between-device-reset-and-.patch
+dpkg-source: info: applying features/all/ena/0042-net-ena-add-detection-and-recovery-mechanism-for-han.patch
+dpkg-source: info: applying features/all/ena/0043-net-ena-increase-ena-driver-version-to-1.5.0.patch
+dpkg-source: info: applying features/all/ena/0044-net-ena-unmask-MSI-X-only-after-device-initializatio.patch
+dpkg-source: info: applying features/all/ena/0045-net-ena-fix-error-handling-in-ena_down-sequence.patch
+dpkg-source: info: applying features/all/ena/0046-net-ena-Eliminate-duplicate-barriers-on-weakly-order.patch
+dpkg-source: info: applying features/all/ena/0047-net-ena-fix-surprise-unplug-NULL-dereference-kernel-.patch
+dpkg-source: info: applying features/all/ena/0048-net-ena-fix-device-destruction-to-gracefully-free-re.patch
+dpkg-source: info: applying features/all/ena/0049-net-ena-fix-potential-double-ena_destroy_device.patch
+dpkg-source: info: applying features/all/ena/0050-net-ena-fix-missing-lock-during-device-destruction.patch
+dpkg-source: info: applying features/all/ena/0051-net-ena-fix-missing-calls-to-READ_ONCE.patch
+dpkg-source: info: applying features/all/ena/0052-net-ena-fix-incorrect-usage-of-memory-barriers.patch
+dpkg-source: info: applying features/all/ena/0053-net-ena-remove-ndo_poll_controller.patch
+dpkg-source: info: applying features/all/ena/0054-net-ena-fix-warning-in-rmmod-caused-by-double-iounma.patch
+dpkg-source: info: applying features/all/ena/0055-net-ena-fix-rare-bug-when-failed-restart-resume-is-f.patch
+dpkg-source: info: applying features/all/ena/0056-net-ena-fix-auto-casting-to-boolean.patch
+dpkg-source: info: applying features/all/ena/0057-net-ena-minor-performance-improvement.patch
+dpkg-source: info: applying features/all/ena/0058-net-ena-complete-host-info-to-match-latest-ENA-spec.patch
+dpkg-source: info: applying features/all/ena/0059-net-ena-introduce-Low-Latency-Queues-data-structures.patch
+dpkg-source: info: applying features/all/ena/0060-net-ena-add-functions-for-handling-Low-Latency-Queue.patch
+dpkg-source: info: applying features/all/ena/0061-net-ena-add-functions-for-handling-Low-Latency-Queue.patch
+dpkg-source: info: applying features/all/ena/0062-net-ena-use-CSUM_CHECKED-device-indication-to-report.patch
+dpkg-source: info: applying features/all/ena/0063-net-ena-explicit-casting-and-initialization-and-clea.patch
+dpkg-source: info: applying features/all/ena/0064-net-ena-limit-refill-Rx-threshold-to-256-to-avoid-la.patch
+dpkg-source: info: applying features/all/ena/0065-net-ena-change-rx-copybreak-default-to-reduce-kernel.patch
+dpkg-source: info: applying features/all/ena/0066-net-ena-remove-redundant-parameter-in-ena_com_admin_.patch
+dpkg-source: info: applying features/all/ena/0067-net-ena-update-driver-version-to-2.0.1.patch
+dpkg-source: info: applying features/all/ena/0068-net-ena-fix-indentations-in-ena_defs-for-better-read.patch
+dpkg-source: info: applying features/all/ena/0069-net-ena-Fix-Kconfig-dependency-on-X86.patch
+dpkg-source: info: applying features/all/ena/0070-net-ena-enable-Low-Latency-Queues.patch
+dpkg-source: info: applying features/all/ena/0071-net-ena-fix-compilation-error-in-xtensa-architecture.patch
+dpkg-source: info: applying features/all/ena/0072-net-ena-fix-crash-during-failed-resume-from-hibernat.patch
+dpkg-source: info: applying features/all/ena/0073-net-ena-fix-crash-during-ena_remove.patch
+dpkg-source: info: applying features/all/ena/0074-net-ena-update-driver-version-from-2.0.1-to-2.0.2.patch
+dpkg-source: info: applying features/all/ena/0075-net-ena-support-linux-4.9-napi_complete_done-api.patch
+W: Download is performed unsandboxed as root as file 'linux_4.9.144-3.1.dsc' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+
+root@build-tmp:~# ls -l
+total 95248
+-rw-r--r--  1 root root     2292 Mar  9 15:53 bnx2x_warpcore_2_5g_sgmii.patch
+drwxr-xr-x 25 root root     4096 Mar  9 15:54 linux-4.9.144
+-rw-r--r--  1 root root  2650708 Feb 19 07:27 linux_4.9.144-3.1.debian.tar.xz
+-rw-r--r--  1 root root   123237 Feb 19 07:27 linux_4.9.144-3.1.dsc
+-rw-r--r--  1 root root 94741144 Jan  1 14:58 linux_4.9.144.orig.tar.xz
+
+root@build-tmp:~# cd linux-4.9.144
+
+root@build-tmp:~/linux-4.9.144# cp /usr/src/linux-headers-$(uname -r)/.config .
+
+root@build-tmp:~/linux-4.9.144# cp /usr/src/linux-headers-$(uname -r)/Module.symvers .
+
+root@build-tmp:~/linux-4.9.144# patch -p0 < ~/bnx2x_warpcore_2_5g_sgmii.patch drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c
+patching file drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c
+
+root@build-tmp:~/linux-4.9.144# make modules_prepare
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+scripts/kconfig/conf  --silentoldconfig Kconfig
+  SYSTBL  arch/x86/entry/syscalls/../../include/generated/asm/syscalls_32.h
+  SYSHDR  arch/x86/entry/syscalls/../../include/generated/asm/unistd_32_ia32.h
+  SYSHDR  arch/x86/entry/syscalls/../../include/generated/asm/unistd_64_x32.h
+  SYSTBL  arch/x86/entry/syscalls/../../include/generated/asm/syscalls_64.h
+  HYPERCALLS arch/x86/entry/syscalls/../../include/generated/asm/xen-hypercalls.h
+  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_32.h
+  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_64.h
+  SYSHDR  arch/x86/entry/syscalls/../../include/generated/uapi/asm/unistd_x32.h
+  HOSTCC  scripts/basic/bin2c
+  HOSTCC  arch/x86/tools/relocs_32.o
+  HOSTCC  arch/x86/tools/relocs_64.o
+  HOSTCC  arch/x86/tools/relocs_common.o
+  HOSTLD  arch/x86/tools/relocs
+  CHK     include/config/kernel.release
+  UPD     include/config/kernel.release
+  WRAP    arch/x86/include/generated/asm/clkdev.h
+  WRAP    arch/x86/include/generated/asm/cputime.h
+  WRAP    arch/x86/include/generated/asm/dma-contiguous.h
+  WRAP    arch/x86/include/generated/asm/early_ioremap.h
+  WRAP    arch/x86/include/generated/asm/mcs_spinlock.h
+  WRAP    arch/x86/include/generated/asm/mm-arch-hooks.h
+  CHK     include/generated/uapi/linux/version.h
+  UPD     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+  UPD     include/generated/utsrelease.h
+  CHK     include/generated/package.h
+  UPD     include/generated/package.h
+  CC      arch/x86/purgatory/purgatory.o
+  AS      arch/x86/purgatory/stack.o
+  AS      arch/x86/purgatory/setup-x86_64.o
+  CC      arch/x86/purgatory/sha256.o
+  AS      arch/x86/purgatory/entry64.o
+  CC      arch/x86/purgatory/string.o
+  LD      arch/x86/purgatory/purgatory.ro
+  BIN2C   arch/x86/purgatory/kexec-purgatory.c
+  CC      kernel/bounds.s
+  CHK     include/generated/bounds.h
+  UPD     include/generated/bounds.h
+  CHK     include/generated/timeconst.h
+  UPD     include/generated/timeconst.h
+  CC      arch/x86/kernel/asm-offsets.s
+  CHK     include/generated/asm-offsets.h
+  UPD     include/generated/asm-offsets.h
+  CALL    scripts/checksyscalls.sh
+  HOSTCC  scripts/genksyms/genksyms.o
+  SHIPPED scripts/genksyms/parse.tab.c
+  HOSTCC  scripts/genksyms/parse.tab.o
+  SHIPPED scripts/genksyms/lex.lex.c
+  SHIPPED scripts/genksyms/keywords.hash.c
+  SHIPPED scripts/genksyms/parse.tab.h
+  HOSTCC  scripts/genksyms/lex.lex.o
+  HOSTLD  scripts/genksyms/genksyms
+  CC      scripts/mod/empty.o
+  HOSTCC  scripts/mod/mk_elfconfig
+  MKELF   scripts/mod/elfconfig.h
+  HOSTCC  scripts/mod/modpost.o
+  CC      scripts/mod/devicetable-offsets.s
+  CHK     scripts/mod/devicetable-offsets.h
+  UPD     scripts/mod/devicetable-offsets.h
+  HOSTCC  scripts/mod/file2alias.o
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTLD  scripts/mod/modpost
+  HOSTCC  scripts/selinux/genheaders/genheaders
+  HOSTCC  scripts/selinux/mdp/mdp
+  HOSTCC  scripts/kallsyms
+  HOSTCC  scripts/conmakehash
+  HOSTCC  scripts/recordmcount
+  HOSTCC  scripts/sortextable
+  HOSTCC  scripts/asn1_compiler
+
+root@build-tmp:~/linux-4.9.144# make M=drivers/net/ethernet/broadcom/bnx2x
+  LD      drivers/net/ethernet/broadcom/bnx2x/built-in.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_main.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_cmn.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_ethtool.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_stats.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_dcb.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_sp.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_vfpf.o
+  CC [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x_sriov.o
+  LD [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      drivers/net/ethernet/broadcom/bnx2x/bnx2x.mod.o
+  LD [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+
+root@build-tmp:~/linux-4.9.144# strip --strip-debug drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+root@build-tmp:~/linux-4.9.144# md5sum drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+07ae5a0527e4c39fadcc82752ceaa612  drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+
+root@build-tmp:~/linux-4.9.144# 
