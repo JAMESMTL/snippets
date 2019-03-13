@@ -1,4 +1,27 @@
-[ SESSION START ] 2019-03-09 15:50:30 | ssh://192.168.175.128
+[ SESSION START ] 2019-03-13 18:02:55 | ssh://192.168.175.128
+Connecting to build@192.168.175.128.
+Connected to build@192.168.175.128.
+
+Linux build-tmp 4.9.0-8-amd64 #1 SMP Debian 4.9.144-3.1 (2019-02-19) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
+build@build-tmp:~$ su
+Password: 
+
+root@build-tmp:/home/build# echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+
+root@build-tmp:/home/build# service sshd restart
+
+root@build-tmp:/home/build# 
+
+
+[ SESSION START ] 2019-03-13 18:05:14 | ssh://192.168.175.128
 Connecting to root@192.168.175.128.
 Connected to root@192.168.175.128.
 
@@ -15,13 +38,13 @@ root@build-tmp:~# sed -i 's/stretch main/stretch main non-free/g' /etc/apt/sourc
 
 root@build-tmp:~# apt update
 0% [Working]            Hit:1 http://security.debian.org/debian-security stretch/updates InRelease
-0% [Connecting to debian.gtisc.gatech.edu (128.61.240.89)]                                                          0% [1 InRelease gpgv 94.3 kB] [Waiting for headers]                                                   Ign:2 http://ftp.us.debian.org/debian stretch InRelease
-0% [1 InRelease gpgv 94.3 kB] [Waiting for headers]                                                   0% [Waiting for headers]                        Hit:3 http://ftp.us.debian.org/debian stretch-updates InRelease
-                        0% [Working]0% [3 InRelease gpgv 91.0 kB] [Waiting for headers]                                                   Hit:4 http://ftp.us.debian.org/debian stretch Release
-                                                   0% [3 InRelease gpgv 91.0 kB]                             0% [Working]0% [Release.gpg gpgv 118 kB]                            18% [Working]             Get:6 http://ftp.us.debian.org/debian stretch/non-free Sources [79.4 kB]
+0% [Waiting for headers]                        Ign:2 http://ftp.us.debian.org/debian stretch InRelease
+0% [Waiting for headers]0% [1 InRelease gpgv 94.3 kB] [Waiting for headers]                                                   Hit:3 http://ftp.us.debian.org/debian stretch-updates InRelease
+                                                   0% [1 InRelease gpgv 94.3 kB]                             Hit:4 http://ftp.us.debian.org/debian stretch Release
+0% [1 InRelease gpgv 94.3 kB]                             0% [Working]0% [3 InRelease gpgv 91.0 kB]                             0% [Working]0% [Release.gpg gpgv 118 kB]                            18% [Working]             Get:6 http://ftp.us.debian.org/debian stretch/non-free Sources [79.4 kB]
 22% [6 Sources 14.2 kB/79.4 kB 18%]                                   44% [Working]44% [6 Sources store 0 B] [Waiting for headers]                                               45% [Waiting for headers]                         Get:7 http://ftp.us.debian.org/debian stretch/non-free amd64 Packages [78.3 kB]
-65% [7 Packages 60.6 kB/78.3 kB 77%]                                    Get:8 http://ftp.us.debian.org/debian stretch/non-free Translation-en [80.3 kB]
-                                    98% [Working]98% [7 Packages store 0 B]                          99% [Working]99% [8 Translation-en store 0 B]                                100% [Working]              Fetched 238 kB in 0s (622 kB/s)
+70% [7 Packages 75.0 kB/78.3 kB 96%]                                    Get:8 http://ftp.us.debian.org/debian stretch/non-free Translation-en [80.3 kB]
+84% [8 Translation-en 37.4 kB/80.3 kB 47%]                                          98% [Working]98% [7 Packages store 0 B]                          99% [Working]99% [8 Translation-en store 0 B]                                100% [Working]              Fetched 238 kB in 0s (850 kB/s)
 Reading package lists... 0%Reading package lists... 0%Reading package lists... 1%Reading package lists... 55%Reading package lists... 55%Reading package lists... 92%Reading package lists... 92%Reading package lists... 93%Reading package lists... 93%Reading package lists... 93%Reading package lists... 93%Reading package lists... 97%Reading package lists... 97%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
 Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 1%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
 Reading state information... 0%Reading state information... 0%Reading state information... Done
@@ -99,7 +122,7 @@ Do you want to continue? [Y/n] y
 94% [47 libfl-dev 0 B/93.1 kB 0%]                                 95% [Working]             Get:48 http://ftp.us.debian.org/debian stretch/main amd64 libtinfo-dev amd64 6.0+20161126-1+deb9u2 [79.2 kB]
 95% [48 libtinfo-dev 0 B/79.2 kB 0%]                                    95% [Working]             Get:49 http://ftp.us.debian.org/debian stretch/main amd64 libncurses5-dev amd64 6.0+20161126-1+deb9u2 [175 kB]
 95% [49 libncurses5-dev 0 B/175 kB 0%]                                      96% [Working]             Get:50 http://ftp.us.debian.org/debian stretch/main amd64 manpages-dev all 4.10-2 [2,145 kB]
-96% [50 manpages-dev 0 B/2,145 kB 0%]                                     100% [Working]              Fetched 45.7 MB in 1s (41.6 MB/s)
+96% [50 manpages-dev 0 B/2,145 kB 0%]                                     100% [Working]              Fetched 45.7 MB in 0s (99.6 MB/s)
 Extracting templates from packages: 60%Extracting templates from packages: 100%
 
 Selecting previously unselected package libsigsegv2:amd64.
@@ -313,10 +336,10 @@ Progress: [ 99%] [##############################################################
 Processing triggers for initramfs-tools (0.130) ...
 update-initramfs: Generating /boot/initrd.img-4.9.0-8-amd64
 
-root@build-tmp:~# curl https://www.jamesmtl.com/bnx2x/stretch/stretch.patch -o bnx2x_warpcore_2_5g_sgmii.patch
+root@build-tmp:~# curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_2_5g_sgmii-debian_huawei.patch -o ~/bnx2x_warpcore_22_5g_sgmii.patch
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2292  100  2292    0     0   109k      0 --:--:-- --:--:-- --:--:--  111k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2605  100  2605    0     0  11203      0 --:--:-- --:--:-- --:--:-- 11228
 
 root@build-tmp:~# apt install linux-headers-$(uname -r)
 Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
@@ -329,12 +352,14 @@ The following NEW packages will be installed:
 0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
 Need to get 9,504 kB of archives.
 After this operation, 52.0 MB of additional disk space will be used.
+
 Do you want to continue? [Y/n] y
 0% [Working]            Get:1 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-compiler-gcc-6-x86 amd64 4.9.144-3.1 [603 kB]
 0% [1 linux-compiler-gcc-6-x86 0 B/603 kB 0%]                                             10% [Working]             Get:2 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-headers-4.9.0-8-common all 4.9.144-3.1 [7,643 kB]
 10% [2 linux-headers-4.9.0-8-common 0 B/7,643 kB 0%]                                                    79% [Working]             Get:3 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-kbuild-4.9 amd64 4.9.144-3.1 [809 kB]
 79% [3 linux-kbuild-4.9 0 B/809 kB 0%]                                      91% [Working]             Get:4 http://ftp.us.debian.org/debian stretch-updates/main amd64 linux-headers-4.9.0-8-amd64 amd64 4.9.144-3.1 [449 kB]
-91% [4 linux-headers-4.9.0-8-amd64 0 B/449 kB 0%]                                                 100% [Working]              Fetched 9,504 kB in 0s (26.3 MB/s)
+91% [4 linux-headers-4.9.0-8-amd64 0 B/449 kB 0%]                                                 100% [Working]              Fetched 9,504 kB in 0s (19.2 MB/s)
+
 Selecting previously unselected package linux-compiler-gcc-6-x86.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 32246 files and directories currently installed.)
 Preparing to unpack .../linux-compiler-gcc-6-x86_4.9.144-3.1_amd64.deb ...
@@ -354,7 +379,7 @@ Progress: [ 71%] [##############################################################
 Progress: [ 80%] [#################################################################################################################...........................] Progress: [ 85%] [########################################################################################################################....................] Setting up linux-headers-4.9.0-8-amd64 (4.9.144-3.1) ...
 Progress: [ 90%] [##############################################################################################################################..............] Progress: [ 95%] [#####################################################################################################################################.......] 
 
-root@build-tmp:~# apt-get source linux-image-$(uname -r)
+root@build-tmp:~# apt source linux-image-$(uname -r)
 Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
 Picking 'linux' as source package instead of 'linux-image-4.9.0-8-amd64'
 NOTICE: 'linux' packaging is maintained in the 'Git' version control system at:
@@ -365,8 +390,8 @@ to retrieve the latest (possibly unreleased) updates to the package.
 Need to get 97.5 MB of source archives.
 0% [Working]            Get:1 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (dsc) [123 kB]
 0% [1 linux 0 B/123 kB 0%]                          7% [Working]            Get:2 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (tar) [94.7 MB]
-7% [2 linux 0 B/94.7 MB 0%]38% [2 linux 38.4 MB/94.7 MB 41%]84% [2 linux 94.3 MB/94.7 MB 100%]                                  91% [Working]             Get:3 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (diff) [2,651 kB]
-91% [3 linux 0 B/2,651 kB 0%]                             100% [Working]              Fetched 97.5 MB in 1s (81.1 MB/s)
+7% [2 linux 0 B/94.7 MB 0%]63% [2 linux 68.3 MB/94.7 MB 72%]                                 91% [Working]             Get:3 http://ftp.us.debian.org/debian stretch-updates/main linux 4.9.144-3.1 (diff) [2,651 kB]
+91% [3 linux 0 B/2,651 kB 0%]                             100% [Working]              Fetched 97.5 MB in 0s (114 MB/s)
 dpkg-source: info: extracting linux in linux-4.9.144
 dpkg-source: info: unpacking linux_4.9.144.orig.tar.xz
 dpkg-source: info: unpacking linux_4.9.144-3.1.debian.tar.xz
@@ -674,8 +699,8 @@ W: Download is performed unsandboxed as root as file 'linux_4.9.144-3.1.dsc' cou
 
 root@build-tmp:~# ls -l
 total 95248
--rw-r--r--  1 root root     2292 Mar  9 15:53 bnx2x_warpcore_2_5g_sgmii.patch
-drwxr-xr-x 25 root root     4096 Mar  9 15:54 linux-4.9.144
+-rw-r--r--  1 root root     2605 Mar 13 18:06 bnx2x_warpcore_2_5g_sgmii.patch
+drwxr-xr-x 25 root root     4096 Mar 13 18:07 linux-4.9.144
 -rw-r--r--  1 root root  2650708 Feb 19 07:27 linux_4.9.144-3.1.debian.tar.xz
 -rw-r--r--  1 root root   123237 Feb 19 07:27 linux_4.9.144-3.1.dsc
 -rw-r--r--  1 root root 94741144 Jan  1 14:58 linux_4.9.144.orig.tar.xz
@@ -786,7 +811,49 @@ root@build-tmp:~/linux-4.9.144# make M=drivers/net/ethernet/broadcom/bnx2x
   LD [M]  drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
 
 root@build-tmp:~/linux-4.9.144# strip --strip-debug drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
-root@build-tmp:~/linux-4.9.144# md5sum drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
-07ae5a0527e4c39fadcc82752ceaa612  drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+
+root@build-tmp:~/linux-4.9.144# modinfo ~/linux-4.9.144/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+filename:       /root/linux-4.9.144/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+firmware:       bnx2x/bnx2x-e2-7.13.1.0.fw
+firmware:       bnx2x/bnx2x-e1h-7.13.1.0.fw
+firmware:       bnx2x/bnx2x-e1-7.13.1.0.fw
+version:        1.712.30-0
+license:        GPL
+description:    QLogic BCM57710/57711/57711E/57712/57712_MF/57800/57800_MF/57810/57810_MF/57840/57840_MF Driver
+author:         Eliezer Tamir
+srcversion:     C5900FA1FE1493FB4AD9A63
+alias:          pci:v000014E4d0000163Fsv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000163Esv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000163Dsv*sd*bc*sc*i*
+alias:          pci:v00001077d000016ADsv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016ADsv*sd*bc*sc*i*
+alias:          pci:v00001077d000016A4sv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016A4sv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016ABsv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016AFsv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016A2sv*sd*bc*sc*i*
+alias:          pci:v00001077d000016A1sv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016A1sv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000168Dsv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016AEsv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000168Esv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016A9sv*sd*bc*sc*i*
+alias:          pci:v000014E4d000016A5sv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000168Asv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000166Fsv*sd*bc*sc*i*
+alias:          pci:v000014E4d00001663sv*sd*bc*sc*i*
+alias:          pci:v000014E4d00001662sv*sd*bc*sc*i*
+alias:          pci:v000014E4d00001650sv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000164Fsv*sd*bc*sc*i*
+alias:          pci:v000014E4d0000164Esv*sd*bc*sc*i*
+depends:        mdio,libcrc32c,ptp
+retpoline:      Y
+vermagic:       4.9.144 SMP mod_unload modversions 
+parm:           num_queues: Set number of queues (default is as a number of CPUs) (int)
+parm:           disable_tpa: Disable the TPA (LRO) feature (int)
+parm:           int_mode: Force interrupt mode other than MSI-X (1 INT#x; 2 MSI) (int)
+parm:           dropless_fc: Pause on exhausted host ring (int)
+parm:           mrrs: Force Max Read Req Size (0..3) (for debug) (int)
+parm:           debug: Default debug msglevel (int)
 
 root@build-tmp:~/linux-4.9.144# 
