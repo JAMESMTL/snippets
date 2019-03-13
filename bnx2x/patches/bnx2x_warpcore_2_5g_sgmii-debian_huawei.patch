@@ -1,0 +1,78 @@
+--- drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c	2018-09-29 06:07:35.000000000 -0400
++++ drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c.patched	2019-01-13 22:58:18.000000000 -0500
+@@ -157,6 +157,7 @@
+ 
+ #define SFP_EEPROM_CON_TYPE_ADDR		0x2
+ 	#define SFP_EEPROM_CON_TYPE_VAL_UNKNOWN	0x0
++	#define SFP_EEPROM_CON_TYPE_VAL_SC  0x1
+ 	#define SFP_EEPROM_CON_TYPE_VAL_LC	0x7
+ 	#define SFP_EEPROM_CON_TYPE_VAL_COPPER	0x21
+ 	#define SFP_EEPROM_CON_TYPE_VAL_RJ45	0x22
+@@ -4216,6 +4217,16 @@
+ 					 0x1000);
+ 		DP(NETIF_MSG_LINK, "set SGMII AUTONEG\n");
+ 	} else {
++		/* Note that 2.5G works only when used with 1G advertisment */
++		if (fiber_mode && (phy->req_line_speed == SPEED_2500) &&
++			(phy->speed_cap_mask &
++			 (PORT_HW_CFG_SPEED_CAPABILITY_D0_1G |
++			  PORT_HW_CFG_SPEED_CAPABILITY_D0_2_5G))) {
++			bnx2x_cl45_write(bp, phy, MDIO_WC_DEVAD,
++				MDIO_WC_REG_SERDESDIGITAL_MISC1,
++					0x6010);
++		}
++
+ 		bnx2x_cl45_read(bp, phy, MDIO_WC_DEVAD,
+ 				MDIO_WC_REG_COMBO_IEEE0_MIICTRL, &val16);
+ 		val16 &= 0xcebf;
+@@ -4226,6 +4237,7 @@
+ 			val16 |= 0x2000;
+ 			break;
+ 		case SPEED_1000:
++		case SPEED_2500:
+ 			val16 |= 0x0040;
+ 			break;
+ 		default:
+@@ -8241,6 +8253,7 @@
+ 		break;
+ 	}
+ 	case SFP_EEPROM_CON_TYPE_VAL_UNKNOWN:
++	case SFP_EEPROM_CON_TYPE_VAL_SC:
+ 	case SFP_EEPROM_CON_TYPE_VAL_LC:
+ 	case SFP_EEPROM_CON_TYPE_VAL_RJ45:
+ 		check_limiting_mode = 1;
+@@ -8251,7 +8264,8 @@
+ 		    (val[SFP_EEPROM_1G_COMP_CODE_ADDR] != 0)) {
+ 			DP(NETIF_MSG_LINK, "1G SFP module detected\n");
+ 			phy->media_type = ETH_PHY_SFP_1G_FIBER;
+-			if (phy->req_line_speed != SPEED_1000) {
++			if ((phy->req_line_speed != SPEED_1000) &&
++				(phy->req_line_speed != SPEED_2500)) {
+ 				u8 gport = params->port;
+ 				phy->req_line_speed = SPEED_1000;
+ 				if (!CHIP_IS_E1x(bp)) {
+@@ -8411,7 +8425,7 @@
+ 	 * some phys type ( e.g. JDSU )
+ 	 */
+ 
+-	for (timeout = 0; timeout < 60; timeout++) {
++	for (timeout = 0; timeout < 1800; timeout++) {
+ 		if (phy->type == PORT_HW_CFG_XGXS_EXT_PHY_TYPE_DIRECT)
+ 			rc = bnx2x_warpcore_read_sfp_module_eeprom(
+ 				phy, params, I2C_DEV_ADDR_A0, 1, 1, &val,
+@@ -11805,6 +11819,7 @@
+ 			   SUPPORTED_100baseT_Full |
+ 			   SUPPORTED_1000baseT_Full |
+ 			   SUPPORTED_1000baseKX_Full |
++			   SUPPORTED_2500baseX_Full |
+ 			   SUPPORTED_10000baseT_Full |
+ 			   SUPPORTED_10000baseKR_Full |
+ 			   SUPPORTED_20000baseKR2_Full |
+@@ -12338,6 +12353,7 @@
+ 			break;
+ 		case PORT_HW_CFG_NET_SERDES_IF_SFI:
+ 			phy->supported &= (SUPPORTED_1000baseT_Full |
++					   SUPPORTED_2500baseX_Full |
+ 					   SUPPORTED_10000baseT_Full |
+ 					   SUPPORTED_FIBRE |
+ 					   SUPPORTED_Pause |
