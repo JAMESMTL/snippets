@@ -1,9 +1,9 @@
 BCM57711 & BCM57810 bnx2x.ko driver
 
-Linux kernel 4.9.168
+Release: 14.2.2-20190909T13-promotion
 
-Untangle Release 14.2.2-20190909T13-promotion
+Kernel: 4.9.168
 
-Source Repository https://github.com/untangle/ngfw_kernels/tree/14.2.2-20190909T13-promotion/debian-4.9.0
+Built: 2019-10-22
 
-md5sum 235fdbefa35bab33d090c6e283bb7828
+md5sum: 235fdbefa35bab33d090c6e283bb7828
