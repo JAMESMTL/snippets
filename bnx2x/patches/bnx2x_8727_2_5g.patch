@@ -1,5 +1,5 @@
---- drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c	2019-07-02 19:30:00.653199133 -0400
-+++ drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c	2019-07-02 20:41:41.000000000 -0400
+--- drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c	2019-10-21 14:23:50.032830050 -0400
++++ drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c	2019-10-21 17:27:56.000000000 -0400
 @@ -151,6 +151,7 @@
  
  #define SFP_EEPROM_CON_TYPE_ADDR		0x2
@@ -92,7 +92,17 @@
  	} else if ((link_status & (1<<0)) && (!(link_status & (1<<13)))) {
  		link_up = 1;
  		vars->line_speed = SPEED_1000;
-@@ -11916,6 +11944,7 @@
+@@ -9600,7 +9628,8 @@
+ 	}
+ 
+ 	if ((DUAL_MEDIA(params)) &&
+-	    (phy->req_line_speed == SPEED_1000)) {
++	    ((phy->req_line_speed == SPEED_1000) ||
++	     (phy->req_line_speed == SPEED_2500))) {
+ 		bnx2x_cl45_read(bp, phy,
+ 				MDIO_PMA_DEVAD,
+ 				MDIO_PMA_REG_8727_PCS_GP, &val1);
+@@ -11916,6 +11945,7 @@
  	.tx_preemphasis	= {0xffff, 0xffff, 0xffff, 0xffff},
  	.mdio_ctrl	= 0,
  	.supported	= (SUPPORTED_10000baseT_Full |
@@ -100,9 +110,8 @@
  			   SUPPORTED_1000baseT_Full |
  			   SUPPORTED_FIBRE |
  			   SUPPORTED_Pause |
-
---- drivers/net/ethernet/broadcom/bnx2x/bnx2x_reg.h	2019-07-03 15:34:37.251556685 -0400
-+++ drivers/net/ethernet/broadcom/bnx2x/bnx2x_reg.h	2019-07-03 15:31:55.000000000 -0400
+--- drivers/net/ethernet/broadcom/bnx2x/bnx2x_reg.h	2019-10-21 14:23:50.032830050 -0400
++++ drivers/net/ethernet/broadcom/bnx2x/bnx2x_reg.h	2019-10-21 17:22:46.193588207 -0400
 @@ -7169,7 +7169,8 @@
  #define MDIO_PMA_REG_8727_PCS_GP		0xc842
  #define MDIO_PMA_REG_8727_OPT_CFG_REG		0xc8e4
