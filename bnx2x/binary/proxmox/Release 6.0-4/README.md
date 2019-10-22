@@ -4,6 +4,6 @@ Release: 6.0-4
 
 Kernel: 5.0.15-1
 
-Built: 2019-10-20
+Built: 2019-10-21
 
-md5sum: 450b417c4c247b2646cb074b5ab77d8e
+md5sum: 06ace7bb21dc1f96544b0ca4552b5dcb
