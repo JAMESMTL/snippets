@@ -1,12 +1,12 @@
 Linux kernel including BCM57711 & BCM57810 bnx2x.ko driver
 
-Kernel: 5.3.7
+Kernel: 5.3.11
 
-Built: 2019-10-21
+Built: 2019-11-13
 
-md5sum: 4aed464798afdbfe7e7ce94d2fe7a749
+md5sum: 3e68ff4a7240c1ee6633c6c625e20326
 
-link: https://www.jamesmtl.com/bnx2x/linux/linux-image-5.3.7-1_5.3.7-1-1_amd64.deb
+link: https://www.jamesmtl.com/bnx2x/linux/linux-image-5.3.11_5.3.11-3_amd64.deb
 
 This is a full linux kernel using the basic debian 10 kernel config options + iptables and full nftables support
 
