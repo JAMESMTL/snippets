@@ -44,7 +44,7 @@ Goto https://github.com/untangle/ngfw_kernels
 
 Click on the branch button and select the tag tab and search for the target distribution that matches the above build or that follows it (ex 15.0.0 = 15.0.0-20200218T23-sync).
 
-If you now click on the appropraite kernel branch ex. 4.9.0 you should see your target kernel
+If you now click on the appropraite kernel branch ex. debian-4.9.0 you should see your target kernel
 
 ![](https://i.imgur.com/cadTXeM.png)
 
