@@ -15,18 +15,17 @@ Step 2: Run the setup wizard to set nics (disable automatic updates)
 
 Step 3: Enable ssh under CONFIG - NETWORK - ADVANCED - ACCESS RULES 
 
-Step 4: login via ssh
+Step 4: Login via ssh
 
-Step 5: stop untangle service
+Step 5: Stop untangle service
 
     /etc/init.d./untangle-vm stop
 
-Step 6: identify the target kernel version and untangle distribution
+Step 6: Identify the target kernel version and untangle distribution
 
     uname -a
 
-example:  
-Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
+example: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
 
 4.9.x means it's debian stretch based  
 4.19.x should mean its debian buster based
@@ -41,9 +40,13 @@ From the untangle UI goto CONFIG - ABOUT
 
 Here we see that we are running build 15.0.0 with a datestamp of 20200214T135223
 
-goto https://github.com/untangle/ngfw_kernels
+Goto https://github.com/untangle/ngfw_kernels
 
-click on the branch button and select the tag tab and search for the target distribution that matches the above build or that follows it (ex 15.0.0 = 15.0.0-20200218T23-sync) 
+Click on the branch button and select the tag tab and search for the target distribution that matches the above build or that follows it (ex 15.0.0 = 15.0.0-20200218T23-sync).
+
+If you now click on the appropraite kernel branch ex. 4.9.0 you should see your target kernel
+
+![](https://i.imgur.com/cadTXeM.png)
 
 Step 7: Add debian stretch repo and the needed dependencies
 
@@ -60,12 +63,12 @@ Select dialog. i use critical
 
 answer n to _git substitution
 
-Step 8. Checkout the proper version from git
+Step 8: Checkout the proper version from git
 
     cd ngfw_kernels
     checkout 15.0.0-20200218T23-sync
 
-step 9. Download and apply [user=upnatom]'s unified patch for 57810 + 57711 nic families then build the module
+step 9: Download and apply upnatom's unified patch for 57810 + 57711 nic families then build the module
 
     cd ~/ngfw_kernels/debian-4.9.0
     make patch
@@ -81,7 +84,7 @@ Step 10: Get the path of the new kernel module
 
     find ~ -name bnx2x.ko
 
-your looking for the file from the linux image directory
+You are looking for the file from the linux image directory
 
 ex: /root/ngfw_kernels/debian-4.9.0/linux-4.9.189/debian/linux-image-4.9.0-11-untangle-amd64/lib/modules/4.9.0-11-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
 
