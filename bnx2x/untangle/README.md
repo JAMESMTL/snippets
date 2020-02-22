@@ -11,8 +11,7 @@ The process is not overly complicated but it does take time (~30-45 mins)
 
 These build instructions are based on the following wiki article https://wiki.untangle.com/index.php/Building_the_Code
 
-<b>I recommend doing the build on a build VM or dedicated build machine and copy the kernel module over to your production machine</b>
-
+<b>I recommend doing the build on a build VM or dedicated build machine and copy the kernel module over to your production machine</b>  
 I used a 48GB VM for the build.
 
 Step 1: Create the build machine. I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
