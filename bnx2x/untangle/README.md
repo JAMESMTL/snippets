@@ -11,7 +11,7 @@ These build instructions are based on the following wiki article https://wiki.un
 
 <b>I recommend doing the build on a build VM or dedicated build machine and copy the .deb packages over over to your production machine</b> I used a 48GB VM for the build.
 
-Step 1: Create the build machine. I installed untangle using the iso found here: https://www.untangle.com/get-untangle/
+Step 1: Create the build machine. I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
 
 Step 2: Run the setup wizard to set nics (disable automatic updates)
 
@@ -30,6 +30,7 @@ Step 6: identify the target kernel version and untangle distribution
 ex: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
 
 4.9.x means it's debian stretch based
+
 4.19.x should mean its debian buster based
 
 You will need to get the repo commit number that matches your target build
@@ -97,43 +98,36 @@ step 1: create your secondary wan interafce on vlan 36, select dhcp, DO NOT sele
 
 step 2: connect via ssh
 
-[code]
-curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian.list -o /etc/apt/sources.list.d/debian.list
-apt update
-apt install igmpproxy
-rm /etc/apt/sources.list.d/debian.list
-apt update
-curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/igmpproxy.conf -o /etc/igmpproxy.conf
-curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/dhclient-exit-hooks -o /etc/dhcp/dhclient-exit-hooks
-curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/rc.local -o /etc/rc.local
-chmod 755 /etc/rc.local
-reboot
-[/code]
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian.list -o /etc/apt/sources.list.d/debian.list
+    apt update
+    apt install igmpproxy
+    rm /etc/apt/sources.list.d/debian.list
+    apt update
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/igmpproxy.conf -o /etc/igmpproxy.conf
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/dhclient-exit-hooks -o /etc/dhcp/dhclient-exit-hooks
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/rc.local -o /etc/rc.local
+    chmod 755 /etc/rc.local
+    reboot
 
 step 3: Add to CONFIG - NETWORK - ADVANCED - DNS&DHCP
 
-[code]
-conf-file=/opt/dnsmasq.iptv
-[/code]
+    conf-file=/opt/dnsmasq.iptv
 
 Done.
 
-to test DNS forward zones + routing to 10.2/16
+To test DNS forward zones + routing to 10.2/16
 
-[code]
-dig discovery.iptv.microsoft.com
-[/code]
+     dig discovery.iptv.microsoft.com
 
 Answer should be along the lines of 10.2.76.132
 
-<img src="https://i.imgur.com/ehbrxyh.png">
+![](https://i.imgur.com/ehbrxyh.png)
 
-<img src="https://i.imgur.com/Hgct553.png">
+![](https://i.imgur.com/Hgct553.png)
 
 If you do something in the GUI that overwrites the scripted route or firewall rules just reboot
 
 you cab browse the iptv files here https://github.com/JAMESMTL/snippets/tree/master/bnx2x/untangle
 
-
----
-curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore+8727_2_5g_sgmii.patch | patch -p0
+Post any questions you have to the dslreports.com BCM57810 thread found here:
+https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
