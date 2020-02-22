@@ -65,7 +65,7 @@ answer n to _git substitution
 
 Step 8: Checkout the proper version from git
 
-    cd ngfw_kernels
+    cd ~/ngfw_kernels
     checkout 15.0.0-20200218T23-sync
 
 step 9: Download and apply upnatom's unified patch for 57810 + 57711 nic families then build the module
@@ -96,8 +96,8 @@ ssh into the working router and install the kernel packages
     update-initramfs -u -k all
     reboot
 
-select the new kernel
 Done!
+
 
 
 
