@@ -40,11 +40,10 @@ click on the branch button and select the tag tab and search for the target dist
 
 Step 7: Add debian stretch repo and the needed dependencies
 
-`echo "deb http://ftp.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list.d/build.list
-echo "deb http://security.debian.org stretch/updates main contrib non-free" >> /etc/apt/sources.list.d/build.list
-apt update
-dpkg-reconfigure debconf
-`
+    echo "deb http://ftp.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list.d/build.list
+    echo "deb http://security.debian.org stretch/updates main contrib non-free" >> /etc/apt/sources.list.d/build.list
+    apt update
+    dpkg-reconfigure debconf
 
 Select dialog. i use critical
 
