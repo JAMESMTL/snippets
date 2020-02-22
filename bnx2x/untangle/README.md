@@ -21,9 +21,7 @@ Step 4: login via ssh
 
 Step 5: stop untangle service
 
-[code]
-/etc/init.d./untangle-vm stop
-[/code]
+`/etc/init.d./untangle-vm stop`
 
 Step 6: identify the target kernel version and untangle distribution
 
