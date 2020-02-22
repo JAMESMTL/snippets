@@ -131,7 +131,7 @@ Update the repo
     chmod 755 /etc/rc.local
     reboot
 
-step 3: Add to CONFIG - NETWORK - ADVANCED - DNS&DHCP
+step 4: Add to CONFIG - NETWORK - ADVANCED - DNS&DHCP
 
     conf-file=/opt/dnsmasq.iptv
 
