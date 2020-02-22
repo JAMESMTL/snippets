@@ -25,16 +25,25 @@ Step 6: identify the target kernel version and untangle distribution
 
     uname -a
 
-ex: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
+example:  
+Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
 
 4.9.x means it's debian stretch based  
 4.19.x should mean its debian buster based
 
-You will need to get the repo commit number that matches your target build
+4.9.189 is the kernel subversion (this is important and is what you are looking to match)
+
+You will need to get the most appropriate repo commit number for your target build
+
+From the untangle UI goto CONFIG - ABOUT
+
+![](https://i.imgur.com/R249Yge.png)
+
+Here we see that we are running build 15.0.0 with a datestamp of 20200214T135223
 
 goto https://github.com/untangle/ngfw_kernels
 
-click on the branch button and select the tag tab and search for the target distribution (ex 15.0.0 = 15.0.0-20200218T23-sync) 
+click on the branch button and select the tag tab and search for the target distribution that matches the above build or that follows it (ex 15.0.0 = 15.0.0-20200218T23-sync) 
 
 Step 7: Add debian stretch repo and the needed dependencies
 
