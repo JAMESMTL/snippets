@@ -25,9 +25,7 @@ Step 5: stop untangle service
 
 Step 6: identify the target kernel version and untangle distribution
 
-[code]
-uname -a
-[/code]
+`uname -a`
 
 ex: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
 
@@ -38,17 +36,15 @@ You will need to get the repo commit number that matches your target build
 
 goto https://github.com/untangle/ngfw_kernels
 
-click on the branch button and select the tag and search for the target distribution (ex 15.0.0 = 15.0.0-20200218T23-sync) 
-
+click on the branch button and select the tag tab and search for the target distribution (ex 15.0.0 = 15.0.0-20200218T23-sync) 
 
 Step 7: Add debian stretch repo and the needed dependencies
 
-[code]
-echo "deb http://ftp.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list.d/build.list
+`echo "deb http://ftp.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list.d/build.list
 echo "deb http://security.debian.org stretch/updates main contrib non-free" >> /etc/apt/sources.list.d/build.list
 apt update
 dpkg-reconfigure debconf
-[/code]
+`
 
 Select dialog. i use critical
 
