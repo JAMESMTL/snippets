@@ -1,4 +1,4 @@
-HOW TO BUILD THE BCM KERNEL MODULE FOR UNTANGLE NG FIREWALL
+## HOW TO BUILD THE BCM KERNEL MODULE FOR UNTANGLE NG FIREWALL
 
 What is untangle? see https://www.untangle.com/
 
@@ -99,9 +99,11 @@ ssh into the working router and install the kernel packages
 select the new kernel
 Done!
 
-<b>Note: IGMPPROXY is not available in the standard install nor does untangle's GUI firewall handle proto 2 (igmp)</b>
 
-HOW-TO SETUP IPTV
+
+## HOW-TO SETUP IPTV
+
+<b>Note: IGMPPROXY is not available in the standard install nor does untangle's GUI firewall handle proto 2 (igmp)</b>
 
 step 1: create your secondary wan interafce on vlan 36, select dhcp, DO NOT select use peer dns
 
