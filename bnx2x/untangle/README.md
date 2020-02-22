@@ -48,10 +48,14 @@ If you now click on the appropraite kernel branch ex. 4.9.0 you should see your 
 
 ![](https://i.imgur.com/cadTXeM.png)
 
-Step 7: Add debian stretch repo and the needed dependencies
+Step 7: Add the appropriate debian repo
 
-    echo "deb http://ftp.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list.d/build.list
-    echo "deb http://security.debian.org stretch/updates main contrib non-free" >> /etc/apt/sources.list.d/build.list
+For debian stretch use
+
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-stretch-repo.list -o /etc/apt/sources.list.d/debian.list
+
+Then update the repo and reconfigure debconf
+
     apt update
     dpkg-reconfigure debconf
 
@@ -109,7 +113,14 @@ step 1: create your secondary wan interafce on vlan 36, select dhcp, DO NOT sele
 
 step 2: connect via ssh
 
+Step 3: Add the appropriate debian repo
+
+For debian stretch use
+
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-stretch-repo.list -o /etc/apt/sources.list.d/debian.list
+
+Update the repo
+
     apt update
     apt install igmpproxy
     rm /etc/apt/sources.list.d/debian.list
