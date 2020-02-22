@@ -30,7 +30,7 @@ example: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.18
 4.9.x means it's debian stretch based  
 4.19.x should mean its debian buster based
 
-4.9.<b>189</b> 189 is the kernel revision (this is important and is what you are looking to match)
+4.9.<b>189-3</b> 189-3 is the kernel revision (this is important and is what you are looking to match)
 
 You will need to get the most appropriate repo commit number for your target build
 
