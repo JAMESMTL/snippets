@@ -21,11 +21,11 @@ Step 4: login via ssh
 
 Step 5: stop untangle service
 
-`/etc/init.d./untangle-vm stop`
+    /etc/init.d./untangle-vm stop
 
 Step 6: identify the target kernel version and untangle distribution
 
-`uname -a`
+    uname -a
 
 ex: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
 
@@ -47,55 +47,44 @@ Step 7: Add debian stretch repo and the needed dependencies
 
 Select dialog. i use critical
 
-[code]
-apt -y install linux-headers-$(uname -r)
-apt -y install untangle-development-build firmware-bnx2x build-essential libncurses5-dev bison flex bc curl
-git clone https://github.com/untangle/ngfw_kernels
-[/code]
+    apt -y install linux-headers-$(uname -r)
+    apt -y install untangle-development-build firmware-bnx2x build-essential libncurses5-dev bison flex bc curl
+    git clone https://github.com/untangle/ngfw_kernels
 
 answer n to _git substitution
 
 Step 8: Checkout the proper version from git
 
-[code]
-cd ngfw_kernels
-checkout 15.0.0-20200218T23-sync
-[/code]
+    cd ngfw_kernels
+    checkout 15.0.0-20200218T23-sync
 
 step 9. Download and apply [user=upnatom]'s unified patch for 57810 + 57711 nic families then build the module
 
-[code]
-cd ~/ngfw_kernels/debian-4.9.0
-make patch
-make deps
-cd linux-4.9.189
-patch -p0 < ~/bnx2x_warpcore_2_5g_sgmii.patch drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c
-cd ..
-make pkgs
-[/code]
+    cd ~/ngfw_kernels/debian-4.9.0
+    make patch
+    make deps
+    cd linux-4.9.189
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore+8727_2_5g_sgmii.patch | patch -p0
+    cd ..
+    make pkgs
 
 don't worry about any warnings during the doc build as we wont be using them anyways
 
-get the path of the new kernel module
+Step 10: Get the path of the new kernel module
 
-[code]
-find ~ -name bnx2x.ko
-[/code]
+    find ~ -name bnx2x.ko
 
 your looking for the file from the linux image directory
 
-/root/ngfw_kernels/debian-4.9.0/linux-4.9.189/debian/linux-image-4.9.0-11-untangle-amd64/lib/modules/4.9.0-11-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+ex: /root/ngfw_kernels/debian-4.9.0/linux-4.9.189/debian/linux-image-4.9.0-11-untangle-amd64/lib/modules/4.9.0-11-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
 
-This is the file you will copy to your production machine
-
-I copied them to ~/latest on the working install
+This is the file you will copy to your production machine. I copied the module to ~/latest
 
 ssh into the working router and install the kernel packages
 
-[code]
-dpkg -i ~/latest/*.deb
-reboot
-[/code]
+    cp ~/latest/bnx2x.ko /lib/modules/$(uname -r)/kernel/drivers/net/ethernet/broadcom/bnx2x/
+    update-initramfs -u -k all
+    reboot
 
 select the new kernel
 Done!
