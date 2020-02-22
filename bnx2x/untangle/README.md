@@ -5,11 +5,7 @@ What is untangle? see https://www.untangle.com/
 <b>Note: I don't use untangle and can't provide much assistance beyond the scope of this post.</b>  
 <b>The sole objective of this post is to build the kernel with a working module.</b>
 
-To build the kernel module for untangle you will have to build the full kernel.
-
-The process is not overly complicated but it does take time (~30-45 mins)
-
-These build instructions are based on the following wiki article https://wiki.untangle.com/index.php/Building_the_Code
+To build the kernel module for untangle you will have to build the full kernel. The process is not overly complicated but it does take time (~30-45 mins). These build instructions are based on the following wiki article https://wiki.untangle.com/index.php/Building_the_Code
 
 <b>I recommend doing the build on a build VM or dedicated build machine and copy the kernel module over to your production machine</b>  
 I used a 48GB VM for the build.
@@ -32,8 +28,7 @@ Step 6: identify the target kernel version and untangle distribution
 
 ex: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
 
-4.9.x means it's debian stretch based
-
+4.9.x means it's debian stretch based  
 4.19.x should mean its debian buster based
 
 You will need to get the repo commit number that matches your target build
@@ -57,7 +52,7 @@ Select dialog. i use critical
 
 answer n to _git substitution
 
-Step 8: Checkout the proper version from git
+Step 8. Checkout the proper version from git
 
     cd ngfw_kernels
     checkout 15.0.0-20200218T23-sync
@@ -130,7 +125,7 @@ Answer should be along the lines of 10.2.76.132
 
 If you do something in the GUI that overwrites the scripted route or firewall rules just reboot
 
-you cab browse the iptv files here https://github.com/JAMESMTL/snippets/tree/master/bnx2x/untangle
+you can browse the iptv files here https://github.com/JAMESMTL/snippets/tree/master/bnx2x/untangle
 
 Post any questions you have to the dslreports.com BCM57810 thread found here:
 https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
