@@ -2,7 +2,7 @@ HOW TO BUILD THE BCM KERNEL MODULE FOR UNTANGLE NG FIREWALL
 
 What is untangle? see https://www.untangle.com/
 
-<b>Note: I don't use untangle and can't provide much assistance beyond the scope of this post.</b>
+<b>Note: I don't use untangle and can't provide much assistance beyond the scope of this post.</b>  
 <b>The sole objective of this post is to build the kernel with a working module.</b>
 
 To build the kernel module for untangle you will have to build the full kernel.
