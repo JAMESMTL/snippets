@@ -3,9 +3,12 @@ HOW TO BUILD THE BCM KERNEL MODULE FOR UNTANGLE NG FIREWALL
 What is untangle? see https://www.untangle.com/
 
 <b>Note: I don't use untangle and can't provide much assistance beyond the scope of this post.
+
 The sole objective of this post is to build the kernel with a working module.</b>
 
-To build the kernel module for untangle you will have to build the full kernel. The process is not overly complicated but it does take time (~30-45 mins)
+To build the kernel module for untangle you will have to build the full kernel.
+
+The process is not overly complicated but it does take time (~30-45 mins)
 
 These build instructions are based on the following wiki article https://wiki.untangle.com/index.php/Building_the_Code
 
