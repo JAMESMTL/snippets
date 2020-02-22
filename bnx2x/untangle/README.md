@@ -7,9 +7,9 @@ What is untangle? see https://www.untangle.com/
 
 To build the kernel module for untangle you will have to build the full kernel. The process is not overly complicated but it does take time (~30-45 mins). These build instructions are based on the following wiki article https://wiki.untangle.com/index.php/Building_the_Code
 
-<b>I recommend doing the build on a build VM or dedicated build machine and copy the kernel module over to your production machine</b> I used a 48GB VM for the build.
+<b>I recommend doing the build on a build VM or dedicated build machine and copy the kernel module over to your production machine</b>
 
-Step 1: Create the build machine. I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
+Step 1: Create the build machine.  I used a 48GB VM for the build and I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
 
 Step 2: Run the setup wizard to set nics (disable automatic updates)
 
