@@ -109,7 +109,7 @@ step 1: create your secondary wan interafce on vlan 36, select dhcp, DO NOT sele
 
 step 2: connect via ssh
 
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian.list -o /etc/apt/sources.list.d/debian.list
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-stretch-repo.list -o /etc/apt/sources.list.d/debian.list
     apt update
     apt install igmpproxy
     rm /etc/apt/sources.list.d/debian.list
