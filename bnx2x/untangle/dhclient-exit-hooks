@@ -63,8 +63,7 @@ cdr2mask ()
 IPTV_ZONE_FILE=/opt/dnsmasq.iptv
 
 forwardZones=" \
-	bell.ca \
-	bell.com \
+	iptv.bell.ca \
 	iptv.microsoft.com \
 "
 
