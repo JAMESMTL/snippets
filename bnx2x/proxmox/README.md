@@ -12,13 +12,13 @@ Step 1. Before going any further you need to identify the kernel of the target V
     root@pve:~# uname -a
 
 v5.4 is based on Debian Stretch which resulted in 
-Linux pve 4.15.18-12-pve #1 SMP PVE 4.15.18-35 (Wed, 13 Mar 2019 08:24:42 +0100) x86_64 GNU/Linux
+    Linux pve 4.15.18-12-pve #1 SMP PVE 4.15.18-35 (Wed, 13 Mar 2019 08:24:42 +0100) x86_64 GNU/Linux
 
 v6.0 is based on Debian Buster which resulted in
-Linux pve 5.0.15-1-pve #1 SMP PVE 5.0.15-1 (Wed, 03 Jul 2019 10:51:57 +0200) x86_64 GNU/Linux
+    Linux pve 5.0.15-1-pve #1 SMP PVE 5.0.15-1 (Wed, 03 Jul 2019 10:51:57 +0200) x86_64 GNU/Linux
 
 v6.2 is based on Debian Buster which resulted in
-Linux pve 5.4.34-1-pve #1 SMP PVE 5.4.34-2 (Thu, 07 May 2020 10:02:02 +0200) x86_64 GNU/Linux
+    Linux pve 5.4.34-1-pve #1 SMP PVE 5.4.34-2 (Thu, 07 May 2020 10:02:02 +0200) x86_64 GNU/Linux
 
 Once you have that information you can proceed to create your build environment
 
@@ -86,13 +86,13 @@ Step 7. You will also need to get the repo commit number that matches your targe
 goto https://git.proxmox.com/?p=pve-kernel.git and search for the target kernel (ex 4.15.18-35, 5.0.15-1, or 5.4.34-2)
 
 In this case it brings up two commits.
-For v5.4 you would want the update ABI file for 4.15.18-12-pve (bump version to 4.15.18-35)
-For v6.0 you would want update ABI file for 5.0.15-1-pve (update ABI file for 5.0.15-1-pve)
+For v5.4 you would want the update ABI file for 4.15.18-12-pve (bump version to 4.15.18-35)\
+For v6.0 you would want update ABI file for 5.0.15-1-pve (update ABI file for 5.0.15-1-pve)\
 For v6.2 you would want bump version to 5.4.34-2 (bump version to 5.4.34-2)
 
 Once you click on the version you want you will be able to get the commit number ex:
-v5.4 (4.15.18-35) 2b3306dee456c6b172a8fdbbce2598f67d0b2569
-v6.0 (5.0.15-1) de6fe5c8ffa1ffd870bc128b39864d1e49e27de1
+v5.4 (4.15.18-35) 2b3306dee456c6b172a8fdbbce2598f67d0b2569\
+v6.0 (5.0.15-1) de6fe5c8ffa1ffd870bc128b39864d1e49e27de1\
 v6.2 (5.4.34-2) 80c08de2e4909e4411cf0db3aa37c5532db0c693
 
 Step 8. Get the source code
@@ -143,10 +143,10 @@ Step 10. Download and apply upnatom's unified patch for 57810 + 57711 nic famili
     strip --strip-debug drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
     cp drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko ~/
 
-a copy of your modified kernel module can be found root user's home directory
+a copy of your modified kernel module can be found root user's home directory\
 ~/bnx2x.ko
 
-on your production host you need to copy that file to:
+on your production host you need to copy that file to:\
 /lib/modules/$(uname -r)/kernel/drivers/net/ethernet/broadcom/bnx2x/
 
 BEFORE copying the module backup the original just in case
