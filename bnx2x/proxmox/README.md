@@ -93,13 +93,14 @@ Step 7. You will also need to get the repo commit number that matches your targe
 
 goto https://git.proxmox.com/?p=pve-kernel.git and search for the target kernel (ex 4.15.18-35, 5.0.15-1, or 5.4.34-2)
 
-In this case it brings up two commits.
+You may see more than one commit.
 
 For v5.4 you would want the update ABI file for 4.15.18-12-pve (bump version to 4.15.18-35)\
 For v6.0 you would want update ABI file for 5.0.15-1-pve (update ABI file for 5.0.15-1-pve)\
 For v6.2 you would want bump version to 5.4.34-2 (bump version to 5.4.34-2)
 
 Once you click on the version you want you will be able to get the commit number ex:
+
 v5.4 (4.15.18-35) 2b3306dee456c6b172a8fdbbce2598f67d0b2569\
 v6.0 (5.0.15-1) de6fe5c8ffa1ffd870bc128b39864d1e49e27de1\
 v6.2 (5.4.34-2) 80c08de2e4909e4411cf0db3aa37c5532db0c693
