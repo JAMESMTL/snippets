@@ -11,13 +11,16 @@ Step 1. Before going any further you need to identify the kernel of the target V
 
     root@pve:~# uname -a
 
-v5.4 is based on Debian Stretch which resulted in 
+v5.4 is based on Debian Stretch which resulted in
+
     Linux pve 4.15.18-12-pve #1 SMP PVE 4.15.18-35 (Wed, 13 Mar 2019 08:24:42 +0100) x86_64 GNU/Linux
 
 v6.0 is based on Debian Buster which resulted in
+
     Linux pve 5.0.15-1-pve #1 SMP PVE 5.0.15-1 (Wed, 03 Jul 2019 10:51:57 +0200) x86_64 GNU/Linux
 
 v6.2 is based on Debian Buster which resulted in
+
     Linux pve 5.4.34-1-pve #1 SMP PVE 5.4.34-2 (Thu, 07 May 2020 10:02:02 +0200) x86_64 GNU/Linux
 
 Once you have that information you can proceed to create your build environment
