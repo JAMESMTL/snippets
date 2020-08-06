@@ -60,12 +60,16 @@ Step 5. Now install the packages you will need to build the module
 
 Step 6. Install the headers file corresponding to your target
 
-You will need to get a link for the headers that match the target build. Unfortunately you can't use:
-apt install pve-headers-$(uname -r) as that will pull down the latest version and not necessarily the installed version.
+You will need to get a link for the headers that match the target build. Unfortunately you CAN'T use:
+
+    apt install pve-headers-$(uname -r)
+
+Doing so will pull down the latest version and not necessarily the installed version.
 
 you can construct the filename you need based on the version learned from the target
-ex: pve-headers-4.15.18-12-pve_4.15.18-35_amd64.deb
-ex: pve-headers-5.0.15-1-pve_5.0.15-1_amd64.deb
+
+ex: pve-headers-4.15.18-12-pve_4.15.18-35_amd64.deb\
+ex: pve-headers-5.0.15-1-pve_5.0.15-1_amd64.deb\
 ex: pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb (** Note -1 vs -2 **)
 
 For v5.4
@@ -86,9 +90,11 @@ For v6.2
 
 
 Step 7. You will also need to get the repo commit number that matches your target build
+
 goto https://git.proxmox.com/?p=pve-kernel.git and search for the target kernel (ex 4.15.18-35, 5.0.15-1, or 5.4.34-2)
 
 In this case it brings up two commits.
+
 For v5.4 you would want the update ABI file for 4.15.18-12-pve (bump version to 4.15.18-35)\
 For v6.0 you would want update ABI file for 5.0.15-1-pve (update ABI file for 5.0.15-1-pve)\
 For v6.2 you would want bump version to 5.4.34-2 (bump version to 5.4.34-2)
