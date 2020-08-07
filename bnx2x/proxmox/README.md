@@ -1,4 +1,4 @@
-HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (5.4, 6.0, 6.2)\
+## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (5.4, 6.0, 6.2)
 Updated and tested 2020-08-06
 
 <b>Note: I have literraly zero experience with Proxmox other than building the kernel module. I can't help anyone with any questions regarding configuration or running a proxmox host</b>
@@ -60,11 +60,7 @@ Step 5. Now install the packages you will need to build the module
 
 Step 6. Install the headers file corresponding to your target
 
-You will need to get a link for the headers that match the target build. Unfortunately you CAN'T use:
-
-    apt install pve-headers-$(uname -r)
-
-Doing so will pull down the latest version and not necessarily the installed version.
+You will need to get a link for the headers that match the target build.
 
 you can construct the filename you need based on the version learned from the target
 
