@@ -8,11 +8,13 @@ What is VyOS : https://vyos.readthedocs.io/en/latest/history.html
 
 The sole objective of this post is to build the module
 
+
 Step 1: Install VyOS and create an image from the console
 
 I downloaded the VyOS rolling release from here: https://downloads.vyos.io/?dir=rolling/current/amd64
 
 see Install Vyos : https://vyos.readthedocs.io/en/latest/install.html (*Note: I didn't bother veryfing the signatures)
+
 
 Step 2: Identify the target kernel version of the vyos distribution
 
@@ -25,6 +27,7 @@ example: Linux vyos 4.19.136-amd64-vyos #1 SMP Sun Aug 2 19:03:03 UTC 2020 x86_6
 You will need to checkout the appropriate repo commit for your target build
 
 We will introduce the bnx2x module to the image at the end.
+
 
 Step 3: Create a Debian Buster build environment on a VM or separate build machine. I used 32GB VM for the build
 
