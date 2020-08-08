@@ -83,7 +83,7 @@ why? because that will leave you in a known state.
 your modified kernel module can be found in the root home directory:\
 ~/bnx2x.ko
 
-<>Step 14:</b> Confirm wan/lan interface names, add a temporary IP to the lan interface, and enable ssh so the we can copy bnx2x.ko to the VyOS install
+<b>Step 14:</b> Confirm wan/lan interface names, add a temporary IP to the lan interface, and enable ssh so the we can copy bnx2x.ko to the VyOS install
 
 *Note: We wont touch the permissions on the VyOS install so some commands will need to be elevated using sudo
 
