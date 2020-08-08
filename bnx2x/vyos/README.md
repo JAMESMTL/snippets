@@ -56,26 +56,26 @@ why? because that will leave you in a known state.
     cd ~
 	git clone -b current --single-branch https://github.com/vyos/vyos-build
 
-<b>Step 8 :</b> Copy upnatom's unified patch to the vyos kernel patch directory 
+<b>Step 9:</b> Copy upnatom's unified patch to the vyos kernel patch directory 
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/git/bnx2x_warpcore%2B8727_2_5g_sgmii.patch -o ~/vyos-build/packages/linux-kernel/patches/kernel/bnx2x_warpcore+8727_2_5g_sgmii.patch
 
-<b>Step 9:</b> Clone the stable branch of the linux kernel into the vyos build environment
+<b>Step 10:</b> Clone the stable branch of the linux kernel into the vyos build environment
 
     cd ~/vyos-build/packages/linux-kernel
 	git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux
 
-<b>Step 10:</b> Checkout the required kernel version (see step 2)
+<b>Step 11:</b> Checkout the required kernel version (see step 2)
 
     cd linux
     git checkout v4.19.136
     cd ..
 
-<b>Step 11:</b> Build the kernel and bnx2x kernel module
+<b>Step 12:</b> Build the kernel and bnx2x kernel module
 
     ./build-kernel.sh
 
-<b>Step 12:</b> Copy the kernel and bnx2x.ko kernel module to home directory
+<b>Step 13:</b> Copy the kernel and bnx2x.ko kernel module to home directory
 
     cp linux/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko ~/
     cp linux-image*.deb ~/
@@ -83,7 +83,7 @@ why? because that will leave you in a known state.
 your modified kernel module can be found in the root home directory:\
 ~/bnx2x.ko
 
-<>Step 13:</b> Confirm wan/lan interface names, add a temporary IP to the lan interface, and enable ssh so the we can copy bnx2x.ko to the VyOS install
+<>Step 14:</b> Confirm wan/lan interface names, add a temporary IP to the lan interface, and enable ssh so the we can copy bnx2x.ko to the VyOS install
 
 *Note: We wont touch the permissions on the VyOS install so some commands will need to be elevated using sudo
 
@@ -96,9 +96,9 @@ My future wan interface will be eth0 and my lan interface will be eth1
     commit
     save
 
-<b>Step 14:</b> copy bnx2x.ko to /home/vyos. I used winSCP but you could scp directly from the build machine to the host
+<b>Step 15:</b> copy bnx2x.ko to /home/vyos. I used winSCP but you could scp directly from the build machine to the host
 
-<b>Step 15:</b> Update the image to use the new driver and reboot
+<b>Step 16:</b> Update the image to use the new driver and reboot
 
 login via ssh using user vyos
 
@@ -106,10 +106,10 @@ login via ssh using user vyos
     sudo /usr/sbin/update-initramfs -u -k all
     reboot
 
-<b>Step 16:</b> From the console you can verify sync @ 2.5G before proceeding to configure VyOS by checking the future wan interface using ethtool
+<b>Step 17:</b> From the console you can verify sync @ 2.5G before proceeding to configure VyOS by checking the future wan interface using ethtool
 
     ethtool eth0
 
-<b>Step 17:</b> Configure VyOS as desired (see https://docs.vyos.io/en/latest/quick-start.html)
+<b>Step 18:</b> Configure VyOS as desired (see https://docs.vyos.io/en/latest/quick-start.html)
 
 Done !
