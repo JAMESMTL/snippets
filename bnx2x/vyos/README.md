@@ -46,7 +46,7 @@ why? because that will leave you in a known state.
 
     echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list
 	
-<b>Step 7:</b> Once you have modified the apt sources run the following to update and install the packages needed for the build (this will take awhile)
+<b>Step 7:</b> Once you have modified the apt sources run the following to update and install the packages needed for the build (and a few extra)
 
     apt update
     apt -y install build-essential checkinstall fakeroot libncurses5-dev xz-utils libssl-dev bc flex libelf-dev bison curl ccache dpkg-dev debhelper git pkg-config uuid-dev firmware-bnx2x sudo live-build pbuilder devscripts python3-pystache python3-git python3-distutils
@@ -110,6 +110,6 @@ login via ssh using user vyos
 
     ethtool eth0
 
-<b>Step 18:</b> Configure VyOS as desired (see https://docs.vyos.io/en/latest/quick-start.html)
-
 Done !
+
+Configure VyOS as desired (see https://docs.vyos.io/en/latest/quick-start.html)
