@@ -1,4 +1,4 @@
-## HOW TO BUILD THE BCM KERNEL MODULE FOR UNTANGLE NG FIREWALL
+## HOW TO BUILD THE BCM KERNEL MODULE FOR UNTANGLE NG FIREWALL (v15.0.x, v15.1.x)
 
 What is untangle? see https://www.untangle.com/
 
@@ -13,26 +13,9 @@ Step 1: Create the build machine.  I used a 48GB VM for the build and I installe
 
 Step 2: Run the setup wizard to set nics (disable automatic updates)
 
-Step 3: Enable ssh under CONFIG - NETWORK - ADVANCED - ACCESS RULES 
+Step 3: Enable ssh under CONFIG - NETWORK - ADVANCED - ACCESS RULES
 
-Step 4: Login via ssh
-
-Step 5: Stop untangle service
-
-    /etc/init.d./untangle-vm stop
-
-Step 6: Identify the target kernel version and untangle distribution
-
-    uname -a
-
-example: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
-
-4.9.x means it's debian stretch based  
-4.19.x should mean its debian buster based
-
-4.9.<b>189-3</b> 189-3 is the kernel revision (this is important and is what you are looking to match)
-
-You will need to get the most appropriate repo commit number for your target build
+Step 4: Identify the untangle distribution
 
 From the untangle UI goto CONFIG - ABOUT
 
@@ -40,19 +23,45 @@ From the untangle UI goto CONFIG - ABOUT
 
 Here we see that we are running build 15.0.0 with a datestamp of 20200214T135223
 
+Step 5: Login via ssh
+
+Step 6: Identify the target kernel version
+
+    uname -a
+
+example: Linux untangle.example.com 4.9.0-11-untangle-amd64 #1 SMP Debian 4.9.189-3+untangle3 (2020-01-28) x86_64 GNU/Linux
+example: Linux untangle.example.com 4.19.0-8-untangle-amd64 #1 SMP Debian 4.19.98-1+untangle3buster (2020-05-08) x86_64 GNU/Linux
+
+4.9.x means it's debian stretch based  
+4.19.x should mean its debian buster based
+
+4.9.<b>189-3</b> 189-3 is the kernel revision (this is important and is what you are looking to match)
+
+Step 7: Stop untangle service
+
+For debian stretch use
+
+    /etc/init.d/untangle-vm stop
+
+Step 8: Get the most appropriate repo commit number for your target build
+
 Goto https://github.com/untangle/ngfw_kernels
 
-Click on the branch button and select the tag tab and search for the target distribution that matches the above build or that follows it (ex 15.0.0 = 15.0.0-20200218T23-sync).
+Click on the branch button and select the tag tab and search for the target distribution that matches the above build or that follows it (ex 15.0.0 = 15.0.0-20200218T23-sync, 15.1.0 = 15.1.0-20200623T0956-sync).
 
-If you now click on the appropraite kernel branch ex. debian-4.9.0 you should see your target kernel
+If you now click on the appropraite kernel branch ex. debian-4.9.0 for debian stretch and debian-4.19.0 for debian buster. you should now see your target kernel
 
 ![](https://i.imgur.com/cadTXeM.png)
 
-Step 7: Add the appropriate debian repo
+Step 9: Add the appropriate debian repo
 
 For debian stretch use
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-stretch-repo.list -o /etc/apt/sources.list.d/debian.list
+	
+For debian buster use
+
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-buster-repo.list -o /etc/apt/sources.list.d/debian.list
 
 Then update the repo and reconfigure debconf
 
@@ -62,22 +71,37 @@ Then update the repo and reconfigure debconf
 Select dialog. i use critical
 
     apt -y install linux-headers-$(uname -r)
-    apt -y install untangle-development-build firmware-bnx2x build-essential libncurses5-dev bison flex bc curl
+    apt -y install untangle-development-build firmware-bnx2x build-essential libncurses5-dev bison flex bc curl libelf-dev
     git clone https://github.com/untangle/ngfw_kernels
 
 answer n to _git substitution
 
-Step 8: Checkout the proper version from git
+Step 10: Checkout the proper version from git
 
     cd ~/ngfw_kernels
     checkout 15.0.0-20200218T23-sync
 
-step 9: Download and apply upnatom's unified patch for 57810 + 57711 nic families then build the module
+Step 11: Change directories to the appropriate kernel
+
+For debian stretch use
 
     cd ~/ngfw_kernels/debian-4.9.0
+
+For debian buster use
+
+    cd ~/ngfw_kernels/debian-4.19.0
+
+step 12: Download the actual kernel source
+
     make patch
     make deps
+	
+Change to the linux build directory
+
     cd linux-4.9.189
+
+Apply upnatom's unified patch for 57810 + 57711 nic families then build the module
+
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore+8727_2_5g_sgmii.patch | patch -p0
     cd ..
     make pkgs
@@ -91,6 +115,7 @@ Step 10: Get the path of the new kernel module
 You are looking for the file from the linux image directory
 
 ex: /root/ngfw_kernels/debian-4.9.0/linux-4.9.189/debian/linux-image-4.9.0-11-untangle-amd64/lib/modules/4.9.0-11-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+ex: /root/ngfw_kernels/debian-4.19.0/linux-4.19.98/debian/linux-image-4.19.0-8-untangle-amd64-unsigned/lib/modules/4.19.0-8-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
 
 This is the file you will copy to your production machine. I copied the module to ~/latest
 
@@ -118,6 +143,10 @@ Step 3: Add the appropriate debian repo
 For debian stretch use
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-stretch-repo.list -o /etc/apt/sources.list.d/debian.list
+	
+For debian buster use
+
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-buster-repo.list -o /etc/apt/sources.list.d/debian.list
 
 Update the repo
 
