@@ -114,7 +114,7 @@ Step 10: Get the path of the new kernel module
 
 You are looking for the file from the linux image directory
 
-ex: /root/ngfw_kernels/debian-4.9.0/linux-4.9.189/debian/linux-image-4.9.0-11-untangle-amd64/lib/modules/4.9.0-11-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+ex: /root/ngfw_kernels/debian-4.9.0/linux-4.9.189/debian/linux-image-4.9.0-11-untangle-amd64/lib/modules/4.9.0-11-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko \
 ex: /root/ngfw_kernels/debian-4.19.0/linux-4.19.98/debian/linux-image-4.19.0-8-untangle-amd64-unsigned/lib/modules/4.19.0-8-untangle-amd64/kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
 
 This is the file you will copy to your production machine. I copied the module to ~/latest
