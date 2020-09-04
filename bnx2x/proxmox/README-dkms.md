@@ -43,6 +43,24 @@ Step 5. Get the generic + current Proxmox hernel headers, have dkms build the ke
 
 Done!
 
+### Optional kernel module parameters
+
+To set these parameters, edit the /etc/modprobe.d file to include the required options
+
+To enable debug mode
+
+    modprobe bnx2x debug=0x4102034
+
+To disable SFP TX fault detection
+
+    options bnx2x mask_tx_fault=1
+
+where :\
+0 = SFP TX fault detection enabled on both ports (default)\
+1 = SFP TX fault detection disabled on port 0\
+2 = SFP TX fault detection disabled on port 1\
+3 = SFP TX fault detection disabled on both ports
+
 ### How to verify 2.5G link
 
 Use ethtool to verify the wan interface (ex. ens224f0)
@@ -82,7 +100,7 @@ Step 4. install the headers, dkms install for new kernel, and reboot
 
 These instructions are in support of the work done by upnatom to enable 2.5G link speeds needed for GPON SFP ONTs used by providers such Bell Canada for their FTTH services.
 
-Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel and the tx_fault patch found here: https://github.com/severnt/bnx2x-2_5g-dkms 
+Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel found here: https://github.com/severnt/bnx2x-2_5g-dkms 
 
 Post your questions in the Bell Canada forum on dslreports found here: \
 https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
