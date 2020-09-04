@@ -53,15 +53,6 @@ index 98d4c5a3f..619b33c62 100644
  				u8 gport = params->port;
  				phy->req_line_speed = SPEED_1000;
  				if (!CHIP_IS_E1x(bp)) {
-@@ -8343,7 +8357,7 @@ static int bnx2x_wait_for_sfp_module_initialized(struct bnx2x_phy *phy,
- 	 * some phys type ( e.g. JDSU )
- 	 */
- 
--	for (timeout = 0; timeout < 60; timeout++) {
-+	for (timeout = 0; timeout < 1800; timeout++) {
- 		if (phy->type == PORT_HW_CFG_XGXS_EXT_PHY_TYPE_DIRECT)
- 			rc = bnx2x_warpcore_read_sfp_module_eeprom(
- 				phy, params, I2C_DEV_ADDR_A0, 1, 1, &val,
 @@ -9242,6 +9256,7 @@ static void bnx2x_8727_config_speed(struct bnx2x_phy *phy,
  	u16 tmp1, val;
  	/* Set option 1G speed */
