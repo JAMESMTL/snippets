@@ -4,7 +4,7 @@ Updated and tested 2020-09-03
 What is Proxmox? see https://www.proxmox.com/en/proxmox-ve \
 What is DKMS (Dynamic Kernel Module Support)? see https://help.ubuntu.com/community/DKMS 
 
-For the Proxmox bnx2x kernel build instruction via standard Proxmox build environment see: https://github.com/JAMESMTL/snippets/blob/master/bnx2x/proxmox/README.md
+For the Proxmox bnx2x kernel module build instruction via standard Proxmox build environment see: https://github.com/JAMESMTL/snippets/blob/master/bnx2x/proxmox/README.md
 
 <b>Note: I have literraly zero experience with Proxmox other than building the kernel module. I can't help anyone with any questions regarding configuration or running a proxmox host</b>
 
