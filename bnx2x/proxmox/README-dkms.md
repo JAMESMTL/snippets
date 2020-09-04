@@ -75,7 +75,7 @@ DKMS will try and rebuild the kernel module whenever the kernel is updated. If f
 
 ### Updateting and recovery instructions for dkms kernel module
 
-For the Huawei and Alcatel ONTs the procedure is fairly staright forward and is to literally step 5 from above.
+For the Huawei and Alcatel ONTs the procedure is fairly staright forward.
 
     apt -y install pve-headers-$(uname -r)
     dkms install bnx2x/99.1.713.36-0 -k $(uname -r)
