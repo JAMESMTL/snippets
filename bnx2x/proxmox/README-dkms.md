@@ -8,7 +8,7 @@ What is DKMS (Dynamic Kernel Module Support)? see https://help.ubuntu.com/commun
 
 <b>This WILL be preformed on the production host.</b>
 
-Step 1: If you are not using Proxmox with an enterprise subscription then you will need to remove the default enterprise repo and add replace it with either the pve-no-subscription repo (recommended) or pvetest repo.
+Step 1: If you are not using Proxmox with an enterprise subscription then you will need to remove the default enterprise repo and replace it with either the pve-no-subscription repo (recommended) or pvetest repo.
 
     rm /etc/apt/sources.list.d/pve-enterprise.list
     
