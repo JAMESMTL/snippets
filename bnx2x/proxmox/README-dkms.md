@@ -10,7 +10,7 @@ For the Proxmox bnx2x kernel module build instruction via standard Proxmox build
 
 <b>This WILL be preformed on the production host.</b>
 
-Step 1: If you are not using Proxmox with an enterprise subscription then you will need to remove the default enterprise repo and replace it with either the pve-no-subscription repo (recommended) or pvetest repo.
+Step 1. If you are not using Proxmox with an enterprise subscription then you will need to remove the default enterprise repo and replace it with either the pve-no-subscription repo (recommended) or pvetest repo.
 
     rm /etc/apt/sources.list.d/pve-enterprise.list
     
@@ -22,22 +22,22 @@ or
 
     echo "deb http://download.proxmox.com/debian/pve buster pvetest" > /etc/apt/sources.list.d/pve.list
 
-Step 2: Update apt sources
+Step 2. Update apt sources
 
     apt update
 
-Step 3: Install dkms + git + ethtool
+Step 3. Install dkms + git + ethtool
 
     apt -y install dkms git ethtool
 
-Step 4: Clone bnx2x sources
+Step 4. Clone bnx2x sources
 
     cd /usr/src
     git clone https://github.com/JAMESMTL/bnx2x-dkms-linux-5.4.y bnx2x-99.1.713.36-0
 
-Step 5: Get hernel headers, have dkms build the kernel module, and reboot the Proxmox server
+Step 5. Get the generic + current Proxmox hernel headers, have dkms build the kernel module, and reboot the Proxmox server
 
-    apt -y install pve-headers-$(uname -r)
+    apt -y install pve-headers pve-headers-$(uname -r)
     dkms install bnx2x/99.1.713.36-0 -k $(uname -r)
     reboot
 
@@ -51,13 +51,9 @@ Use ethtool to verify the wan interface (ex. ens224f0)
 
 ### Warnings (read me twice)
 
-DKMS will try and rebuild the kernel module whenever the kernel is updated and this will fail as the needed kernel headers will not be installed along with the new kernel image from the proxmox repo.
+DKMS will try and rebuild the kernel module whenever the kernel is updated. If for some reason you are missing the proper headers the build will fail and the system will fall back to the distribution kernel module and the link will be limited to 1G on the Huawei and Alcatel ONTs.
 
-Proxmox's generic kernel headers for the pve-no-subscription and pvetest repos contain newer kernels than the stable entreprise subscription repo. This Will cause the module build to fail and proxmox will fall back to the distribution kernel module and link will be limited to 1G on the Huawei and Alcatel ONTs.
-
-<b>The nokia ONT will not link up and will require that the headers are either present on the machine before upgrading the kernel, or loading the headers manually via USB thumb drive</b>
-
-Hopefully these warnings will be temporary and a solution will be obtained from the proxmox community or devs.
+<b>If this happens and you have the nokia ONT, you will lose connectivity and you will required to install the headers manually either via a secondary network adapter or via USB thumb drive</b>
 
 ### Updateting and recovery instructions for dkms kernel module
 
@@ -82,11 +78,11 @@ Step 4. install the headers, dkms install for new kernel, and reboot
     dkms install bnx2x/99.1.713.36-0 -k $(uname -r)
     reboot
 
-Alternatively you can install the needed headers prior to updating the kernel which will permit dkms to build the kernel module automatically. ex for kernel 5.4.60-1
+## Acknowledgements. Need Help?
 
-    apt -y install pve-headers-5.4.60-1-pve
+These instructions are in support of the work done by upnatom to enable 2.5G link speeds needed for GPON SFP ONTs used by providers such Bell Canada for their FTTH services.
 
-## Need Help?
+Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel found here: https://github.com/severnt/bnx2x-2_5g-dkms 
 
 Post your questions in the Bell Canada forum on dslreports found here: \
 https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
