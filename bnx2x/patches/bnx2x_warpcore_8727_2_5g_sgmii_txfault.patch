@@ -63,15 +63,6 @@ diff -Naur a/drivers/net/ethernet/broadcom/bnx2x/bnx2x_link.c b/drivers/net/ethe
  				u8 gport = params->port;
  				phy->req_line_speed = SPEED_1000;
  				if (!CHIP_IS_E1x(bp)) {
-@@ -8339,7 +8353,7 @@
- 	 * some phys type ( e.g. JDSU )
- 	 */
- 
--	for (timeout = 0; timeout < 60; timeout++) {
-+	for (timeout = 0; timeout < 1800; timeout++) {
- 		if (phy->type == PORT_HW_CFG_XGXS_EXT_PHY_TYPE_DIRECT)
- 			rc = bnx2x_warpcore_read_sfp_module_eeprom(
- 				phy, params, I2C_DEV_ADDR_A0, 1, 1, &val,
 @@ -9238,6 +9252,7 @@
  	u16 tmp1, val;
  	/* Set option 1G speed */
