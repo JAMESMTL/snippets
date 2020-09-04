@@ -1,6 +1,8 @@
 ## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (5.4, 6.0, 6.2)
 Updated and tested 2020-08-06
 
+For the proxmox bnx2x kernel module build instruction using DKMS see : https://github.com/JAMESMTL/snippets/blob/master/bnx2x/proxmox/README-dkms.md 
+
 <b>Note: I have literraly zero experience with Proxmox other than building the kernel module. I can't help anyone with any questions regarding configuration or running a proxmox host</b>
 
 <b>DO NOT perform the build on a production host.</b> Create a build VM. I recommend creating a build VM with 48GB disk space.
