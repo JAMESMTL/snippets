@@ -82,7 +82,7 @@ Step 4. install the headers, dkms install for new kernel, and reboot
 
 These instructions are in support of the work done by upnatom to enable 2.5G link speeds needed for GPON SFP ONTs used by providers such Bell Canada for their FTTH services.
 
-Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel found here: https://github.com/severnt/bnx2x-2_5g-dkms 
+Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel and the tx_fault patch found here: https://github.com/severnt/bnx2x-2_5g-dkms 
 
 Post your questions in the Bell Canada forum on dslreports found here: \
 https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
