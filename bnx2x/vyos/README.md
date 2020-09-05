@@ -58,7 +58,7 @@ why? because that will leave you in a known state.
 
 <b>Step 9:</b> Copy upnatom's unified patch to the vyos kernel patch directory 
 
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/git/bnx2x_warpcore%2B8727_2_5g_sgmii.patch -o ~/vyos-build/packages/linux-kernel/patches/kernel/bnx2x_warpcore+8727_2_5g_sgmii.patch
+    curl https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/git/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch -o ~/vyos-build/packages/linux-kernel/patches/kernel/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
 
 <b>Step 10:</b> Clone the stable branch of the linux kernel into the vyos build environment
 
