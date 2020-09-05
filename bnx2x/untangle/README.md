@@ -102,7 +102,7 @@ Change to the linux build directory
 
 Apply upnatom's unified patch for 57810 + 57711 nic families then build the module
 
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore+8727_2_5g_sgmii.patch | patch -p0
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch | patch -p1
     cd ..
     make pkgs
 
