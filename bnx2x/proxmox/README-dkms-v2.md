@@ -32,7 +32,7 @@ Step 3. Install dkms, git, ettool, and dependencies
 
 Step 4. Run dkms init script
 
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh | tee /usr/src/init-dkms.log
 
 Step 5. Verify bnx2x module version matches 99.1.713.36-0 then Reboot 
 
