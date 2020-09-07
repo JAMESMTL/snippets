@@ -7,9 +7,9 @@ What is DKMS (Dynamic Kernel Module Support)? see https://help.ubuntu.com/commun
 <b>The sole objective of this post is to build the kernel with a working module.</b>  
 <b>This WILL be preformed on the production host.</b>
 
-Step 1: Create the build machine.  I used a 48GB VM for the build and I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
+Step 1: Install Untangle. I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
 
-Step 2: Run the setup wizard to set nics (disable automatic updates)
+Step 2: Configure Untangle
 
 Step 3: Enable ssh under CONFIG - NETWORK - ADVANCED - ACCESS RULES
 
