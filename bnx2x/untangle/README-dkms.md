@@ -47,11 +47,11 @@ Step 9. Remove debian repo & update apt sources
     rm  /etc/apt/sources.list.d/debian.list
     apt update
 
-Step 9. Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/init-dkms.sh)
+Step 10. Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/init-dkms.sh)
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh | tee /usr/src/init-dkms.log
 
-Step 10. Verify bnx2x module version is prepended with 99 (ex. 99.1.713.36-0) then Reboot 
+Step 11. Verify bnx2x module version is prepended with 99 (ex. 99.1.713.36-0) then Reboot 
 
     modinfo bnx2x
     reboot
