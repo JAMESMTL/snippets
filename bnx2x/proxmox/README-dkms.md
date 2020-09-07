@@ -26,19 +26,17 @@ Step 2. Update apt sources
 
     apt update
 
-Step 3. Install dkms + git + ethtool
+Step 3. Install dkms, git, ettool, and dependencies
 
-    apt -y install dkms git ethtool
+    apt install -y dkms git ethtool pve-headers pve-headers-$(uname -r)
 
-Step 4. Clone bnx2x sources
+Step 4. Run dkms init script
 
-    cd /usr/src
-    git clone https://github.com/JAMESMTL/bnx2x-dkms-linux-5.4.y bnx2x-99.1.713.36-0
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh | tee /usr/src/init-dkms.log
 
-Step 5. Get the generic + current Proxmox hernel headers, have dkms build the kernel module, and reboot the Proxmox server
+Step 5. Verify bnx2x module version is prepended with 99 (ex. 99.1.713.36-0) then Reboot 
 
-    apt -y install pve-headers pve-headers-$(uname -r)
-    dkms install bnx2x/99.1.713.36-0 -k $(uname -r)
+	modinfo bnx2x
     reboot
 
 Done!
