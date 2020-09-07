@@ -2,7 +2,7 @@
 
 # Sparse checkout of bnx2x kernel module source from kernel.org
 git -C /usr/src/linux/ reset --hard
-git -C /usr/src/linux/ pull
+git -C /usr/src/linux/ pull origin master
 git -C /usr/src/linux/ checkout linux-$(uname -r | cut -d'.' -f1-2).y
 
 # Apply upnatom's patch to bnx2x kernel module source
@@ -23,4 +23,5 @@ sed -i "s/\($BNX2XVER\)/99.\1/" ${BNX2XDKMSDIR}/bnx2x.h
 sed -i "s/\(99.9.999.99-9\)/99.${BNX2XVER}/" ${BNX2XDKMSDIR}/dkms.conf
 
 # build and install dkms module
-dkms install -f bnx2x/99.${BNX2XVER} -k $(uname -r)
+dkms remove -bnx2x/99.${BNX2XVER} --all
+dkms install -bnx2x/99.${BNX2XVER} -k $(uname -r)
