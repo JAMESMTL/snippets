@@ -42,6 +42,11 @@ Step 8. Install dkms, git, ettool, and dependencies
 
     apt install -y dkms git ethtool
 
+Step 9. Remove debian repo & update apt sources
+
+    rm  /etc/apt/sources.list.d/debian.list
+    apt update
+
 Step 9. Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/init-dkms.sh)
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh | tee /usr/src/init-dkms.log
