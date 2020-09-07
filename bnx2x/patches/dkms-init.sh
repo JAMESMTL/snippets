@@ -3,8 +3,8 @@
 # Sparse checkout of bnx2x kernel module source from kernel.org
 git init /usr/src/linux
 git -C /usr/src/linux/ config core.sparseCheckout true
-git -C /usr/src/linux/ remote add -f origin git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 echo "drivers/net/ethernet/broadcom/" > /usr/src/linux/.git/info/sparse-checkout
+git -C /usr/src/linux/ remote add -f origin git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 git -C /usr/src/linux/ checkout linux-$(uname -r | cut -d'.' -f1-2).y
 
 # Apply upnatom's patch to bnx2x kernel module source
