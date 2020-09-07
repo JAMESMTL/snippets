@@ -49,7 +49,7 @@ To set these parameters, create a file in /etc/modprobe.d and include the requir
 
 To enable debug mode
 
-    modprobe bnx2x debug=0x4102034
+    options bnx2x debug=0x4102034
 
 To disable SFP TX fault detection
 
