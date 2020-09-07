@@ -23,4 +23,4 @@ sed -i "s/\($BNX2XVER\)/99.\1/" ${BNX2XDKMSDIR}/bnx2x.h
 sed -i "s/\(99.9.999.99-9\)/99.${BNX2XVER}/" ${BNX2XDKMSDIR}/dkms.conf
 
 # build and install dkms module
-dkms install bnx2x/99.${BNX2XVER} -k $(uname -r)
+dkms install -f bnx2x/99.${BNX2XVER} -k $(uname -r)
