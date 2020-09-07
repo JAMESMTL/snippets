@@ -55,7 +55,7 @@ Done!
 
 ### Optional kernel module parameters
 
-To set these parameters, edit the /etc/modprobe.d file to include the required options
+To set these parameters, create a file in /etc/modprobe.d and include the required options
 
 To enable debug mode
 
