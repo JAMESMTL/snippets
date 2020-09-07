@@ -2,7 +2,7 @@
 
 # Sparse checkout of bnx2x kernel module source from kernel.org
 git -C /usr/src/linux/ reset --hard
-git -C /usr/src/linux/ pull origin master
+git -C /usr/src/linux/ pull
 git -C /usr/src/linux/ checkout linux-$(uname -r | cut -d'.' -f1-2).y
 
 # Apply upnatom's patch to bnx2x kernel module source
