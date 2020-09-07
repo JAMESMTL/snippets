@@ -1,0 +1,34 @@
+diff -Naur a/bnx2x.h b/bnx2x.h
+--- a/bnx2x.h	2020-09-06 21:09:12.089975799 -0400
++++ b/bnx2x.h	2020-09-06 21:09:51.539399567 -0400
+@@ -42,7 +42,7 @@
+ 
+ #include "bnx2x_hsi.h"
+ 
+-#include "../cnic_if.h"
++#include "cnic_if.h"
+ 
+ #define BNX2X_MIN_MSIX_VEC_CNT(bp)		((bp)->min_msix_vec_cnt)
+ 
+diff -Naur a/cnic_if.h b/cnic_if.h
+--- a/cnic_if.h	2020-09-06 21:09:12.092975756 -0400
++++ b/cnic_if.h	2020-09-06 21:09:51.541399538 -0400
+@@ -13,7 +13,7 @@
+ #ifndef CNIC_IF_H
+ #define CNIC_IF_H
+ 
+-#include "bnx2x/bnx2x_mfw_req.h"
++#include "bnx2x_mfw_req.h"
+ 
+ #define CNIC_MODULE_VERSION	"2.5.22"
+ #define CNIC_MODULE_RELDATE	"July 20, 2015"
+diff -Naur a/dkms.conf b/dkms.conf
+--- a/dkms.conf	1969-12-31 19:00:00.000000000 -0500
++++ b/dkms.conf	2020-09-06 21:09:51.541399538 -0400
+@@ -0,0 +1,6 @@
++PACKAGE_NAME="bnx2x"
++PACKAGE_VERSION="99.9.999.99-9"
++BUILT_MODULE_NAME[0]="$PACKAGE_NAME"
++DEST_MODULE_LOCATION[0]="/kernel/drivers/net/ethernet/broadcom/bnx2x"
++AUTOINSTALL="YES"
++REMAKE_INITRD="YES"
