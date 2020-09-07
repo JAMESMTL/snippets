@@ -30,7 +30,7 @@ Step 3. Install dkms, git, ettool, and dependencies
 
     apt install -y dkms git ethtool pve-headers pve-headers-$(uname -r)
 
-Step 4. Run dkms init script
+Step 4. Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/init-dkms.sh)
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh | tee /usr/src/init-dkms.log
 
