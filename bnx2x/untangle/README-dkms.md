@@ -5,10 +5,7 @@ What is DKMS (Dynamic Kernel Module Support)? see https://help.ubuntu.com/commun
 
 <b>Note: I don't use untangle and can't provide much assistance beyond the scope of this post.</b>  
 <b>The sole objective of this post is to build the kernel with a working module.</b>
-
-To build the kernel module for untangle you will have to build the full kernel. The process is not overly complicated but it does take time (~30-45 mins). These build instructions are based on the following wiki article https://wiki.untangle.com/index.php/Building_the_Code
-
-<b>I recommend doing the build on a build VM or dedicated build machine and copy the kernel module over to your production machine</b>
+<b>This WILL be preformed on the production host.</b>
 
 Step 1: Create the build machine.  I used a 48GB VM for the build and I installed untangle using the iso found here: https://wiki.untangle.com/index.php/NG_Firewall_Downloads
 
