@@ -11,7 +11,7 @@ curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bn
 # Get bnx2x version and create bnx2x dkms directory
 BNX2XVER=$(grep DRV_MODULE_VERSION /usr/src/linux/drivers/net/ethernet/broadcom/bnx2x/bnx2x.h | sed 's/.*\"\(.*\)\"/\1/')
 BNX2XDKMSDIR=/usr/src/bnx2x-99.${BNX2XVER}
-mkdir $BNX2XDKMSDIR
+[ ! -d "$BNX2XDKMSDIR" ] && mkdir $BNX2XDKMSDIR || rm $BNX2XDKMSDIR/*
 
 # Copy bnx2x kernel module source to dkms directory
 cp /usr/src/linux/drivers/net/ethernet/broadcom/bnx2x/* $BNX2XDKMSDIR
