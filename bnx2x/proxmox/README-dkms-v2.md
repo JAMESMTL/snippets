@@ -26,7 +26,7 @@ Step 2. Update apt sources
 
     apt update
 
-Step 3. Install dependencies
+Step 3. Install dkms, git, ettool, and dependencies
 
     apt install -y dkms git ethtool pve-headers pve-headers-$(uname -r)
 
@@ -34,8 +34,9 @@ Step 4. Run dkms init script
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/init-dkms.sh | sh
 
-Step 5. Reboot 
+Step 5. Verify bnx2x module version matches 99.1.713.36-0 then Reboot 
 
+	modinfo bnx2x
     reboot
 
 Done!
