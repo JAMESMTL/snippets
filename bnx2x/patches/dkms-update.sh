@@ -1,9 +1,19 @@
 #!/bin/sh
 
+# Get kernel version
+case $(uname -r) in
+	*"-untangle-amd64" )
+		KERNVER=$(uname -a | grep -oE '([0-9]+\.){2}[0-9]+' | tail -n1)
+		;;
+	*)
+		KERNVER=$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+')
+		;;
+esac
+
 # Sparse checkout of bnx2x kernel module source from kernel.org
 git -C /usr/src/linux/ reset --hard
 git -C /usr/src/linux/ pull
-git -C /usr/src/linux/ checkout linux-$(uname -r | cut -d'.' -f1-2).y
+git -C /usr/src/linux/ checkout v${KERNVER}
 
 # Apply upnatom's patch to bnx2x kernel module source
 curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch | patch -p1 -d/usr/src/linux
