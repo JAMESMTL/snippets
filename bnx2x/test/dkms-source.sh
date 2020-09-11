@@ -35,3 +35,5 @@ cp /usr/src/linux/drivers/net/ethernet/broadcom/cnic_if.h $BNX2XDKMSDIR
 curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms.patch | patch -p1 -d${BNX2XDKMSDIR}
 sed -i "s/\($BNX2XVER\)/99.\1/" ${BNX2XDKMSDIR}/bnx2x.h
 sed -i "s/\(99.9.999.99-9\)/99.${BNX2XVER}/" ${BNX2XDKMSDIR}/dkms.conf
+
+echo $KERNVER > ${BNX2XDKMSDIR}/version.txt
