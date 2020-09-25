@@ -3,10 +3,10 @@
 # Get kernel version
 case $(uname -r) in
 	*"-untangle-amd64" )
-		KERNVER=$(uname -a | grep -oE '([0-9]+\.){2}[0-9]+' | tail -n1)
+		KERNVER=linux-$(uname -r | cut -d'.' -f1-2).y
 		;;
 	*)
-		KERNVER=$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+')
+		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+')
 		;;
 esac
 
@@ -16,7 +16,7 @@ git init /usr/src/linux
 git -C /usr/src/linux/ config core.sparseCheckout true
 echo "drivers/net/ethernet/broadcom/" > /usr/src/linux/.git/info/sparse-checkout
 git -C /usr/src/linux/ remote add origin git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
-git -C /usr/src/linux/ fetch --depth=1 origin v${KERNVER}
+git -C /usr/src/linux/ fetch --depth=1 origin ${KERNVER}
 git -C /usr/src/linux/ merge FETCH_HEAD
 
 # Apply upnatom's patch to bnx2x kernel module source
