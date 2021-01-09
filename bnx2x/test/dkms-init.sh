@@ -1,12 +1,16 @@
 #!/bin/sh
 
-# Get kernel version
 case $(uname -r) in
 	*"-untangle-amd64" )
 		KERNVER=linux-$(uname -r | cut -d'.' -f1-2).y
 		;;
+
+	*"-pve")
+		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+' | sed 's/\.0$//' )
+		;;
+
 	*)
-		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+')
+		KERNVER=v$(uname -a | grep -oE '([0-9]+\.){2}[0-9]+' | tail -n1 | sed 's/\.0$//' ) 
 		;;
 esac
 
