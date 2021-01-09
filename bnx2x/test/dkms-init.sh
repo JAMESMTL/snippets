@@ -6,7 +6,7 @@ case $(uname -r) in
 		KERNVER=linux-$(uname -r | cut -d'.' -f1-2).y
 		;;
 	*)
-		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+')
+		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+') | sed 's/\.0$//'
 		;;
 esac
 
