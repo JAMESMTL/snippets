@@ -28,7 +28,7 @@ git -C /usr/src/linux/ merge FETCH_HEAD
 curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch | patch -p1 -d/usr/src/linux
 
 # Get bnx2x version and create bnx2x dkms directory
-BNX2XVER=$(grep DRV_MODULE_VERSION /usr/src/linux/drivers/net/ethernet/broadcom/bnx2x/bnx2x.h | sed 's/.*\"\(.*\)\"/\1/')
+BNX2XVER=$(grep '^#define DRV_MODULE_VERSION' /usr/src/linux/drivers/net/ethernet/broadcom/bnx2x/bnx2x.h | sed 's/.*\"\(.*\)\"/\1/')
 BNX2XDKMSDIR=/usr/src/bnx2x-99.${BNX2XVER}
 mkdir $BNX2XDKMSDIR
 
