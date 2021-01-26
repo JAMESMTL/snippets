@@ -5,10 +5,15 @@ case $(uname -r) in
 	*"-untangle-amd64" )
 		KERNVER=linux-$(uname -r | cut -d'.' -f1-2).y
 		;;
-	*)
-		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+')
+
+	*"-pve")
+		KERNVER=v$(uname -r | grep -oE '([0-9]+\.){2}[0-9]+' | sed 's/\.0$//' )
 		;;
-esac
+
+	*)
+		KERNVER=v$(uname -a | grep -oE '([0-9]+\.){2}[0-9]+' | tail -n1 | sed 's/\.0$//' ) 
+		;;
+esac	
 
 # Sparse checkout of bnx2x kernel module source from kernel.org
 rm -R /usr/src/linux 2>/dev/null
