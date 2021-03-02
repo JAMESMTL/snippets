@@ -52,7 +52,7 @@ To checkout the master branch, a named branch such as v2.23-core133, or a specif
 <b>Step 8:</b> Download [user=upnatom]'s unified patch and patch the lfs/linux build script to include the bnx2x patch
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch -o ~/ipfire-2.x/src/patches/linux/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/ipfire/linux.patch | patch -Np1
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/ipfire/lfs-build.patch | patch -Np1
 
 <b>Step 9:</b> Download the IPFire source (~10 Mins)
 
