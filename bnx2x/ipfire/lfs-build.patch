@@ -1,0 +1,14 @@
+diff --git a/lfs/linux b/lfs/linux
+index b675e4f..cf8983e 100644
+--- a/lfs/linux
++++ b/lfs/linux
+@@ -173,6 +173,9 @@ else
+ 	cd $(DIR_APP) && cp -vf $(DIR_SRC)/config/kernel/ipfire_logo.ppm \
+ 		drivers/video/logo/logo_linux_clut224.ppm
+ 
++	# bnx2x patch
++	cd $(DIR_APP) && patch -Np1 < $(DIR_SRC)/src/patches/linux/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
++
+ 	# Cleanup kernel source
+ 	cp $(DIR_SRC)/config/kernel/kernel.config.$(BUILD_ARCH)-$(VERSUFIX) $(DIR_APP)/.config
+ 	cd $(DIR_APP) && make oldconfig
