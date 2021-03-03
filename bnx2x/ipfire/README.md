@@ -72,7 +72,7 @@ your installation media can be found here:
 
 ### Alternative install method
 
-<b>Starting with IPFire 2.25 - Core Update 142 the IPFire devs enabled kernel module signing making it no loger posible to install unsigned modules.</b>
+Starting with IPFire 2.25 - Core Update 142 the IPFire devs enabled kernel module signing making it no loger posible to install unsigned modules.
 
 ### References
 
