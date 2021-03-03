@@ -80,7 +80,5 @@ These instructions are based on the following wiki articles: \
 IPFire Wiki Sources: https://wiki.ipfire.org/devel/sources \
 IPFire Wiki Build how-to: https://wiki.ipfire.org/devel/ipfire-2-x/build-howto
 
-* Note: IPFire was in the process of a server migration when I did the original build and their wiki was offline so you may notice a few additional packages
-
 You can view the bnx2x patch here: https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch \
 You can view the lfs/linux patch here: https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/ipfire/lfs-build.patch
