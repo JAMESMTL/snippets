@@ -74,6 +74,20 @@ The IPFire build script will verify if there are differences between the <b>loca
 your installation media can be found here:
 ~/ipfire-2.x/ipfire-2.25.x86_64-full-core154.iso
 
+### Optional kernel module parameters
+
+To set these parameters, create a file in /etc/modprobe.d and include the required options
+
+To disable SFP TX fault detection
+
+    options bnx2x mask_tx_fault=1
+
+where :\
+0 = SFP TX fault detection enabled on both ports (default)\
+1 = SFP TX fault detection disabled on port 0\
+2 = SFP TX fault detection disabled on port 1\
+3 = SFP TX fault detection disabled on both ports
+
 ### Alternative install method
 
 Starting with IPFire 2.25 - Core Update 142 IPFire enabled kernel module signing and it is no longer possible to install unsigned modules.
