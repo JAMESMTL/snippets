@@ -34,32 +34,40 @@ why? because that will leave you in a known state.
     git clone git://git.ipfire.org/ipfire-2.x.git
     cd ipfire-2.x
 
-<b>Step 6:</b> Checkout a specific development branch (Optional, skip to use the master branch)
-
-By default cloning the repository will checkout the master branch which holds the currently shipped code (see IPFire sources wiki)
+<b>Step 6:</b> Checkout a specific development branch
 
 You can browse the IPFire repo here: https://git.ipfire.org/?p=ipfire-2.x.git
 
 To checkout a specific branch, a specific tag, or a specific commit use one of the following:
 
-    git checkout master
+    git checkout core154
     git checkout v2.25-core152
     git checkout c6e032e13d5d1eff16189c50229f00522835aae5
+	
+The master branch is selected by default which will label the build as a "Development Build" and will use the testing branch rather than the stable branch
 
 <b>Step 7:</b> Download upnatom's unified patch and patch the lfs/linux build script to include the bnx2x patch
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch -o ~/ipfire-2.x/src/patches/linux/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/ipfire/lfs-build.patch | patch -Np1
 
-<b>Step 8:</b> Download the IPFire source (~10 Mins)
+<b>Step 8:</b> Prevent IPFire build script from marking the release as dirty (optional)
+
+The IPFire build script will verify if there are differences between the <b>local repo</b> and the <b>local files</b> via git status. The repo and file system became out of sync after patching the lfs linux build script in step 7. Adding the new files and commiting the changes locally will resolve the issue.
+
+    git add lfs/linux.orig
+    git add src/patches/linux/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
+    git commit -a -m bnx2x
+
+<b>Step 9:</b> Download the IPFire source (~10 Mins)
 
     ./make.sh downloadsrc
 
-<b>Step 9:</b> Download the toolchain
+<b>Step 10:</b> Download the toolchain
 
     ./make.sh gettoolchain
 
-<b>Step 10:</b> Build IPFire installation media (.iso) from source (~4 hours)
+<b>Step 11:</b> Build IPFire installation media (.iso) from source (~4 hours)
 
     ./make.sh build
 
