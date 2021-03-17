@@ -1,6 +1,6 @@
-## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR VyOS (v1.3 Rolling Release)
-Updated and tested 2020-08-08 with vyos-1.3-rolling-202008070118-amd64.iso\
-Using Debian Buster debian-10.5.0-amd64-netinst.iso as the base for the build
+## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR VyOS (v1.3 - v1.4 Rolling Release)
+Updated and tested 2021-03-17 with vyos-1.4-rolling-202103040218-amd64.iso\
+Using Debian Buster debian-10.8.0-amd64-netinst.iso as the base for the build
 
 What is VyOS : https://vyos.readthedocs.io/en/latest/history.html
 
@@ -18,9 +18,9 @@ see Install Vyos : https://vyos.readthedocs.io/en/latest/install.html (*Note: I 
 
     uname -a
 
-example: Linux vyos 4.19.136-amd64-vyos #1 SMP Sun Aug 2 19:03:03 UTC 2020 x86_64
+example: Linux vyos 5.10.19-amd64-vyos #1 SMP Sun Feb 28 17:21:25 UTC 2021 x86_64 GNU/Linux
 
-4.19.136 is the kernel version (this is important and is what you are looking to match)
+5.10.19 is the kernel version (this is important and is what you are looking to match)
 
 You will need to checkout the appropriate repo commit for your target build
 
@@ -28,7 +28,7 @@ We will introduce the bnx2x module to the image at the end.
 
 <b>Step 3:</b> Create a Debian Buster build environment on a VM or separate build machine. I used 32GB VM for the build
 
-I downloaded Debian Buster debian-10.5.0-amd64-netinst.iso from here https://www.debian.org/releases/buster/debian-installer/
+I downloaded Debian Buster debian-10.8.0-amd64-netinst.iso from here https://www.debian.org/releases/buster/debian-installer/
 
 I suggest doing the install via regular text console and not via GUI (don't select graphical install).
 Only enable ssh server and standard system utilities when selecting components.
@@ -49,7 +49,7 @@ why? because that will leave you in a known state.
 <b>Step 7:</b> Once you have modified the apt sources run the following to update and install the packages needed for the build (and a few extra)
 
     apt update
-    apt -y install build-essential checkinstall fakeroot libncurses5-dev xz-utils libssl-dev bc flex libelf-dev bison curl ccache dpkg-dev debhelper git pkg-config uuid-dev firmware-bnx2x sudo live-build pbuilder devscripts python3-pystache python3-git python3-distutils
+    apt -y install build-essential checkinstall fakeroot libncurses5-dev xz-utils libssl-dev bc flex libelf-dev bison curl ccache dpkg-dev debhelper git pkg-config uuid-dev firmware-bnx2x sudo live-build pbuilder devscripts python3-pystache python3-git python3-distutils rsync
 
 <b>Step 8:</b> Get the vyos sources needed for the build
 
@@ -58,7 +58,7 @@ why? because that will leave you in a known state.
 
 <b>Step 9:</b> Copy upnatom's unified patch to the vyos kernel patch directory 
 
-    curl https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/git/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch -o ~/vyos-build/packages/linux-kernel/patches/kernel/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch -o ~/vyos-build/packages/linux-kernel/patches/kernel/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch
 
 <b>Step 10:</b> Clone the stable branch of the linux kernel into the vyos build environment
 
@@ -68,7 +68,7 @@ why? because that will leave you in a known state.
 <b>Step 11:</b> Checkout the required kernel version (see step 2)
 
     cd linux
-    git checkout v4.19.136
+    git checkout v5.10.19
     cd ..
 
 <b>Step 12:</b> Build the kernel and bnx2x kernel module
