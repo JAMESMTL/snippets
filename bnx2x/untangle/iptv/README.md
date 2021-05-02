@@ -4,9 +4,9 @@
 
 <b>step 1:</b> create your secondary wan interafce on vlan 36, select dhcp, DO NOT select use peer dns
 
-[[images/iptv_interface_1.png]]
+![](https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/iptv/images/iptv_interface_1.png)
 
-[[images/iptv_interface_2.png]]
+![](https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/iptv/images/iptv_interface_2.png)
 
 <b>step 2:</b> connect via ssh
 
