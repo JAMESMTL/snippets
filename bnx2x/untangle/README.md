@@ -127,58 +127,14 @@ ssh into the working router and install the kernel packages
 
 Done!
 
+## Acknowledgements. Need Help?
 
+These instructions are in support of the work done by upnatom to enable 2.5G link speeds needed for GPON SFP ONTs used by providers such Bell Canada for their FTTH services.
 
-
-## HOW-TO SETUP IPTV
-
-<b>Note: IGMPPROXY is not available in the standard install nor does untangle's GUI firewall handle proto 2 (igmp)</b>
-
-step 1: create your secondary wan interafce on vlan 36, select dhcp, DO NOT select use peer dns
-
-step 2: connect via ssh
-
-Step 3: Add the appropriate debian repo
-
-For debian stretch use
-
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-stretch-repo.list -o /etc/apt/sources.list.d/debian.list
-	
-For debian buster use
-
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/debian-buster-repo.list -o /etc/apt/sources.list.d/debian.list
-
-Update the repo
-
-    apt update
-    apt install igmpproxy
-    rm /etc/apt/sources.list.d/debian.list
-    apt update
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/igmpproxy.conf -o /etc/igmpproxy.conf
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/dhclient-exit-hooks -o /etc/dhcp/dhclient-exit-hooks
-    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/untangle/rc.local -o /etc/rc.local
-    chmod 755 /etc/rc.local
-    reboot
-
-step 4: Add to CONFIG - NETWORK - ADVANCED - DNS&DHCP
-
-    conf-file=/opt/dnsmasq.iptv
-
-Done.
-
-To test DNS forward zones + routing to 10.2/16
-
-     dig discovery.iptv.microsoft.com
-
-Answer should be along the lines of 10.2.76.132
-
-![](https://i.imgur.com/ehbrxyh.png)
-
-![](https://i.imgur.com/Hgct553.png)
-
-If you do something in the GUI that overwrites the scripted route or firewall rules just reboot
-
-you can browse the iptv files here https://github.com/JAMESMTL/snippets/tree/master/bnx2x/untangle
-
-Post any questions you have to the dslreports.com BCM57810 thread found here:
+Post your questions in the Bell Canada forum on dslreports found here: \
 https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
+
+
+## HOW-TO setup Bell IPTV using untangle
+
+See https://github.com/JAMESMTL/snippets/blob/master/bnx2x/untangle/iptv/README.md
