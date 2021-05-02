@@ -75,28 +75,13 @@ DKMS will try and rebuild the kernel module whenever the kernel is updated. If f
 
 <b>If this happens and you have the nokia ONT, you will lose connectivity and you will required to install the headers manually either via a secondary network adapter or via USB thumb drive</b>
 
-### Updateting and recovery instructions for dkms kernel module
+### Reinstalling / updating bnx2x dkms kernel module sources
 
-For the Huawei and Alcatel ONTs the procedure is fairly staright forward.
+Run dkms update script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/dkms-update.sh)
 
-    apt -y install pve-headers-$(uname -r)
-    dkms install bnx2x/99.1.713.36-0 -k $(uname -r)
-    reboot
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms-update.sh | sh | tee /usr/src/dkms-init.log
 
-For the Nokia ONT, one method you can use to recover connectivity is by installig the headers manually.
-
-Step 1. Browse the repo using your computer by visiting here:\
-http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/
-
-Step 2. Download the pve-headers file that coresponds to your kernel. ex pve-headers-5.4.60-1-pve_5.4.60-1_amd64.deb for kernel version 5.4.60-1
-
-Step 3. Copy that file to your root user home directory (/root or ~/)
-
-Step 4. install the headers, dkms install for new kernel, and reboot
-
-    dpkg -i ~/pve-headers-5.4.60-1-pve_5.4.60-1_amd64.deb
-    dkms install bnx2x/99.1.713.36-0 -k $(uname -r)
-    reboot
+This should only be required if there has been a major update to the underlying kernel branch.
 
 ## Acknowledgements. Need Help?
 
