@@ -1,4 +1,4 @@
-## HOW-TO SETUP BELL IPTV
+## HOW-TO SETUP BELL IPTV USING UNTANGLE
 
 <b>Note: IGMPPROXY is not available in the standard untangle install nor does untangle's GUI firewall handle proto 2 (igmp)</b>
 
