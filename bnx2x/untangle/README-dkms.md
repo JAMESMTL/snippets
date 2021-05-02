@@ -76,6 +76,10 @@ where :\
 2 = SFP TX fault detection disabled on port 1\
 3 = SFP TX fault detection disabled on both ports
 
+After adding, modifying, or removing kernel module options update the initramfs image by running the following as root
+
+    update-initramfs -u -k all
+
 ### How to verify 2.5G link
 
 Use ethtool to verify the wan interface (ex. ens224f0)
