@@ -4,6 +4,10 @@
 
 <b>step 1:</b> create your secondary wan interafce on vlan 36, select dhcp, DO NOT select use peer dns
 
+![](https://i.imgur.com/Hgct553.png)
+
+![](https://i.imgur.com/ehbrxyh.png)
+
 <b>step 2:</b> connect via ssh
 
 <b>step 3:</b> Add the appropriate debian repo
@@ -55,10 +59,6 @@ To test DNS forward zones + routing to 10.2/16
      dig discovery.iptv.microsoft.com
 
 Answer should be along the lines of 10.2.76.132
-
-![](https://i.imgur.com/ehbrxyh.png)
-
-![](https://i.imgur.com/Hgct553.png)
 
 If you do something in the GUI that overwrites the scripted route or firewall rules just reboot
 
