@@ -92,31 +92,13 @@ DKMS will try and rebuild the kernel module whenever the kernel is updated. If f
 
 <b>If this happens and you have the nokia ONT, you will lose connectivity and you will required to install the headers manually either via a secondary network adapter or via USB thumb drive</b>
 
-### Updateting and recovery instructions for dkms kernel module
+### Reinstalling / updating bnx2x dkms kernel module sources
 
-For the Huawei and Alcatel ONTs the procedure is fairly staright forward.
+Run dkms update script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/dkms-update.sh)
 
-    apt install -y linux-headers-$(uname -r)
-    dkms install bnx2x/99.1.712.30-0 -k $(uname -r)
-    reboot
+    curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms-update.sh | sh | tee /usr/src/dkms-init.log
 
-For the Nokia ONT, one method you can use to recover connectivity is by installig the headers manually.
-
-Step 1. Browse the repo using your computer by visiting here:\
-http://updates.untangle.com/public/buster/pool/main/l/linux/
-
-Step 2. Download the linux-header files that coresponds to your kernel.  
-ex linux-headers-4.19.0-8-untangle-amd64_4.19.98-1+untangle3buster_amd64.deb &  
-ex linux-headers-4.19.0-8-common-untangle_4.19.98-1+untangle3buster_all.deb for kernel version 4.19.0-8
-
-Step 3. Copy those files to your root user home directory (/root or ~/)
-
-Step 4. install the headers, dkms install for new kernel, and reboot
-
-    dpkg -i ~/linux-headers-4.19.0-8-untangle-amd64_4.19.98-1+untangle3buster_amd64.deb
-    dpkg -i ~/linux-headers-4.19.0-8-common-untangle_4.19.98-1+untangle3buster_all.deb
-    dkms install bnx2x/99.1.712.30-0 -k $(uname -r)
-    reboot
+This should only be required if there has been a major update to the underlying kernel branch.
 
 ## Acknowledgements. Need Help?
 
