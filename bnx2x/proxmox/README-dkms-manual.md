@@ -1,6 +1,8 @@
 ## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (6.x) VIA DKMS
 Updated and tested 2020-09-03
 
+<b>Please use these instructions for proxmox dkms https://github.com/JAMESMTL/snippets/blob/master/bnx2x/proxmox/README-dkms.md</b>
+
 What is Proxmox? see https://www.proxmox.com/en/proxmox-ve \
 What is DKMS (Dynamic Kernel Module Support)? see https://help.ubuntu.com/community/DKMS 
 
