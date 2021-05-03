@@ -127,6 +127,10 @@ ssh into the working router and install the kernel packages
 
 Done!
 
+### How to verify if the bnx2x kernel module has been patched
+
+    modinfo -p bnx2x | grep -q mask_tx_fault && echo PATCHED || echo NOT PATCHED
+
 ## Acknowledgements. Need Help?
 
 These instructions are in support of the work done by upnatom to enable 2.5G link speeds needed for GPON SFP ONTs used by providers such Bell Canada for their FTTH services.
