@@ -169,3 +169,7 @@ then run
     reboot
 
 Done!
+
+### How to verify if the bnx2x kernel module has been patched
+
+    modinfo -p bnx2x | grep -q mask_tx_fault && echo PATCHED || echo NOT PATCHED
