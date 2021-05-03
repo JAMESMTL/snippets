@@ -80,6 +80,10 @@ After adding, modifying, or removing kernel module options update the initramfs 
 
     update-initramfs -u -k all
 
+### How to verify if the bnx2x kernel module has been patched
+
+    modinfo -p bnx2x | grep -q mask_tx_fault && echo PATCHED || echo NOT PATCHED
+
 ### How to verify 2.5G link
 
 Use ethtool to verify the wan interface (ex. ens224f0)
