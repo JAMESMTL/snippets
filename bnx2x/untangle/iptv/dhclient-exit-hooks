@@ -9,7 +9,7 @@ forwardZones=" \
 	iptv.microsoft.com \
 "
 
-# new_routers being dropped by another hook
+# new_routers being dropped by an erlier hook. Parse leases file instead
 GATEWAY=$(grep routers /var/lib/dhcp/dhclient.${IPTV_WAN_INTERFACE}.leases | tail -n 1 | sed 's/.*routers \(.*\);/\1/')
 
 case "$interface" in
@@ -27,11 +27,10 @@ case "$interface" in
 				echo "server=/${forwardZone}/${new_domain_name_server}"  >> $IPTV_ZONE_FILE
 			done
 		done
-		echo >> $IPTV_ZONE_FILE
 		
+		echo >> $IPTV_ZONE_FILE
 		;;
          
-
 esac
 
 exit 0
