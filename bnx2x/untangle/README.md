@@ -79,7 +79,7 @@ answer n to _git substitution
 Step 10: Checkout the proper version from git
 
     cd ~/ngfw_kernels
-    checkout 15.0.0-20200218T23-sync
+    git checkout 15.0.0-20200218T23-sync
 
 Step 11: Change directories to the appropriate kernel
 
