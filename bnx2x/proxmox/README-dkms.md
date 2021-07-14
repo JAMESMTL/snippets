@@ -10,31 +10,35 @@ For the Proxmox bnx2x kernel module build instruction via standard Proxmox build
 
 <b>This WILL be preformed on the production host.</b>
 
-Step 1. If you are not using Proxmox with an enterprise subscription then you will need to remove the default enterprise repo and replace it with either the pve-no-subscription repo (recommended) or pvetest repo.
+<b>Step 1.</b> Get the debian release used to build Proxmox
+
+    DEBIANVER=$(awk '{print $3}' /etc/apt/sources.list.d/pve-enterprise.list) && echo $DEBIANVER
+
+<b>Step 2.</b> If you are not using Proxmox with an enterprise subscription then you will need to remove the default enterprise repo and replace it with either the pve-no-subscription repo (recommended) or pvetest repo.
 
     rm /etc/apt/sources.list.d/pve-enterprise.list
     
 then
 
-    echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" > /etc/apt/sources.list.d/pve.list
+    echo "deb http://download.proxmox.com/debian/pve ${DEBIANVER} pve-no-subscription" > /etc/apt/sources.list.d/pve.list
 
 or
 
-    echo "deb http://download.proxmox.com/debian/pve buster pvetest" > /etc/apt/sources.list.d/pve.list
+    echo "deb http://download.proxmox.com/debian/pve ${DEBIANVER} pvetest" > /etc/apt/sources.list.d/pve.list
 
-Step 2. Update apt sources
+<b>Step 3.</b> Update apt sources
 
     apt update
 
-Step 3. Install dkms, git, ettool, and dependencies
+<b>Step 4.</b> Install dkms, git, ettool, and dependencies
 
     apt install -y dkms git ethtool pve-headers pve-headers-$(uname -r)
 
-Step 4. Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/dkms-init.sh)
+<b>Step 5.</b> Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/dkms-init.sh)
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms-init.sh | sh | tee /usr/src/dkms-init.log
 
-Step 5. Verify bnx2x module version is prepended with 99 (ex. 99.1.713.36-0) then Reboot 
+<b>Step 6.</b> Verify bnx2x module version is prepended with 99 (ex. 99.1.713.36-0) then Reboot 
 
 	modinfo bnx2x
     reboot
