@@ -71,30 +71,14 @@ http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-a
 or proxmox's Bullseye repo here: \
 http://download.proxmox.com/debian/pve/dists/bullseye/pve-no-subscription/binary-amd64/
 
-For v5.4
+Example for kernel release 5.11.22-1-pve / kernel version 5.11.22-2
 
-    wget http://download.proxmox.com/debian/pve/dists/stretch/pve-no-subscription/binary-amd64/pve-headers-4.15.18-12-pve_4.15.18-35_amd64.deb
-    dpkg -i pve-headers-4.15.18-12-pve_4.15.18-35_amd64.deb
-
-
-For v6.0
-
-    wget http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/pve-headers-5.0.15-1-pve_5.0.15-1_amd64.deb
-    dpkg -i pve-headers-5.0.15-1-pve_5.0.15-1_amd64.deb
-
-For v6.2
-
-    wget http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb
-	dpkg -i pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb
-
-For v7.0
-
-    wget http://download.proxmox.com/debian/pve/dists/bullseye/pve-no-subscription/binary-amd64/pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
+    wget http://download.proxmox.com/debian/pve/dists/${DEBIANVER}/pve-no-subscription/binary-amd64/pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
     dpkg -i pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
 
 <b>Step 9.</b> You will also need to get the repo commit number that matches your target build
 
-goto https://git.proxmox.com/?p=pve-kernel.git and search for the target kernel (ex 4.15.18-35, 5.0.15-1, or 5.4.34-2)
+goto https://git.proxmox.com/?p=pve-kernel.git and search for the target kernel (ex 4.15.18-35, 5.0.15-1, 5.4.34-2, or 5.11.22)
 
 You may see more than one commit.
 
