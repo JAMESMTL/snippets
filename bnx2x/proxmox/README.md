@@ -1,4 +1,4 @@
-## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (5.4, 6.0, 6.2)
+## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (5.4, 6.x,7.x)
 Updated and tested 2020-08-06
 
 For the proxmox bnx2x kernel module build instruction using DKMS see : https://github.com/JAMESMTL/snippets/blob/master/bnx2x/proxmox/README-dkms.md 
@@ -24,10 +24,14 @@ v6.0 is based on Debian Buster which resulted in
 v6.2 is based on Debian Buster which resulted in
 
     Linux pve 5.4.34-1-pve #1 SMP PVE 5.4.34-2 (Thu, 07 May 2020 10:02:02 +0200) x86_64 GNU/Linux
+    
+v7.0 is based on Debian Bullseye which resulted in
+
+    Linux pve2 5.11.22-1-pve #1 SMP PVE 5.11.22-2 (Fri, 02 Jul 2021 16:22:45 +0200) x86_64 GNU/Linux
 
 Once you have that information you can proceed to create your build environment
 
-Step 2: Install proxmox as a VM guest. I used the Proxmox VE (5.4, 6.0, 6.2) ISO Installers located here https://www.proxmox.com/en/downloads/category/iso-images-pve
+Step 2: Install proxmox as a VM guest. I used the Proxmox VE (5.4, 6.x, 7.x) ISO Installers located here https://www.proxmox.com/en/downloads/category/iso-images-pve
 
 Do not bother doing any setup on the new proxmox VM as everything will be done via ssh
 
@@ -39,9 +43,13 @@ For v5.4 use the Debian Stretch sources
 
     wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list -O /etc/apt/sources.list
 
-For v6.0 & 6.2 use the Debian Buster sources
+For v6.x use the Debian Buster sources
 
     wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list_buster -O /etc/apt/sources.list
+
+For v7.x use Debian Bullseye sources
+
+    wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list_bullseye -O /etc/apt/sources.list
 
 then delete /etc/apt/sources.list.d/pve-enterprise.list
 
@@ -70,8 +78,10 @@ ex: pve-headers-4.15.18-12-pve_4.15.18-35_amd64.deb\
 ex: pve-headers-5.0.15-1-pve_5.0.15-1_amd64.deb\
 ex: pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb (** Note -1 vs -2 **)
 
-Alternatively you can browse proxmox's repo directly in your browser here :\
-http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/
+Alternatively you can browse proxmox's Buster repo directly in your browser here :\
+http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/ \
+or proxmox's Bullseye repo here: \
+http://download.proxmox.com/debian/pve/dists/bullseye/pve-no-subscription/binary-amd64/
 
 For v5.4
 
@@ -89,6 +99,10 @@ For v6.2
     wget http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb
 	dpkg -i pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb
 
+For v7.0
+
+    wget http://download.proxmox.com/debian/pve/dists/bullseye/pve-no-subscription/binary-amd64/pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
+    dpkg -i pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
 
 Step 7. You will also need to get the repo commit number that matches your target build
 
@@ -98,13 +112,15 @@ You may see more than one commit.
 
 For v5.4 you would want the update ABI file for 4.15.18-12-pve (bump version to 4.15.18-35)\
 For v6.0 you would want update ABI file for 5.0.15-1-pve (update ABI file for 5.0.15-1-pve)\
-For v6.2 you would want bump version to 5.4.34-2 (bump version to 5.4.34-2)
+For v6.2 you would want bump version to 5.4.34-2 (bump version to 5.4.34-2)\
+For v7.0 you would want update ABI file for 5.11.22-2-pve
 
 Once you click on the version you want you will be able to get the commit number ex:
 
 v5.4 (4.15.18-35) 2b3306dee456c6b172a8fdbbce2598f67d0b2569\
 v6.0 (5.0.15-1) de6fe5c8ffa1ffd870bc128b39864d1e49e27de1\
-v6.2 (5.4.34-2) 80c08de2e4909e4411cf0db3aa37c5532db0c693
+v6.2 (5.4.34-2) 80c08de2e4909e4411cf0db3aa37c5532db0c693\
+v7.0 (5.11.22-2) 1686139dd18594b19ee588578965d033826db57d
 
 Step 8. Get the source code
 
@@ -124,6 +140,10 @@ v6.0 (5.0.15-1)
 v6.2 (5.4.34-2)
 
     git checkout 80c08de2e4909e4411cf0db3aa37c5532db0c693
+    
+v7.0 (5.11.22-2)
+
+    git checkout 1686139dd18594b19ee588578965d033826db57d
 
 And make the submodules needed to build the kernel module (this takes time)
 
@@ -144,6 +164,10 @@ v6.0 (5.0.15-1)
 v6.2 (5.4.34-2)
 
     cd ~/pve-kernel/build/ubuntu-focal
+    
+v7.0 (5.11.22-2)
+
+    cd ~/pve-kernel/build/ubuntu-hirsute
 
 Step 10. Download and apply upnatom's unified patch for 57810 + 57711 nic families then build the module
 
