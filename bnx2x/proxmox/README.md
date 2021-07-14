@@ -76,8 +76,8 @@ you can construct the filename you need based on the version learned from the ta
 
 ex: pve-headers-4.15.18-12-pve_4.15.18-35_amd64.deb\
 ex: pve-headers-5.0.15-1-pve_5.0.15-1_amd64.deb\
-ex: pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb (** Note -1 vs -2 **)\
-ex: pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb (** Note -1 vs -2 **)
+ex: pve-headers-5.4.34-1-pve_5.4.34-2_amd64.deb (Note -1 vs -2)\
+ex: pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb (Note -1 vs -2)
 
 Alternatively you can browse proxmox's Buster repo directly in your browser here :\
 http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/ \
