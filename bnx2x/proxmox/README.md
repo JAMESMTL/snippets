@@ -9,47 +9,33 @@ For the proxmox bnx2x kernel module build instruction using DKMS see : https://g
 
 The sole objective of this post is to build the module, I have only added enough dependencies to get that far and there may be a couple that are not actually needed but that wont affect the build.
 
-Step 1. Before going any further you need to identify the kernel of the target VM host. You can do this by logging in via ssh and running
+<b>Step 1.</b> Before going any further you need to identify the kernel of the target VM host. You can do this by logging in via ssh and running
 
     root@pve:~# uname -a
 
-v5.4 is based on Debian Stretch which resulted in
+This will give you a result such as :
 
-    Linux pve 4.15.18-12-pve #1 SMP PVE 4.15.18-35 (Wed, 13 Mar 2019 08:24:42 +0100) x86_64 GNU/Linux
-
-v6.0 is based on Debian Buster which resulted in
-
-    Linux pve 5.0.15-1-pve #1 SMP PVE 5.0.15-1 (Wed, 03 Jul 2019 10:51:57 +0200) x86_64 GNU/Linux
-
-v6.2 is based on Debian Buster which resulted in
-
-    Linux pve 5.4.34-1-pve #1 SMP PVE 5.4.34-2 (Thu, 07 May 2020 10:02:02 +0200) x86_64 GNU/Linux
-    
-v7.0 is based on Debian Bullseye which resulted in
-
-    Linux pve2 5.11.22-1-pve #1 SMP PVE 5.11.22-2 (Fri, 02 Jul 2021 16:22:45 +0200) x86_64 GNU/Linux
+    Linux pve 5.11.22-1-pve #1 SMP PVE 5.11.22-2 (Fri, 02 Jul 2021 16:22:45 +0200) x86_64 GNU/Linux
 
 Once you have that information you can proceed to create your build environment
 
-Step 2: Install proxmox as a VM guest. I used the Proxmox VE (5.4, 6.x, 7.x) ISO Installers located here https://www.proxmox.com/en/downloads/category/iso-images-pve
+<b>Step 2.</b> Install proxmox as a VM guest. I used the Proxmox VE (5.4, 6.x, 7.x) ISO Installers located here https://www.proxmox.com/en/downloads/category/iso-images-pve
 
 Do not bother doing any setup on the new proxmox VM as everything will be done via ssh
 
-Step 3: log into the new VM via ssh
+<b>Step 3.</b> log into the new VM via ssh
 
-Step 4: Now you need to modify the sources in /etc/apt/sources.list
+<b>Step 4.</b> Double check that the kernel of your build VM matches the target kernel
 
-For v5.4 use the Debian Stretch sources
+    root@pve:~# uname -a
 
-    wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list -O /etc/apt/sources.list
+<b>Step 5.</b> Get the Debian release used to build Proxmox
 
-For v6.x use the Debian Buster sources
+    DEBIANVER=$(awk '{print $3}' /etc/apt/sources.list.d/pve-enterprise.list) && echo $DEBIANVER
 
-    wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list_buster -O /etc/apt/sources.list
+<b>Step 6.</b> Download the Debian sources file that matches your release and save it to /etc/apt/sources.list
 
-For v7.x use Debian Bullseye sources
-
-    wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list_bullseye -O /etc/apt/sources.list
+    wget https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/proxmox/sources.list_${DEBIANVER} -O /etc/apt/sources.list
 
 then delete /etc/apt/sources.list.d/pve-enterprise.list
 
@@ -63,12 +49,12 @@ and update the apt sources
 
 <b>DO NOT do an apt upgrade or apt dist-upgrade, doing so will download updated kernels</b>
 
-Step 5. Now install the packages you will need to build the module
+<b>Step 7.</b> Now install the packages you will need to build the module
 
     apt install git build-essential fakeroot libncurses5-dev xz-utils libssl-dev bc flex libelf-dev bison curl dpkg-dev debhelper asciidoc libiberty-dev lintian xmlto libdw-dev libnuma-dev libslang2-dev zlib1g-dev
 
 
-Step 6. Install the headers file corresponding to your target
+<b>Step 8.</b> Install the headers file corresponding to your target
 
 You will need to get a link for the headers that match the target build.
 
@@ -106,7 +92,7 @@ For v7.0
     wget http://download.proxmox.com/debian/pve/dists/bullseye/pve-no-subscription/binary-amd64/pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
     dpkg -i pve-headers-5.11.22-1-pve_5.11.22-2_amd64.deb
 
-Step 7. You will also need to get the repo commit number that matches your target build
+<b>Step 9.</b> You will also need to get the repo commit number that matches your target build
 
 goto https://git.proxmox.com/?p=pve-kernel.git and search for the target kernel (ex 4.15.18-35, 5.0.15-1, or 5.4.34-2)
 
@@ -124,7 +110,7 @@ v6.0 (5.0.15-1) de6fe5c8ffa1ffd870bc128b39864d1e49e27de1\
 v6.2 (5.4.34-2) 80c08de2e4909e4411cf0db3aa37c5532db0c693\
 v7.0 (5.11.22-2) 1686139dd18594b19ee588578965d033826db57d
 
-Step 8. Get the source code
+<b>Step 10.</b> Get the source code
 
     git clone git://git.proxmox.com/git/pve-kernel.git
     cd pve-kernel
@@ -153,7 +139,7 @@ And make the submodules needed to build the kernel module (this takes time)
 
 The make process will error out but that's ok as we have gone as far as we need to.
 
-Step 9. Switch to the kernel build directory
+<b>Step 11.</b> Switch to the kernel build directory
 
 v5.4 (4.15.18-35)
 
@@ -171,7 +157,7 @@ v7.0 (5.11.22-2)
 
     cd ~/pve-kernel/build/ubuntu-hirsute
 
-Step 10. Download and apply upnatom's unified patch for 57810 + 57711 nic families then build the module
+<b>Step 12.</b> Download and apply upnatom's unified patch for 57810 + 57711 nic families then build the module
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch | patch -p1
     cp /usr/src/linux-headers-$(uname -r)/.config .
