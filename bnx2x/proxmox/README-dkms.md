@@ -1,5 +1,5 @@
-## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (6.x) VIA DKMS
-Updated and tested 2020-09-03
+## HOW TO BUILD THE UNIFIED BCM 57711/57810 KERNEL MODULE FOR PROXMOX (6.x,7.x) VIA DKMS
+Updated 2021-07-14
 
 What is Proxmox? see https://www.proxmox.com/en/proxmox-ve \
 What is DKMS (Dynamic Kernel Module Support)? see https://help.ubuntu.com/community/DKMS 
@@ -10,7 +10,7 @@ For the Proxmox bnx2x kernel module build instruction via standard Proxmox build
 
 <b>This WILL be preformed on the production host.</b>
 
-<b>Step 1.</b> Get the debian release used to build Proxmox
+<b>Step 1.</b> Get the Debian release used to build Proxmox
 
     DEBIANVER=$(awk '{print $3}' /etc/apt/sources.list.d/pve-enterprise.list) && echo $DEBIANVER
 
