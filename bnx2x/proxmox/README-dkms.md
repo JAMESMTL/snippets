@@ -38,9 +38,9 @@ or
 
     curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms-init.sh | sh | tee /usr/src/dkms-init.log
 
-<b>Step 6.</b> Verify bnx2x module version is prepended with 99 (ex. 99.1.713.36-0) then Reboot 
+<b>Step 6.</b> Verify bnx2x module has been patched then Reboot 
 
-	modinfo bnx2x
+	modinfo -p bnx2x | grep -q mask_tx_fault && echo PATCHED || echo NOT PATCHED
     reboot
 
 Done!
