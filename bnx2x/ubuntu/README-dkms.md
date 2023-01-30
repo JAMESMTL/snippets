@@ -30,17 +30,17 @@ Step 5: Login to Ubuntu as root via SSH or console
 Step 6: Update & upgrade Ubuntu
 ```
 sudo apt update
-sudo apt upgrade
+sudo apt -y upgrade
 ```
 
 Step 7: Install dkms, git, ettool, and dependencies
 ```
-sudo apt install -y dkms git ethtool curl
+sudo apt -y install dkms git ethtool curl
 ```
 
 Step 8: Run dkms init script (https://github.com/JAMESMTL/snippets/blob/master/bnx2x/patches/dkms-init.sh)
 ```
-curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms-init.sh | sudo sh | tee /usr/src/dkms-init.log
+curl https://raw.githubusercontent.com/JAMESMTL/snippets/master/bnx2x/patches/dkms-init.sh | sudo sh | sudo tee /usr/src/dkms-init.log
 ```
 
 Step 9: Verify that the kernel module was patched correctly
