@@ -107,9 +107,8 @@ These instructions are in support of the work done by upnatom to enable 2.5G lin
 
 Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel found here: https://github.com/severnt/bnx2x-2_5g-dkms 
 
-Post your questions in the Bell Canada forum on dslreports found here: \
+Post your questions on the CPE bypass discord server or the Bell Canada forum on dslreports found here: \
+https://discord.gg/NM6MwN7D \
 https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
 
-## HOW-TO setup Bell IPTV using untangle
 
-See https://github.com/JAMESMTL/snippets/blob/master/bnx2x/untangle/iptv/README.md
