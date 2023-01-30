@@ -25,7 +25,7 @@ echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 Step 5: Login to Ubuntu as root via SSH or console
 
-If you choose to setup dkms under root then leave out the sudo from the instructions below
+<b>If you choose to setup dkms under root then leave out the sudo from the instructions below</b>
 
 Step 6: Update & upgrade Ubuntu
 ```
