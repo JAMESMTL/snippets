@@ -107,8 +107,7 @@ These instructions are in support of the work done by upnatom to enable 2.5G lin
 
 Special thanks zinc/severnt for the original dkms instructions based on the 4.19 kernel found here: https://github.com/severnt/bnx2x-2_5g-dkms 
 
-Post your questions on the CPE bypass discord server or the Bell Canada forum on dslreports found here: \
-https://discord.gg/NM6MwN7D \
-https://www.dslreports.com/forum/r32230041-Internet-Bypassing-the-HH3K-up-to-2-5Gbps-using-a-BCM57810S-NIC
+If you have any questiopns or need support please visit the CPE Bypass discord server found here: \
+https://discord.com/servers/8311-886329492438671420
 
 
